@@ -104,6 +104,11 @@ define('ADMIN_URL',   SITE_URL . '/admin');
 define('ASSETS_URL',  SITE_URL);
 define('UPLOADS_URL', SITE_URL . '/uploads');
 
+// ── Analytics defaults ────────────────────────────────
+// Used when the matching Admin setting is left blank, so tracking keeps
+// working on a fresh install. Override in Admin > Settings > SEO & Analytics.
+define('AG_DEFAULT_FB_PIXEL', '1070339995399476');
+
 // ── Security ─────────────────────────────────────────
 define('CSRF_TOKEN_NAME',    '_csrf_token');
 define('CSRF_TOKEN_EXPIRY',  3600);

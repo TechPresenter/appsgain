@@ -106,7 +106,11 @@ $_yandexId = trim($_ms['yandex_verification']   ?? '');
 $_pinId    = trim($_ms['pinterest_verification']?? '');
 $_nortonId = trim($_ms['norton_verification']   ?? '');
 $_indexNow = trim($_ms['indexnow_key']          ?? '');
+/* Meta Pixel — falls back to the company pixel when Admin is left blank.
+   Set 'off' in Admin to disable tracking entirely. */
 $_fbPixel  = trim($_ms['facebook_pixel']        ?? '');
+if ($_fbPixel === '')    $_fbPixel = AG_DEFAULT_FB_PIXEL;
+if ($_fbPixel === 'off') $_fbPixel = '';
 $_clarity  = trim($_ms['microsoft_clarity']     ?? '');
 $_hotjar   = trim($_ms['hotjar_id']             ?? '');
 $_liInsight= trim($_ms['linkedin_insight']      ?? '');

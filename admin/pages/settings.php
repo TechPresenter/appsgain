@@ -1425,11 +1425,18 @@ elseif ($tab === 'seo'): ?>
             <input type="text" name="facebook_pixel" class="form-control"
                    value="<?= e($s['facebook_pixel'] ?? '') ?>"
                    placeholder="1234567890123456">
-            <div class="form-hint">From Meta Events Manager → Data Sources. Digits only. Leave blank to disable.</div>
+            <div class="form-hint">From Meta Events Manager → Data Sources. Digits only. Blank falls back to the default pixel — type <code>off</code> to disable tracking.</div>
           </div>
           <div style="background:var(--light);border-radius:10px;padding:12px;font-size:12px;color:var(--gray);margin-top:14px">
             <i class="fas fa-info-circle" style="color:var(--violet)"></i>
-            Current: <strong><?= !empty($s['facebook_pixel']) ? e($s['facebook_pixel']) : 'Not configured' ?></strong>
+            <?php $_fbNow = trim($s['facebook_pixel'] ?? ''); ?>
+            <?php if ($_fbNow === 'off'): ?>
+              Currently <strong>disabled</strong> — no pixel is loaded.
+            <?php elseif ($_fbNow !== ''): ?>
+              Active: <strong><?= e($_fbNow) ?></strong>
+            <?php else: ?>
+              Active: <strong><?= e(AG_DEFAULT_FB_PIXEL) ?></strong> <span style="opacity:.75">(default)</span>
+            <?php endif; ?>
           </div>
         </div>
       </div>
