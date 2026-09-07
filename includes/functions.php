@@ -125,7 +125,24 @@ function getAllSettings(string $group = ''): array {
     return $result;
 }
 
-function saveSetting(string $key, string $value, string $group = 'general'): void {
+/**
+ * Write one setting.
+ *
+ * $group is only applied when the caller names one. It used to default to
+ * 'general' and was written on every update, so saving the Settings screen —
+ * which calls this without a group — reclassified every field it touched:
+ * the analytics and seo rows all became 'general'.
+ */
+function saveSetting(string $key, string $value, ?string $group = null): void {
+    if ($group === null) {
+        /* New rows still need a group; existing ones keep the one they have. */
+        dbExecute("INSERT INTO settings (setting_key, setting_value, setting_group)
+                   VALUES (?, ?, 'general')
+                   ON DUPLICATE KEY UPDATE setting_value = ?",
+            [$key, $value, $value]
+        );
+        return;
+    }
     dbExecute("INSERT INTO settings (setting_key, setting_value, setting_group)
                VALUES (?, ?, ?)
                ON DUPLICATE KEY UPDATE setting_value = ?, setting_group = ?",
@@ -186,7 +203,37 @@ function currentUrl(): string {
     return $scheme . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 
-function redirect(string $url, int $code = 302): void {
+/**
+ * Redirect, confined to this site.
+ *
+ * guardOversizedPost() sends the visitor back to HTTP_REFERER, which the
+ * caller controls, so an off-site value would have made this an open
+ * redirect: post an oversized body to an admin screen and the signed-in
+ * admin lands wherever the attacker chose. Nothing here redirects off-site,
+ * so the check lives in one place rather than at each call.
+ *
+ * Rejected targets fall back to $fallback (the site root by default).
+ */
+function redirect(string $url, int $code = 302, string $fallback = ''): void {
+    $url  = trim($url);
+    $safe = $fallback !== '' ? $fallback : (defined('SITE_URL') ? SITE_URL . '/' : '/');
+
+    /* "//evil.com" and "https://evil.com" both leave the site; a backslash
+       is treated as a slash by some browsers, so normalise before testing. */
+    $probe = str_replace('\\', '/', $url);
+
+    if ($url === '' || str_starts_with($probe, '//')) {
+        $url = $safe;
+    } elseif (preg_match('#^[a-z][a-z0-9+.-]*:#i', $probe)) {
+        /* Absolute URL — keep it only when the host is ours. */
+        $host = strtolower((string)parse_url($probe, PHP_URL_HOST));
+        $ours = strtolower((string)parse_url(defined('SITE_URL') ? SITE_URL : '', PHP_URL_HOST));
+        if ($host === '' || $ours === '' || $host !== $ours) $url = $safe;
+    }
+
+    /* A header cannot span lines. */
+    $url = str_replace(["\r", "\n"], '', $url);
+
     header("Location: $url", true, $code);
     exit;
 }

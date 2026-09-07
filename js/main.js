@@ -998,6 +998,22 @@ document.addEventListener('DOMContentLoaded', function () {
       window.gtag('js', new Date());
       window.gtag('config', cfg.ga);
     }
+    /* The pixel used to be left out here, so it only started on the NEXT
+       page load — the visit where someone accepts is the one worth
+       measuring, and it was the one Meta never saw. The fbq stub guards
+       against a double init if the server already emitted the snippet. */
+    if (cfg.pixel && !window.fbq) {
+      (function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = true; t.src = v;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', cfg.pixel);
+      window.fbq('track', 'PageView');
+    }
   }
 
   /* Already decided? stay quiet. */
