@@ -10,7 +10,11 @@ Options -MultiViews
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()"
+    # microphone=(self) — the chatbot's voice input needs it. An empty list
+    # denies the feature to this origin too, so the browser refused the mic
+    # before the permission prompt could ever appear. Everything else stays
+    # denied outright; (self) grants only this origin, never an embed.
+    Header always set Permissions-Policy "geolocation=(), microphone=(self), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()"
 </IfModule>
 
 ServerSignature Off

@@ -1440,6 +1440,8 @@ mark.hl{background:rgba(124,58,237,.15);color:var(--violet);border-radius:3px;pa
     agRenderNav($AG_NAV, $adminPage, [
         "newLeads"    => (int)($newLeads    ?? 0),
         "newComments" => (int)($newComments ?? 0),
+        "newChatLeads" => (int)($newChatLeads ?? 0),
+        "newChatSessions" => (int)($newChatSessions ?? 0),
     ]);
     ?>
   </nav>

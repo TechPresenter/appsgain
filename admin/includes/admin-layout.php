@@ -20,4 +20,12 @@ $adminPage   = $adminPage  ?? 'dashboard';
 
 $newLeads    = countTable('leads', 'is_read = 0');
 $newComments = countTable('blog_comments', "status = 'pending'");
+/* The chatbot table is created by its migration, so a site that has not run
+   it yet must still render the admin. */
+$newChatLeads = 0;
+try { $newChatLeads = countTable('chatbot_leads', 'is_read = 0'); } catch (Throwable $e) {}
+/* Table is created by a migration, so a database that has not run it yet
+   must not take the whole admin down. */
+$newChatSessions = 0;
+try { $newChatSessions = countTable('chatbot_sessions', 'is_read = 0'); } catch (Throwable $e) {}
 ?>

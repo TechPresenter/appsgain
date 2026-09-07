@@ -34,6 +34,9 @@ $AG_NAV = [
     ['label' => 'New Leads',    'icon' => 'fa-bolt',              'url' => '/pages/leads.php?status=new',   'key' => 'leads', 'q' => ['status' => 'new']],
     ['label' => 'Converted',    'icon' => 'fa-circle-check',      'url' => '/pages/leads.php?status=converted', 'key' => 'leads', 'q' => ['status' => 'converted']],
     ['label' => 'Contact Form', 'icon' => 'fa-envelope-open-text','url' => '/pages/leads.php?type=enquiry', 'key' => 'leads', 'q' => ['type' => 'enquiry']],
+    ['label' => 'Chatbot Leads','icon' => 'fa-comments',          'url' => '/pages/chatbot-leads.php',      'key' => 'chatbot-leads', 'badge' => 'newChatLeads'],
+    /* Every conversation, lead or not — sits beside the leads it produced. */
+    ['label' => 'Chat Sessions','icon' => 'fa-comment-dots',      'url' => '/pages/chatbot-sessions.php',   'key' => 'chatbot-sessions', 'badge' => 'newChatSessions'],
   ]],
 
   ['section' => 'Website Core', 'links' => [
@@ -94,6 +97,7 @@ $AG_NAV = [
   /* Access control and audit trail together, where they belong */
   ['section' => 'System', 'links' => [
     ['label' => 'Settings',      'icon' => 'fa-gear',             'url' => '/pages/settings.php',      'key' => 'settings'],
+    ['label' => 'Chatbot',       'icon' => 'fa-robot',            'url' => '/pages/chatbot.php',       'key' => 'chatbot'],
     ['label' => 'Admin Users',   'icon' => 'fa-user-shield',      'url' => '/pages/users.php',         'key' => 'users',      'roles' => ['superadmin']],
     ['label' => 'Security',      'icon' => 'fa-lock',             'url' => '/pages/security.php',      'key' => 'security'],
     ['label' => 'Activity Log',  'icon' => 'fa-clock-rotate-left','url' => '/pages/activity.php',      'key' => 'activity',   'roles' => ['superadmin']],
