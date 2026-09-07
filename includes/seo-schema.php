@@ -75,8 +75,21 @@ $_SEO_BIZ = [
   /* Founder — a named person tied to the company is one of the stronger
      entity signals Google has for a Knowledge Panel. */
   'founder'       => $_seoVal('company_founder', $_seoVal('founder_name', '')),
-  'founderUrl'    => $_seoVal('founder_linkedin', ''),
+  /* Legal/birth name. Google treats alternateName as the same entity, which
+     is how a search for either name resolves to one person. */
+  'founderAltName'=> $_seoVal('founder_alt_name', 'Prashant Singh Kushwaha'),
+  /* The founder's own profiles. Several independent, verifiable presences do
+     far more for entity resolution than one, so the personal site sits here
+     alongside LinkedIn and X. */
+  'founderSocials'=> array_values(array_filter([
+    $_seoVal('founder_linkedin', 'https://www.linkedin.com/in/prashantdevtech/'),
+    $_seoVal('founder_twitter',  'https://x.com/PrashantDevtech'),
+    $_seoVal('founder_website',  'https://prashantkushwaha.tech'),
+  ], static fn($u) => $u !== '' && $u !== '#')),
   'founderRole'   => $_seoVal('founder_role', ''),
+  /* Canonical home of the Person entity — both schemas point @id here so
+     Organization and Person resolve to one linked pair, not two strangers. */
+  'founderPage'   => rtrim(SITE_URL, '/') . '/our-founder.php',
   'cin'           => $_seoVal('company_cin', ''),
   'gstin'         => $_seoVal('company_gstin', ''),
   'vatId'         => $_seoVal('company_vat_id', ''),
@@ -120,12 +133,19 @@ function seoOrganizationSchema(): array {
   global $_SEO_BIZ;
 
   /* Google reads Organization.founder as an entity link, so give it a real
-     Person node rather than a bare string. */
+     Person node rather than a bare string — and carry the same @id the
+     founder page publishes, so the two describe one person, not two. */
   $founder = [];
   if ($_SEO_BIZ['founder'] !== '') {
-    $founder = ['@type' => 'Person', 'name' => $_SEO_BIZ['founder']];
-    if ($_SEO_BIZ['founderRole'] !== '') $founder['jobTitle'] = $_SEO_BIZ['founderRole'];
-    if ($_SEO_BIZ['founderUrl']  !== '') $founder['sameAs']   = $_SEO_BIZ['founderUrl'];
+    $founder = [
+      '@type' => 'Person',
+      '@id'   => $_SEO_BIZ['founderPage'] . '#person',
+      'name'  => $_SEO_BIZ['founder'],
+      'url'   => $_SEO_BIZ['founderPage'],
+    ];
+    if ($_SEO_BIZ['founderAltName'] !== '') $founder['alternateName'] = $_SEO_BIZ['founderAltName'];
+    if ($_SEO_BIZ['founderRole']    !== '') $founder['jobTitle']      = $_SEO_BIZ['founderRole'];
+    if ($_SEO_BIZ['founderSocials'] !== []) $founder['sameAs']        = $_SEO_BIZ['founderSocials'];
   }
 
   /* Company registration numbers identify the legal entity. Emitted only
@@ -804,22 +824,26 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       $schemas[] = seoPruneEmpty([
         '@context' => 'https://schema.org',
         '@type'    => 'Person',
-        '@id'      => $url . '#person',
+        /* Same @id the Organization's founder node uses, so Google reads one
+           person described in two places rather than two similar people. */
+        '@id'      => $_SEO_BIZ['founderPage'] . '#person',
         'name'     => $p['name']     ?? '',
+        'alternateName' => $_SEO_BIZ['founderAltName'],
         'jobTitle' => $p['jobTitle'] ?? '',
         'description' => $p['description'] ?? $desc,
         'url'      => $url,
         'image'    => $p['image'] ?? '',
         'email'    => $p['email'] ?? '',
-        'sameAs'   => array_values(array_filter($p['sameAs'] ?? [])),
+        /* Page-supplied profiles first, then the configured ones, deduped. */
+        'sameAs'   => array_values(array_unique(array_filter(array_merge(
+                        $p['sameAs'] ?? [], $_SEO_BIZ['founderSocials']
+                      )))),
         'knowsAbout' => array_values(array_filter($p['knowsAbout'] ?? [])),
         'alumniOf' => !empty($p['alumniOf']) ? ['@type'=>'EducationalOrganization','name'=>$p['alumniOf']] : null,
-        'worksFor' => [
-          '@type'         => 'Organization',
-          'name'          => $_SEO_BIZ['name'] ?? '',
-          'url'           => SITE_URL,
-          'foundingDate'  => $p['foundingDate'] ?? '',
-        ],
+        /* Reference, not a copy. This used to inline a second Organization
+           with its own name and url, competing with #organization. */
+        'worksFor'   => ['@id' => $_SEO_BIZ['url'].'/#organization'],
+        'founderOf'  => ['@id' => $_SEO_BIZ['url'].'/#organization'],
       ]);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Our Founder','']]);
       break;
