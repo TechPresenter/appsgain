@@ -108,7 +108,7 @@ $_tmChip = static function (array $it, bool $aria) use ($_tmGray): void {
   position:relative; overflow:hidden;
   padding:clamp(30px,3.8vw,52px) 0;
   border-top:1px solid var(--t-line);
-  font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
 }
 .tmq-bg-soft{ background:#F7F8FC; }
 .tmq-bg-white{ background:#FFFFFF; }
@@ -126,7 +126,7 @@ $_tmChip = static function (array $it, bool $aria) use ($_tmGray): void {
   color:var(--t-ink); margin:0;
 }
 .tmq-sub{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:14px; line-height:1.65; color:var(--t-body);
   margin:8px auto 0; max-width:60ch;
 }

@@ -32,7 +32,7 @@
   background-color:var(--pm-c1, #6A00FF);
   background-image:linear-gradient(135deg, var(--pm-c1,#6A00FF), var(--pm-c2,#9D00D3));
   color:#fff;
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-weight:800;
   font-size:calc(var(--pm-size) * .36);
   letter-spacing:-.02em;
@@ -75,7 +75,7 @@
   border-radius:999px; padding:5px 11px;
 }
 .pr-card h3{
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-size:18px; font-weight:700; line-height:1.32;
   color:var(--pr-ink); margin:0 0 9px;
   letter-spacing:-.015em;
@@ -135,7 +135,7 @@
   border-radius:999px; padding:6px 13px; margin-bottom:14px;
 }
 .pdx-title{
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-size:clamp(27px,3.6vw,44px); font-weight:800;
   line-height:1.12; letter-spacing:-.028em;
   color:var(--pr-ink); margin:0 0 14px;
@@ -151,7 +151,7 @@
 }
 .pdx-stats li{ display:flex; flex-direction:column; gap:2px; }
 .pdx-stats strong{
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-size:21px; font-weight:800; color:var(--pr-ink); line-height:1;
 }
 .pdx-stats span{
@@ -164,7 +164,7 @@
 .pr-btn{
   display:inline-flex; align-items:center; justify-content:center; gap:9px;
   height:46px; padding:0 22px; border-radius:999px; border:1px solid transparent;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
   font-size:14.5px; font-weight:600; line-height:1;
   text-decoration:none; cursor:pointer;
   transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease;
@@ -207,7 +207,7 @@
 .pdx-sec{ scroll-margin-top:70px; margin-bottom:clamp(34px,4vw,52px); }
 .pdx-sec:last-child{ margin-bottom:0; }
 .pdx-h2{
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-size:clamp(21px,2.2vw,27px); font-weight:700;
   letter-spacing:-.022em; color:var(--pr-ink); margin:0 0 8px;
 }
@@ -262,7 +262,7 @@
 }
 .pdx-card-t{
   display:flex; align-items:center; gap:9px;
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-size:15px; font-weight:700; color:var(--pr-ink); margin:0 0 8px;
 }
 .pdx-card-t i{ color:var(--pr-brand); font-size:14px; }
@@ -293,7 +293,7 @@
   text-align:center; color:#fff;
 }
 .pdx-cta h2{
-  font-family:'Sora','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),var(--font-body),system-ui,sans-serif;
   font-size:clamp(23px,2.8vw,34px); font-weight:800;
   line-height:1.2; letter-spacing:-.025em; margin:0 0 12px; color:#fff;
 }

@@ -12,7 +12,7 @@
   --f-grad:linear-gradient(120deg,#FF8A00 0%,#FF3030 26%,#F50072 50%,#D000A8 70%,#6A00FF 100%);
   --f-grad-btn:linear-gradient(120deg,#D000A8 0%,#9D00D3 45%,#6A00FF 100%);
   --f-ease:cubic-bezier(.22,1,.36,1);
-  font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
   color:var(--f-body); background:var(--f-soft);
 }
 .fdr-wrap{ max-width:1140px; margin-inline:auto; padding-inline:clamp(20px,4vw,32px); }
@@ -38,7 +38,7 @@
 }
 .fdr-crumb{
   display:flex; align-items:center; gap:8px; margin-bottom:20px;
-  font-family:'Inter',sans-serif; font-size:12.5px; color:var(--f-mute);
+  font-family:var(--font-body),sans-serif; font-size:12.5px; color:var(--f-mute);
 }
 .fdr-crumb a{ color:var(--f-mute); text-decoration:none; }
 .fdr-crumb a:hover{ color:var(--f-brand); }
@@ -52,7 +52,7 @@
 .fdr-eyebrow{
   display:inline-flex; align-items:center; gap:7px;
   padding:5px 13px; margin-bottom:14px; border-radius:999px;
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
   color:var(--f-brand); background:rgba(106,0,255,.07);
   border:1px solid rgba(106,0,255,.16);
@@ -62,11 +62,11 @@
   line-height:1.1; color:var(--f-ink); margin:0 0 10px;
 }
 .fdr-role{
-  font-family:'Inter',sans-serif; font-size:clamp(14px,1.3vw,16px);
+  font-family:var(--font-body),sans-serif; font-size:clamp(14px,1.3vw,16px);
   font-weight:600; color:var(--f-brand); margin:0 0 14px;
 }
 .fdr-lede{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:clamp(14.5px,1.2vw,16px); line-height:1.75;
   color:var(--f-body); margin:0 0 20px; max-width:60ch;
 }
@@ -95,9 +95,9 @@
   background-color:var(--f-solid); background-image:var(--f-grad-btn);
   color:#fff; font-size:32px; font-weight:800; letter-spacing:-.02em;
 }
-.fdr-photo-blank small{ font-family:'Inter',sans-serif; font-size:12px; line-height:1.5; max-width:22ch; }
+.fdr-photo-blank small{ font-family:var(--font-body),sans-serif; font-size:12px; line-height:1.5; max-width:22ch; }
 .fdr-cap{
-  font-family:'Inter',sans-serif; font-size:11.5px; line-height:1.5;
+  font-family:var(--font-body),sans-serif; font-size:11.5px; line-height:1.5;
   color:var(--f-mute); margin:9px 2px 0; text-align:center;
 }
 
@@ -105,7 +105,7 @@
 .fdr-btn{
   display:inline-flex; align-items:center; justify-content:center; gap:9px;
   height:44px; padding:0 22px; border-radius:11px; border:1px solid transparent;
-  font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+  font-family:var(--font-body),sans-serif; font-size:14px; font-weight:600;
   text-decoration:none; white-space:nowrap;
   transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
 }
@@ -141,7 +141,7 @@
   color:var(--f-ink); margin:24px 0 9px;
 }
 .fdr-p{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:15.5px; line-height:1.82; color:var(--f-body); margin:0 0 15px;
 }
 .fdr-p strong{ color:var(--f-ink); font-weight:600; }
@@ -172,7 +172,7 @@
 }
 .fdr-quote cite{
   display:block; font-style:normal;
-  font-family:'Inter',sans-serif; font-size:13px; line-height:1.6; color:var(--f-mute);
+  font-family:var(--font-body),sans-serif; font-size:13px; line-height:1.6; color:var(--f-mute);
 }
 .fdr-quote cite strong{ display:block; color:var(--f-ink); font-weight:700; font-size:14px; }
 
@@ -181,7 +181,7 @@
 .fdr-chip{
   padding:7px 14px; border-radius:999px;
   background:var(--f-card); border:1px solid var(--f-line);
-  font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--f-body);
+  font-family:var(--font-body),sans-serif; font-size:13px; font-weight:500; color:var(--f-body);
   transition:border-color .2s ease, color .2s ease, transform .2s ease;
 }
 .fdr-chip:hover{ border-color:rgba(106,0,255,.3); color:var(--f-brand); transform:translateY(-1px); }
@@ -207,14 +207,14 @@
   background-color:var(--f-solid); background-image:var(--f-grad-btn);
 }
 .fdr-card h4{ font-size:15px; font-weight:700; color:var(--f-ink); margin:0 0 6px; letter-spacing:-.01em; }
-.fdr-card p{ font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.65; color:var(--f-body); margin:0; }
+.fdr-card p{ font-family:var(--font-body),sans-serif; font-size:13.5px; line-height:1.65; color:var(--f-body); margin:0; }
 
 /* Journey path */
 .fdr-path{
   display:flex; flex-wrap:wrap; align-items:center; gap:8px;
   padding:18px; border-radius:14px;
   background:var(--f-card); border:1px solid var(--f-line);
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
 }
 .fdr-path span{
   padding:6px 12px; border-radius:8px;
@@ -226,7 +226,7 @@
 .fdr-list{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
 .fdr-list li{
   display:flex; gap:10px; align-items:flex-start;
-  font-family:'Inter',sans-serif; font-size:15px; line-height:1.7; color:var(--f-body);
+  font-family:var(--font-body),sans-serif; font-size:15px; line-height:1.7; color:var(--f-body);
 }
 .fdr-list li::before{
   content:'\f00c'; font-family:'Font Awesome 6 Free'; font-weight:900;
@@ -242,7 +242,7 @@
 }
 .fdr-widget h4{
   display:flex; align-items:center; gap:8px;
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:11px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
   color:var(--f-mute); margin:0 0 13px;
 }
@@ -252,7 +252,7 @@
 .fdr-toc a{
   display:block; padding:7px 10px; border-radius:8px;
   border-left:2px solid transparent;
-  font-family:'Inter',sans-serif; font-size:13px; line-height:1.45;
+  font-family:var(--font-body),sans-serif; font-size:13px; line-height:1.45;
   color:var(--f-body); text-decoration:none;
   transition:background .18s ease, color .18s ease, border-color .18s ease;
 }
@@ -267,7 +267,7 @@
   display:flex; align-items:center; gap:10px;
   padding:10px 12px; border-radius:10px;
   background:var(--f-soft); border:1px solid var(--f-line);
-  font-family:'Inter',sans-serif; font-size:13.5px; color:var(--f-ink);
+  font-family:var(--font-body),sans-serif; font-size:13.5px; color:var(--f-ink);
   text-decoration:none; word-break:break-word;
   transition:border-color .2s ease, color .2s ease;
 }
@@ -295,7 +295,7 @@
 .fdr-faq details[open] summary{ color:var(--f-brand); }
 .fdr-faq p{
   margin:0; padding:0 18px 16px;
-  font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.75; color:var(--f-body);
+  font-family:var(--font-body),sans-serif; font-size:14.5px; line-height:1.75; color:var(--f-body);
 }
 
 /* ══ Closing CTA ═══════════════════════════════════════ */
@@ -313,7 +313,7 @@
   color:#fff; margin:0 0 8px; line-height:1.2;
 }
 .fdr-cta p{
-  font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.7;
+  font-family:var(--font-body),sans-serif; font-size:14.5px; line-height:1.7;
   color:rgba(255,255,255,.88); margin:0; max-width:56ch;
 }
 .fdr-cta .fdr-btn-primary{ background:#fff; background-image:none; color:#3D0091; box-shadow:none; }
@@ -347,7 +347,7 @@
    Blocks now come from the database, so the prose styles attach to the
    wrapper rather than to hand-written classes in the template. */
 .fdr-rich p{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:15.5px; line-height:1.82; color:var(--f-body); margin:0 0 15px;
 }
 .fdr-rich p:last-child{ margin-bottom:0; }
@@ -358,7 +358,7 @@
 }
 .fdr-rich h4{ font-size:16px; font-weight:700; color:var(--f-ink); margin:20px 0 8px; }
 .fdr-rich ul, .fdr-rich ol{
-  font-family:'Inter',sans-serif; font-size:15.5px; line-height:1.8;
+  font-family:var(--font-body),sans-serif; font-size:15.5px; line-height:1.8;
   color:var(--f-body); margin:0 0 15px; padding-left:1.3em;
 }
 .fdr-rich li{ margin-bottom:.45em; }
@@ -395,7 +395,7 @@
 }
 .fdr-shot figcaption{
   padding:11px 14px 13px;
-  font-family:'Inter',sans-serif; font-size:12.5px; line-height:1.55; color:var(--f-body);
+  font-family:var(--font-body),sans-serif; font-size:12.5px; line-height:1.55; color:var(--f-body);
 }
 @media (max-width:560px){
   .fdr-gallery{ grid-template-columns:1fr 1fr; gap:10px; }

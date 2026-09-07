@@ -13,7 +13,14 @@
    Multi-Color Theme
    ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+/* Typeface — one import for the whole site.
+   Figtree covers body and headings, so the site loads one family instead of
+   the four it used to pull from three different files (Inter, Poppins, Plus
+   Jakarta Sans and Sora). Change --font-body / --font-head below and the
+   whole site follows; the @import is the only other line to touch.
+   The <link rel="preconnect"> in includes/layout-header.php starts the
+   connection early, which an @import alone cannot do. */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 /* ==========================================
    CSS VARIABLES – MULTI-COLOR PALETTE
@@ -72,8 +79,11 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-main: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* One family for the whole site. Every font-family in the stylesheets
+     resolves through these, so a rebrand is these two lines plus the
+     @import at the top — not 278 edits. */
+  --font-main: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 /* ==========================================

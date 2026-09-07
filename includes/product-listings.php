@@ -81,7 +81,7 @@ $_plBg    = in_array($_plS['listed_section_bg'] ?? 'white', ['soft', 'white', 't
   --p-line:#E7E9F0; --p-card:#FFFFFF; --p-brand:#6A00FF;
   padding:clamp(30px,3.8vw,52px) 0;
   border-top:1px solid var(--p-line);
-  font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
 }
 .plx-bg-white{ background:#FFFFFF; }
 .plx-bg-soft{ background:#F7F8FC; }
@@ -98,7 +98,7 @@ $_plBg    = in_array($_plS['listed_section_bg'] ?? 'white', ['soft', 'white', 't
   color:var(--p-ink); margin:0;
 }
 .plx-sub{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:14px; line-height:1.65; color:var(--p-body);
   margin:8px auto 0; max-width:60ch;
 }

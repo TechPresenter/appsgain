@@ -91,8 +91,8 @@
   --chart-axis:#7E859E;
 
   /* ── Type ───────────────────────────────────────────── */
-  --font-display:'Plus Jakarta Sans','Inter',system-ui,-apple-system,sans-serif;
-  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-display:'Figtree',system-ui,-apple-system,sans-serif;
+  --font-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
   --fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px;
   --fs-md:15px;   --fs-lg:17px;   --fs-xl:20px;
   --fs-2xl:24px;  --fs-3xl:30px;

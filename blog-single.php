@@ -199,7 +199,7 @@ $shareTxt = urlencode($blog['title']);
 
         <div class="bgx-widget" style="text-align:center;">
           <h4 style="justify-content:center;"><i class="fas fa-comments" aria-hidden="true"></i> Have a project?</h4>
-          <p style="font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.65;color:var(--b-body);margin:0 0 14px;">
+          <p style="font-family:var(--font-body),sans-serif;font-size:13.5px;line-height:1.65;color:var(--b-body);margin:0 0 14px;">
             Tell us what you are building and we will come back within a day.
           </p>
           <a href="<?= SITE_URL ?>/contact.php#enquiry" class="bgx-btn bgx-btn-primary" style="width:100%;">Start a conversation</a>

@@ -100,7 +100,7 @@ $typeColors  = [
     letter-spacing: .7px; text-transform: uppercase;
   }
   .careers-hero-title {
-    font-family: 'Poppins','Inter',sans-serif;
+    font-family: var(--font-main),sans-serif;
     font-size: clamp(32px,4.5vw,56px); font-weight: 900;
     color: #fff; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 18px;
   }
@@ -138,7 +138,7 @@ $typeColors  = [
   }
   .careers-stat:last-child { border-right: none; }
   .careers-stat-num {
-    font-family: 'Poppins',sans-serif; font-size: 26px; font-weight: 900;
+    font-family: var(--font-main),sans-serif; font-size: 26px; font-weight: 900;
     background: linear-gradient(135deg, #fff, var(--cs-c,#8033ff));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     line-height: 1; margin-bottom: 4px;
@@ -169,7 +169,7 @@ $typeColors  = [
     transition: transform .3s;
   }
   .culture-card:hover .culture-icon { transform: scale(1.1) rotate(-3deg); }
-  .culture-card h4 { font-family: 'Poppins',sans-serif; font-size: 16px; font-weight: 800; color: #0b1026; margin-bottom: 8px; }
+  .culture-card h4 { font-family: var(--font-main),sans-serif; font-size: 16px; font-weight: 800; color: #0b1026; margin-bottom: 8px; }
   .culture-card p { font-size: 13.5px; color: #5e6475; line-height: 1.65; }
 
   /* Featured openings (dark cards) */
@@ -194,7 +194,7 @@ $typeColors  = [
     font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .7px;
     margin-bottom: 8px; color: #8033ff;
   }
-  .fj-title { font-family: 'Poppins',sans-serif; font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+  .fj-title { font-family: var(--font-main),sans-serif; font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
   .fj-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
   .fj-tag {
     display: flex; align-items: center; gap: 5px;
@@ -215,7 +215,7 @@ $typeColors  = [
   }
   .dept-group-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
   .dept-group-name {
-    font-family: 'Poppins',sans-serif; font-size: 20px; font-weight: 900; color: #0b1026;
+    font-family: var(--font-main),sans-serif; font-size: 20px; font-weight: 900; color: #0b1026;
     flex: 1;
   }
   .dept-group-count {
@@ -241,7 +241,7 @@ $typeColors  = [
     margin-bottom: 10px;
   }
   .jc-title {
-    font-family: 'Poppins',sans-serif; font-size: 17px; font-weight: 800; color: #0b1026;
+    font-family: var(--font-main),sans-serif; font-size: 17px; font-weight: 800; color: #0b1026;
     transition: color .2s;
   }
   .job-card-3d:hover .jc-title { color: #5500cc; }
@@ -296,7 +296,7 @@ $typeColors  = [
     position: relative; z-index: 2;
   }
   .apply-left h2 {
-    font-family: 'Poppins',sans-serif; font-size: 36px; font-weight: 900; color: #fff;
+    font-family: var(--font-main),sans-serif; font-size: 36px; font-weight: 900; color: #fff;
     margin-bottom: 14px; line-height: 1.1;
   }
   .apply-left p { font-size: 15px; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 24px; }
@@ -311,7 +311,7 @@ $typeColors  = [
     border-radius: 20px; padding: 30px; backdrop-filter: blur(10px);
   }
   .apply-form-box h3 {
-    font-family: 'Poppins',sans-serif; font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 20px;
+    font-family: var(--font-main),sans-serif; font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 20px;
     display: flex; align-items: center; gap: 8px;
   }
   .af-group { margin-bottom: 14px; }
@@ -334,7 +334,7 @@ $typeColors  = [
     background: linear-gradient(135deg, #6a00ff, #6a00ff);
     color: #fff; border: none; border-radius: 10px;
     font-size: 14px; font-weight: 700; cursor: pointer;
-    font-family: 'Poppins',sans-serif;
+    font-family: var(--font-main),sans-serif;
     display: flex; align-items: center; justify-content: center; gap: 8px;
     transition: all .25s;
   }
@@ -612,7 +612,7 @@ $typeColors  = [
     <?php else: ?>
     <div class="no-jobs-state">
       <div style="font-size:48px;margin-bottom:16px">🚀</div>
-      <h3 style="font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#0b1026;margin-bottom:10px">No Open Positions Right Now</h3>
+      <h3 style="font-family:var(--font-main),sans-serif;font-size:22px;font-weight:800;color:#0b1026;margin-bottom:10px">No Open Positions Right Now</h3>
       <p style="color:#5e6475;margin-bottom:24px">We don't have any open roles at the moment, but we're always looking for great talent. Send us your CV!</p>
       <a href="#apply" class="btn-saas-primary"><i class="fas fa-paper-plane"></i> Send Your CV</a>
     </div>

@@ -16,7 +16,7 @@
      end is 2.36:1 against white and reads as a missing label. */
   --cx-grad-btn:linear-gradient(120deg,#D000A8 0%,#9D00D3 45%,#6A00FF 100%);
   --cx-grad:linear-gradient(120deg,#FF8A00 0%,#FF3030 26%,#F50072 50%,#D000A8 70%,#6A00FF 100%);
-  font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
   color:var(--cx-body);
 }
 .cx-wrap{ max-width:1200px; margin-inline:auto; padding-inline:clamp(20px,4vw,32px); }
@@ -55,12 +55,12 @@
   color:var(--cx-ink); margin:0 0 7px;
 }
 .cx-qcard a{
-  font-family:'Inter',sans-serif; font-size:15px; font-weight:600;
+  font-family:var(--font-body),sans-serif; font-size:15px; font-weight:600;
   color:#6A00FF; text-decoration:none; word-break:break-word;
 }
 .cx-qcard a:hover{ text-decoration:underline; }
 .cx-qcard p{
-  font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.65;
+  font-family:var(--font-body),sans-serif; font-size:13.5px; line-height:1.65;
   color:var(--cx-mute); margin:6px 0 0;
 }
 /* One block per office, so the label reads as a heading for the lines under it. */
@@ -91,7 +91,7 @@
 .cx-badge{
   display:inline-flex; align-items:center; gap:7px;
   padding:5px 13px; margin-bottom:16px; border-radius:999px;
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
   color:#6A00FF; background:rgba(106,0,255,.07);
   border:1px solid rgba(106,0,255,.16);
@@ -107,7 +107,7 @@
   -webkit-text-fill-color:transparent; color:transparent;
 }
 .cx-info > p{
-  font-family:'Inter',sans-serif; font-size:14px; line-height:1.72;
+  font-family:var(--font-body),sans-serif; font-size:14px; line-height:1.72;
   color:var(--cx-body); margin:0 0 26px;
 }
 
@@ -119,12 +119,12 @@
   background:rgba(106,0,255,.07); border:1px solid rgba(106,0,255,.14);
 }
 .cx-item h3{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
   color:var(--cx-mute); margin:0 0 4px;
 }
 .cx-item p, .cx-item a{
-  font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.6;
+  font-family:var(--font-body),sans-serif; font-size:14.5px; line-height:1.6;
   color:var(--cx-ink); margin:0; font-weight:500;
 }
 .cx-item a{ color:#6A00FF; font-weight:600; text-decoration:none; word-break:break-word; }
@@ -132,7 +132,7 @@
 
 .cx-rule{ border:0; border-top:1px solid var(--cx-line); margin:24px 0 18px; }
 .cx-follow-label{
-  display:block; font-family:'Inter',sans-serif;
+  display:block; font-family:var(--font-body),sans-serif;
   font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
   color:var(--cx-mute); margin-bottom:12px;
 }
@@ -161,14 +161,14 @@
   color:var(--cx-ink); margin:0 0 8px;
 }
 .cx-form-card > p{
-  font-family:'Inter',sans-serif; font-size:14px; line-height:1.7;
+  font-family:var(--font-body),sans-serif; font-size:14px; line-height:1.7;
   color:var(--cx-body); margin:0 0 24px;
 }
 
 .cx-alert{
   display:none; align-items:center; gap:9px;
   padding:13px 16px; margin-bottom:18px; border-radius:12px;
-  font-family:'Inter',sans-serif; font-size:14px; font-weight:500;
+  font-family:var(--font-body),sans-serif; font-size:14px; font-weight:500;
 }
 .cx-alert.is-ok{
   display:flex; color:#065F46;
@@ -183,7 +183,7 @@
 .cx-field{ margin-bottom:16px; min-width:0; }
 .cx-field label{
   display:block; margin-bottom:7px;
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
   color:var(--cx-ink);
 }
@@ -193,7 +193,7 @@
 .cx-field textarea{
   width:100%; box-sizing:border-box;
   padding:12px 14px;
-  font-family:'Inter',sans-serif; font-size:14.5px; color:var(--cx-ink);
+  font-family:var(--font-body),sans-serif; font-size:14.5px; color:var(--cx-ink);
   background:var(--cx-soft);
   border:1px solid var(--cx-line); border-radius:11px;
   outline:none;
@@ -225,7 +225,7 @@
   border:0; border-radius:12px; cursor:pointer;
   background-color:#8B00E0; background-image:var(--cx-grad-btn);
   background-size:150% 150%; background-position:0% 50%;
-  color:#fff; font-family:'Inter',sans-serif;
+  color:#fff; font-family:var(--font-body),sans-serif;
   font-size:15.5px; font-weight:600; line-height:1;
   box-shadow:0 6px 18px rgba(106,0,255,.24);
   transition:background-position .3s ease, transform .2s ease, box-shadow .2s ease;
@@ -261,13 +261,13 @@
   background-color:#8B00E0; background-image:var(--cx-grad-btn);
 }
 .cx-map-addr span{
-  font-family:'Inter',sans-serif; font-size:13.5px; font-weight:500; color:var(--cx-ink);
+  font-family:var(--font-body),sans-serif; font-size:13.5px; font-weight:500; color:var(--cx-ink);
 }
 .cx-map-btn{
   display:inline-flex; align-items:center; gap:8px;
   height:38px; padding:0 16px; border-radius:10px;
   background-color:#8B00E0; background-image:var(--cx-grad-btn);
-  color:#fff; font-family:'Inter',sans-serif;
+  color:#fff; font-family:var(--font-body),sans-serif;
   font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap;
   transition:transform .2s ease, box-shadow .2s ease;
 }

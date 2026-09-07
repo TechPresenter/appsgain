@@ -38,7 +38,7 @@
 }
 .page-banner .blob { display: none !important; }
 .page-banner h1 {
-  font-family: 'Poppins','Inter',sans-serif !important;
+  font-family: var(--font-main),sans-serif !important;
   font-size: clamp(32px,5vw,56px) !important;
   font-weight: 900 !important;
   color: #fff !important;
@@ -70,7 +70,7 @@
   position: relative;
 }
 .cta-inner h2 {
-  font-family: 'Poppins',sans-serif !important;
+  font-family: var(--font-main),sans-serif !important;
   font-size: clamp(26px,4vw,44px) !important;
   font-weight: 900 !important; color: #fff !important;
   letter-spacing: -1px !important;
@@ -360,7 +360,7 @@
 }
 
 .saas-hero-title {
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 900; line-height: 1.08;
   color: #fff; margin-bottom: 20px;
@@ -393,7 +393,7 @@
 .btn-saas-primary {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 28px; border-radius: 12px; font-size: 14px; font-weight: 700;
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
   background: linear-gradient(135deg, #6a00ff 0%, #8033ff 100%);
   color: #fff; text-decoration: none; position: relative; overflow: hidden;
   box-shadow: 0 8px 32px rgba(106,0,255,.4);
@@ -415,7 +415,7 @@
 .btn-saas-secondary {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 28px; border-radius: 12px; font-size: 14px; font-weight: 700;
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.18);
   color: rgba(255,255,255,.9); text-decoration: none;
@@ -435,7 +435,7 @@
   display: flex; flex-direction: column; gap: 2px;
 }
 .saas-hm-val {
-  font-family: 'Poppins',sans-serif; font-size: 26px; font-weight: 900;
+  font-family: var(--font-main),sans-serif; font-size: 26px; font-weight: 900;
   background: linear-gradient(135deg, #fff, #e0d0ff);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   line-height: 1.1;
@@ -493,7 +493,7 @@
 }
 .hvd-metric-val {
   font-size: 18px; font-weight: 800; color: #fff;
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
 }
 .hvd-metric-lbl { font-size: 9px; color: rgba(255,255,255,.45); font-weight: 600; margin-top: 2px; }
 .hvd-metric:nth-child(1) .hvd-metric-val { color: #c4a5ff; }
@@ -611,7 +611,7 @@
   animation: saasFloat 9s ease-in-out 2s infinite;
 }
 .hf-stat-main {
-  font-family: 'Poppins',sans-serif; font-size: 28px; font-weight: 900;
+  font-family: var(--font-main),sans-serif; font-size: 28px; font-weight: 900;
   background: linear-gradient(135deg, #10b981, #6a00ff);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   line-height: 1;
@@ -716,7 +716,7 @@
 
 /* Section heading */
 .saas-heading {
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: clamp(28px, 4vw, 46px);
   font-weight: 900; line-height: 1.1;
   letter-spacing: -1px; margin-bottom: 16px;
@@ -792,7 +792,7 @@
 }
 .saas-trust-item {
   display: flex; align-items: center; gap: 8px;
-  font-family: 'Poppins',sans-serif; font-size: 13px; font-weight: 700;
+  font-family: var(--font-main),sans-serif; font-size: 13px; font-weight: 700;
   color: #8b90a0; opacity: .7; white-space: nowrap;
   transition: opacity .2s;
 }
@@ -819,7 +819,7 @@
   border: 1.5px solid #e7e9f0;
   background: #fff; color: #475569;
   transition: all .22s;
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
 }
 .saas-filter-tab:hover { border-color: #e0d0ff; color: #6a00ff; }
 .saas-filter-tab.active {
@@ -893,7 +893,7 @@
   letter-spacing: .7px; margin-bottom: 8px; opacity: .7;
 }
 .saas-svc-card h3 {
-  font-family: 'Poppins',sans-serif; font-size: 17px; font-weight: 800;
+  font-family: var(--font-main),sans-serif; font-size: 17px; font-weight: 800;
   color: #0b1026; margin-bottom: 10px; line-height: 1.25;
 }
 .saas-svc-card p {
@@ -947,7 +947,7 @@
   opacity: .7;
 }
 .saas-stat-num {
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: 52px; font-weight: 900; line-height: 1;
   background: linear-gradient(135deg, #fff, var(--stat-color,#c4a5ff));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -1003,7 +1003,7 @@
 .saas-step-num {
   width: 52px; height: 52px; border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Poppins',sans-serif; font-size: 22px; font-weight: 900; color: #fff;
+  font-family: var(--font-main),sans-serif; font-size: 22px; font-weight: 900; color: #fff;
   margin-bottom: 18px; position: relative;
 }
 .saas-step-num::after {
@@ -1016,7 +1016,7 @@
 .saas-process-step:nth-child(3) .saas-step-num { background: linear-gradient(135deg,#6a00ff,#6a00ff); }
 .saas-process-step:nth-child(4) .saas-step-num { background: linear-gradient(135deg,#10b981,#6a00ff); }
 .saas-process-step h4 {
-  font-family: 'Poppins',sans-serif; font-size: 16px; font-weight: 800;
+  font-family: var(--font-main),sans-serif; font-size: 16px; font-weight: 800;
   color: #fff; margin-bottom: 8px;
 }
 .saas-process-step p { font-size: 13px; color: rgba(255,255,255,.58); line-height: 1.65; }
@@ -1068,7 +1068,7 @@
 }
 .saas-why-card:hover .saas-why-icon { transform: scale(1.1) rotate(-3deg); }
 .saas-why-card h3 {
-  font-family: 'Poppins',sans-serif; font-size: 17px; font-weight: 800;
+  font-family: var(--font-main),sans-serif; font-size: 17px; font-weight: 800;
   color: #0b1026; margin-bottom: 10px;
 }
 .saas-why-card p { font-size: 13.5px; color: #5e6475; line-height: 1.65; }
@@ -1089,7 +1089,7 @@
   font-size: 12.5px; font-weight: 700; cursor: pointer;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.04); color: rgba(255,255,255,.65);
-  transition: all .2s; font-family: 'Poppins',sans-serif;
+  transition: all .2s; font-family: var(--font-main),sans-serif;
 }
 .saas-tech-filter-btn:hover { border-color: rgba(255,255,255,.25); color: #fff; }
 .saas-tech-filter-btn.active {
@@ -1181,7 +1181,7 @@
 }
 .saas-proj-body { padding: 20px; }
 .saas-proj-body h3 {
-  font-family: 'Poppins',sans-serif; font-size: 16px; font-weight: 800;
+  font-family: var(--font-main),sans-serif; font-size: 16px; font-weight: 800;
   color: #0b1026; margin-bottom: 8px;
 }
 .saas-proj-card:hover .saas-proj-body h3 { color: #5500cc; }
@@ -1276,7 +1276,7 @@
   position: relative; z-index: 2; text-align: center; max-width: 700px; margin: 0 auto;
 }
 .saas-cta-title {
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: clamp(30px,5vw,52px); font-weight: 900; color: #fff;
   letter-spacing: -1px; margin-bottom: 18px;
   line-height: 1.1;
@@ -1349,7 +1349,7 @@
 .saas-blog-meta span { font-size: 11.5px; color: #8b90a0; display: flex; align-items: center; gap: 4px; }
 .saas-blog-meta i { font-size: 10px; color: #5e6475; }
 .saas-blog-body h3 {
-  font-family: 'Poppins',sans-serif; font-size: 15.5px; font-weight: 800;
+  font-family: var(--font-main),sans-serif; font-size: 15.5px; font-weight: 800;
   color: #0b1026; line-height: 1.4; margin-bottom: 10px;
   transition: color .2s;
 }

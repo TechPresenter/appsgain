@@ -36,13 +36,13 @@ $phoneClean = preg_replace('/[^+0-9]/', '', $phone);
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <?php require __DIR__ . '/includes/meta.php'; ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Typeface loads once via css/style.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css"/>
   <style>
-  :root{--ac:<?= $accent ?>;--font:'Poppins','Inter',system-ui,sans-serif;}
+  :root{--ac:<?= $accent ?>;--font:var(--font-main);}
   *{box-sizing:border-box;}
-  body{font-family:'Inter',system-ui,sans-serif;color:#0b1026;background:#fff;}
+  body{font-family:var(--font-body);color:#0b1026;background:#fff;}
 
   /* ── Banner ── */
   .ps-banner{background:#fff;border-bottom:1px solid #e8ecf3;padding:24px 0 20px;}

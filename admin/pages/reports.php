@@ -232,7 +232,7 @@ require_once dirname(__DIR__) . '/includes/admin-head.php';
 
 /* Realtime */
 .rt-card { background:linear-gradient(135deg,#040a1f,#0d1b3e 50%,#1a1260); border-radius:18px; padding:32px; color:#fff; position:relative; overflow:hidden; }
-.rt-num  { font-size:72px; font-weight:900; line-height:1; font-family:var(--font-main,'Poppins',sans-serif); }
+.rt-num  { font-size:72px; font-weight:900; line-height:1; font-family:var(--font-main,'Figtree',sans-serif); }
 .rt-sub  { font-size:15px; color:rgba(255,255,255,.6); margin-top:8px; }
 .rt-badge{ display:inline-flex; align-items:center; gap:6px; background:rgba(34,197,94,.18); border:1px solid rgba(34,197,94,.35); color:#86efac; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
 .rt-ministat{ background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:14px 18px; text-align:center; }
@@ -1012,7 +1012,7 @@ const tt = {
 };
 const gridC = 'rgba(0,0,0,.04)';
 const tickC = '#9ca3af';
-Chart.defaults.font.family = "'Inter',sans-serif";
+Chart.defaults.font.family = "'Figtree',sans-serif";
 Chart.defaults.font.size   = 12;
 
 /* ── Trend chart ── */

@@ -21,7 +21,7 @@
   border-radius: 14px;
   padding: 18px 18px 14px;
   margin-bottom: 18px;
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   position: relative;
   box-shadow: 0 1px 2px rgba(16,22,47,.03);
 }
@@ -86,7 +86,7 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   transition: all 0.25s ease;
   white-space: nowrap;
   flex-shrink: 0;
@@ -134,7 +134,7 @@
   letter-spacing: 1px;
   color: #9ca3af;
   font-weight: 500;
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
   text-transform: none;
 }
 
@@ -207,7 +207,7 @@
   gap: 9px;
   padding: 14px 32px;
   border-radius: 14px;
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
@@ -395,7 +395,7 @@
   text-align: center;
 }
 .cta-band-title {
-  font-family: 'Poppins',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: clamp(26px,4vw,44px);
   font-weight: 900; color: #fff;
   letter-spacing: -1px; margin-bottom: 12px;

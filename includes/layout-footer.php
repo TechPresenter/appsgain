@@ -385,7 +385,7 @@ $_iconUrl = static function (string $p): string {
   position:relative;
   background:linear-gradient(180deg,#FFFFFF 0%, #FBFAFE 42%, #F8F8FC 100%);
   border-top:1px solid var(--f-line);
-  font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
+  font-family:var(--font-body),var(--font-main),system-ui,sans-serif;
   color:var(--f-body);
   padding-top:clamp(40px,5vw,64px);
 }
@@ -435,7 +435,7 @@ $_iconUrl = static function (string $p): string {
   text-transform:uppercase; color:#6A00FF; margin-bottom:7px;
 }
 .nlx-title{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:clamp(20px,2.2vw,26px); font-weight:800; letter-spacing:-.02em;
   color:var(--f-navy); margin:0 0 8px; line-height:1.25;
 }
@@ -508,7 +508,7 @@ $_iconUrl = static function (string $p): string {
 /* Headings + gradient underline */
 .ftx-h{
   position:relative;
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:15.5px; font-weight:700; letter-spacing:-.01em;
   color:var(--f-navy); margin:0 0 26px; padding-bottom:12px;
 }
@@ -546,7 +546,7 @@ $_iconUrl = static function (string $p): string {
 
 .ftx-apps{ margin-top:20px; }
 .ftx-apps-h{
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-body),sans-serif;
   font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
   color:var(--f-body); margin:0 0 10px;
 }
@@ -792,6 +792,12 @@ $_iconUrl = static function (string $p): string {
 </a>
 <?php endif; ?>
 
+<?php /* AI chatbot — outside the WhatsApp gate above, which it has nothing
+         to do with. Renders nothing unless it is switched on in Admin and an
+         OpenAI key is configured. Writes to `chatbot_leads`, shown in
+         Admin -> Chatbot Leads. */ ?>
+<?php require __DIR__ . '/chatbot-widget.php'; ?>
+
 <button class="stt-btn" id="sttBtn" aria-label="Back to top" title="Back to top">
   <i class="fas fa-chevron-up" aria-hidden="true"></i>
 </button>
@@ -851,7 +857,7 @@ $_iconUrl = static function (string $p): string {
   padding:18px 20px; border-radius:16px;
   background:#fff; border:1px solid #E7E9F0;
   box-shadow:0 16px 44px rgba(16,22,47,.16);
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
   opacity:0; transform:translateY(14px);
   transition:opacity .3s ease, transform .3s cubic-bezier(.4,0,.2,1);
 }

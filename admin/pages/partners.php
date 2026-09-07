@@ -245,7 +245,7 @@ require dirname(__DIR__) . '/includes/admin-head.php';
 <div id="inqModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center">
   <div style="background:#fff;border-radius:16px;padding:32px;max-width:560px;width:90%;max-height:80vh;overflow-y:auto;position:relative">
     <button onclick="document.getElementById('inqModal').style.display='none'" style="position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--gray)">×</button>
-    <h3 id="inqModalTitle" style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;margin-bottom:16px"></h3>
+    <h3 id="inqModalTitle" style="font-family:'Figtree',sans-serif;font-size:18px;font-weight:800;margin-bottom:16px"></h3>
     <div id="inqModalBody"></div>
     <form method="POST" style="margin-top:20px">
       <?= csrfField() ?><input type="hidden" name="action" value="update_inquiry_status"><input type="hidden" name="inq_id" id="inqId">

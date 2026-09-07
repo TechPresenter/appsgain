@@ -354,7 +354,7 @@ foreach ((array)($pageStyles ?? []) as $_css):
   --h-grad:linear-gradient(135deg,#FF8A00 0%,#FF3030 28%,#F50072 52%,#D000A8 72%,#6A00FF 100%);
   --h-grad-btn:linear-gradient(120deg,#D000A8 0%,#9D00D3 45%,#6A00FF 100%);
   --h-grad-90:linear-gradient(90deg,#FF8A00 0%,#FF3030 28%,#F50072 52%,#D000A8 72%,#6A00FF 100%);
-  font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
+  font-family:var(--font-body),var(--font-main),system-ui,sans-serif;
 }
 .hx-wrap{
   width:100%; max-width:1280px; margin-inline:auto;

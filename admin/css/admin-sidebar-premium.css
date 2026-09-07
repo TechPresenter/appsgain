@@ -84,12 +84,12 @@
 .sidebar-logo .logo-icon {
   background: linear-gradient(135deg, #1d4ed8, #6366f1) !important;
   animation: logoPulse 3s ease-in-out infinite !important;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-weight: 900 !important;
 }
 .sidebar-logo:hover .logo-icon { animation: iconPop 0.5s ease forwards !important; }
 .sidebar-logo .logo-text {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 14.5px !important;
   font-weight: 700 !important;
   color: #fff !important;
@@ -114,7 +114,7 @@
 
 /* ── Section label ── */
 .nav-section-label {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 9px !important;
   font-weight: 500 !important;
   letter-spacing: 2.5px !important;
@@ -140,7 +140,7 @@
    DASHBOARD DIRECT ITEM
 ══════════════════════════════════════ */
 .nav-item {
-  font-family: 'Poppins', 'Inter', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 13px !important;
   font-weight: 500 !important;          /* ← normal weight */
   color: rgba(255,255,255,0.58) !important;
@@ -208,7 +208,7 @@
   border-radius: 10px !important;
   background: none !important; border: none !important;
   color: rgba(255,255,255,0.55) !important;
-  font-family: 'Poppins', 'Inter', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 13px !important;
   font-weight: 500 !important;          /* ← normal weight */
   cursor: pointer !important; text-align: left !important;
@@ -307,7 +307,7 @@
   padding: 7px 10px 7px 12px !important;
   border-radius: 9px !important;
   color: rgba(255,255,255,0.5) !important;
-  font-family: 'Poppins', 'Inter', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 12.5px !important;
   font-weight: 400 !important;          /* ← light/normal weight */
   position: relative !important;
@@ -443,7 +443,7 @@
   display: flex !important; align-items: center !important; gap: 9px !important;
   padding: 8px 12px !important; border-radius: 9px !important;
   color: rgba(255,255,255,0.42) !important;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 12.5px !important; font-weight: 400 !important;
   transition: all 0.24s ease !important; cursor: pointer !important;
   text-decoration: none !important;
@@ -472,7 +472,7 @@
   padding: 10px 10px 12px !important;
 }
 .sf-btn {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 11px !important; font-weight: 500 !important;
   border-radius: 9px !important; padding: 8px 10px !important;
   border: 1px solid rgba(255,255,255,0.07) !important;
@@ -514,7 +514,7 @@
   box-shadow: 0 0 0 2px rgba(99,102,241,0.35), 0 3px 10px rgba(59,130,246,0.3) !important;
 }
 .sidebar-user-info .name {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 12.5px !important; font-weight: 600 !important; color: #fff !important;
 }
 .sidebar-user-info .role {
@@ -537,7 +537,7 @@ body.sidebar-mini .nav-parent[data-tip]::after {
   position: absolute !important; left: calc(100% + 12px) !important;
   top: 50% !important; transform: translateY(-50%) !important;
   background: linear-gradient(135deg, #0e2248, #162a60) !important;
-  color: #fff !important; font-family: 'Poppins', sans-serif !important;
+  color: #fff !important; font-family: 'Figtree', sans-serif !important;
   font-size: 12px !important; font-weight: 500 !important;
   padding: 7px 14px !important; border-radius: 9px !important;
   white-space: nowrap !important; opacity: 0 !important;
@@ -570,7 +570,7 @@ body.sidebar-mini .nav-parent[data-tip]:hover::after { opacity: 1 !important; }
 .hamburger-admin:hover i { animation: iconPop 0.45s ease forwards !important; }
 
 .page-title {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 17px !important; font-weight: 700 !important;
   background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%) !important;
   -webkit-background-clip: text !important;
@@ -582,7 +582,7 @@ body.sidebar-mini .nav-parent[data-tip]:hover::after { opacity: 1 !important; }
    BADGE ON NAV ITEM
 ══════════════════════════════════════ */
 .nav-item .badge, .nav-parent .nav-badge {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Figtree', sans-serif !important;
   font-size: 9.5px !important; font-weight: 700 !important;
   padding: 2px 7px !important; border-radius: 20px !important;
   line-height: 1.6 !important; letter-spacing: 0.2px !important;

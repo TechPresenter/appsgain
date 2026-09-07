@@ -21,7 +21,7 @@ $canonicalUrl    = SITE_URL . '/sitemap-html.php';
   .sm-hero{background:linear-gradient(175deg,#0a0616,#0b1026);padding:60px 0 50px;text-align:center;}
   .sm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;padding:60px 0;}
   .sm-group{background:#fff;border:1.5px solid #e8ecf3;border-radius:16px;padding:24px;box-shadow:0 4px 16px rgba(17,22,45,.05);}
-  .sm-group-title{display:flex;align-items:center;gap:9px;font-family:'Poppins',sans-serif;font-size:14.5px;font-weight:800;color:#0b1026;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f1f5f9;}
+  .sm-group-title{display:flex;align-items:center;gap:9px;font-family:var(--font-main),sans-serif;font-size:14.5px;font-weight:800;color:#0b1026;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f1f5f9;}
   .sm-group-title i{font-size:14px;}
   .sm-links{display:flex;flex-direction:column;gap:3px;}
   .sm-link{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;font-size:13px;font-weight:500;color:#475569;text-decoration:none;transition:all .2s;}

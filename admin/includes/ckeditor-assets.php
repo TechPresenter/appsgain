@@ -7,7 +7,7 @@
 .ck-editor-host:focus-within { border-color: var(--violet,#7c3aed); box-shadow: 0 0 0 3px rgba(124,58,237,.1); }
 .ck.ck-toolbar { background: #f8fafc !important; border: none !important; border-bottom: 1px solid #e2e8f0 !important; padding: 6px 8px !important; border-radius: 0 !important; flex-wrap: wrap !important; }
 .ck.ck-toolbar .ck-toolbar__items { flex-wrap: wrap !important; }
-.ck.ck-editor__main .ck-editor__editable { border: none !important; border-radius: 0 !important; min-height: var(--ck-min-h, 420px); font-family: 'Inter', sans-serif !important; font-size: 15px !important; line-height: 1.8 !important; color: #1a2340 !important; padding: 20px 24px !important; }
+.ck.ck-editor__main .ck-editor__editable { border: none !important; border-radius: 0 !important; min-height: var(--ck-min-h, 420px); font-family: 'Figtree', sans-serif !important; font-size: 15px !important; line-height: 1.8 !important; color: #1a2340 !important; padding: 20px 24px !important; }
 .ck.ck-editor__main .ck-editor__editable.ck-focused { box-shadow: none !important; }
 .ck-editor-sm .ck.ck-editor__main .ck-editor__editable { min-height: 200px !important; }
 .ck-editor-host .ck-powered-by { display: none !important; }

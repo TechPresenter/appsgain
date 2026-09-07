@@ -147,7 +147,7 @@ $pageUrl = static function (int $p) use ($catId, $search): string {
     <div class="bgx-wrap">
 
       <?php if ($isFiltered): ?>
-      <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:var(--b-mute);margin:0 0 18px;">
+      <p style="font-family:var(--font-body),sans-serif;font-size:13.5px;color:var(--b-mute);margin:0 0 18px;">
         <?= $total ?> article<?= $total === 1 ? '' : 's' ?>
         <?php if ($search): ?> matching &ldquo;<strong style="color:var(--b-ink)"><?= e($search) ?></strong>&rdquo;<?php endif; ?>
         <?php if ($catName): ?> in <strong style="color:var(--b-ink)"><?= e($catName) ?></strong><?php endif; ?>

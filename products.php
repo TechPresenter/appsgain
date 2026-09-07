@@ -101,7 +101,7 @@ $cardColors = [
     letter-spacing: .7px; text-transform: uppercase; margin-bottom: 18px;
   }
   .prod-hero-title {
-    font-family: 'Poppins','Inter',sans-serif;
+    font-family: var(--font-main),sans-serif;
     font-size: clamp(32px,4.5vw,56px); font-weight: 900;
     color: #fff; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 18px;
   }
@@ -133,7 +133,7 @@ $cardColors = [
   }
   .prod-count-pill:hover { background: rgba(255,255,255,.1); }
   .prod-count-num {
-    font-family: 'Poppins',sans-serif; font-size: 24px; font-weight: 900;
+    font-family: var(--font-main),sans-serif; font-size: 24px; font-weight: 900;
     background: linear-gradient(135deg, #fff, var(--pc, #e0d0ff));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     line-height: 1;
@@ -153,7 +153,7 @@ $cardColors = [
     display: inline-flex; align-items: center; gap: 6px;
     padding: 7px 16px; border-radius: 30px; font-size: 12.5px; font-weight: 700;
     border: 1.5px solid #e7e9f0; background: #fff; color: #475569;
-    text-decoration: none; transition: all .22s; font-family: 'Poppins',sans-serif;
+    text-decoration: none; transition: all .22s; font-family: var(--font-main),sans-serif;
     white-space: nowrap;
   }
   .prod-filter-tab:hover { border-color: #e0d0ff; color: #6a00ff; }
@@ -226,7 +226,7 @@ $cardColors = [
     margin-bottom: 8px; width: fit-content;
   }
   .prod-card-name {
-    font-family: 'Poppins','Inter',sans-serif; font-size: 17px; font-weight: 800;
+    font-family: var(--font-main),sans-serif; font-size: 17px; font-weight: 800;
     color: #0b1026; margin-bottom: 8px; line-height: 1.25; transition: color .2s;
   }
   .prod-card:hover .prod-card-name { color: var(--cc, #6a00ff); }
@@ -270,7 +270,7 @@ $cardColors = [
     display: flex; align-items: center; justify-content: center;
     font-size: 32px; color: #8033ff;
   }
-  .prod-empty h3 { font-family: 'Poppins',sans-serif; font-size: 20px; font-weight: 800; color: #0b1026; margin-bottom: 10px; }
+  .prod-empty h3 { font-family: var(--font-main),sans-serif; font-size: 20px; font-weight: 800; color: #0b1026; margin-bottom: 10px; }
   .prod-empty p { font-size: 14px; color: #5e6475; margin-bottom: 24px; }
 
   /* Responsive */

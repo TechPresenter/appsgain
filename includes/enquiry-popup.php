@@ -209,7 +209,7 @@ $_agAutoOpen = ($activePage ?? '') !== 'contact';
   position:fixed; inset:0; z-index:10000;
   display:flex; align-items:center; justify-content:center;
   padding:20px;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
 }
 .eqx[hidden]{ display:none; }
 
@@ -263,7 +263,7 @@ $_agAutoOpen = ($activePage ?? '') !== 'contact';
 }
 .eqx-badge i{ font-size:9px; }
 .eqx-title{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:21px; font-weight:800; letter-spacing:-.02em;
   color:var(--e-ink); margin:0 0 6px; line-height:1.25;
 }
@@ -418,7 +418,7 @@ $_agAutoOpen = ($activePage ?? '') !== 'contact';
 @keyframes eqxRing{ to{ stroke-dashoffset:0; } }
 @keyframes eqxTick{ to{ stroke-dashoffset:0; } }
 .eqx-done h3{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:19px; font-weight:800; color:var(--e-ink); margin:0 0 7px;
 }
 .eqx-done p{ font-size:13.5px; line-height:1.6; color:var(--e-body); margin:0 0 20px; }
@@ -437,7 +437,7 @@ $_agAutoOpen = ($activePage ?? '') !== 'contact';
   display:inline-flex; align-items:center; gap:9px;
   height:46px; padding:0 18px; border:0; border-radius:999px; cursor:pointer;
   background-color:#8B00E0; background-image:linear-gradient(120deg,#D000A8,#9D00D3,#6A00FF);
-  color:#fff; font-family:'Inter',system-ui,sans-serif;
+  color:#fff; font-family:var(--font-body),system-ui,sans-serif;
   font-size:14px; font-weight:600; line-height:1;
   box-shadow:0 6px 20px rgba(106,0,255,.34);
   transition:transform .2s var(--e-ease), box-shadow .2s ease;

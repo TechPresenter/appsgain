@@ -494,7 +494,7 @@ function getSvcStyle(string $icon, array $map): array {
   border:1px solid rgba(106,0,255,.14);
 }
 .tstack-title{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:clamp(26px,3.2vw,38px); font-weight:800; letter-spacing:-.02em;
   color:#11162D; margin:0 0 12px; line-height:1.2;
 }
@@ -572,7 +572,7 @@ function getSvcStyle(string $icon, array $map): array {
   color:#6A00FF; background:rgba(106,0,255,.06); border:1px solid rgba(106,0,255,.14);
 }
 .tsm-title{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:clamp(26px,3.2vw,38px); font-weight:800; letter-spacing:-.02em;
   color:#11162D; margin:0 0 12px; line-height:1.2;
 }
@@ -638,7 +638,7 @@ function getSvcStyle(string $icon, array $map): array {
 .tsm-avatar img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
 .tsm-who{ display:flex; flex-direction:column; gap:2px; min-width:0; }
 .tsm-who strong{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:14.5px; font-weight:700; color:#11162D; letter-spacing:-.01em;
 }
 .tsm-who small{ font-size:12.5px; color:#6E7386; }
@@ -908,7 +908,7 @@ $_heroLogo = !empty($s['site_logo'])
 
 /* Text */
 .tc3d-name {
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: 13px; font-weight: 600;
   color: rgba(255,255,255,.72);
   transition: color .25s;
@@ -960,13 +960,13 @@ $_heroLogo = !empty($s['site_logo'])
 /* ── Section header ── */
 .hs-svc-header{text-align:center;margin-bottom:48px;}
 .hs-svc-label{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(106,0,255,.12),rgba(85,0,204,.08));color:#6a00ff;border:1px solid rgba(106,0,255,.2);padding:6px 16px;border-radius:30px;font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
-.hs-svc-title{font-family:'Poppins',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:900;color:#0b1026;line-height:1.15;margin-bottom:12px;letter-spacing:-.5px;}
+.hs-svc-title{font-family:var(--font-main),sans-serif;font-size:clamp(26px,4vw,40px);font-weight:900;color:#0b1026;line-height:1.15;margin-bottom:12px;letter-spacing:-.5px;}
 .hs-svc-title span{background:linear-gradient(135deg,#6a00ff,#8033ff,#6a00ff);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:svBorderFlow 4s linear infinite;}
 .hs-svc-sub{font-size:16px;color:#5e6475;max-width:540px;margin:0 auto;line-height:1.75;}
 
 /* ── Filter tabs ── */
 .hs-filter-wrap{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:44px;}
-.hs-filter-btn{padding:9px 22px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:#5e6475;border:2px solid #e7e9f0;transition:all .25s;font-family:'Poppins',sans-serif;}
+.hs-filter-btn{padding:9px 22px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;background:#fff;color:#5e6475;border:2px solid #e7e9f0;transition:all .25s;font-family:var(--font-main),sans-serif;}
 .hs-filter-btn:hover{border-color:#6a00ff;color:#6a00ff;}
 .hs-filter-btn.on{background:linear-gradient(135deg,#6a00ff,#8033ff);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(106,0,255,.35);}
 
@@ -1034,7 +1034,7 @@ $_heroLogo = !empty($s['site_logo'])
 }
 
 /* Title */
-.hs-svc-card h3{font-family:'Poppins',sans-serif;font-size:16.5px;font-weight:800;color:#0b1026;margin-bottom:10px;line-height:1.3;}
+.hs-svc-card h3{font-family:var(--font-main),sans-serif;font-size:16.5px;font-weight:800;color:#0b1026;margin-bottom:10px;line-height:1.3;}
 .hs-svc-card:hover h3{color:var(--sc-raw,#6a00ff);}
 
 /* Description */
@@ -1208,7 +1208,7 @@ $_heroLogo = !empty($s['site_logo'])
   border:1px solid color-mix(in srgb, var(--brand-primary) 20%, transparent);
 }
 .svc3d-title{
-  font-family:'Poppins',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
   font-size:clamp(28px,4.4vw,44px); font-weight:900; line-height:1.12;
   letter-spacing:-.02em; color:var(--ink-900,#0b1026); margin:0 0 14px;
 }
@@ -1359,7 +1359,7 @@ $_heroLogo = !empty($s['site_logo'])
   transform:translateZ(16px);
 }
 .svc3d-name{
-  font-family:'Poppins',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
   font-size:17.5px; font-weight:800; line-height:1.32;
   color:var(--ink-900,#0b1026); margin:0 0 10px;
   transform:translateZ(20px);
@@ -1395,7 +1395,7 @@ $_heroLogo = !empty($s['site_logo'])
   display:inline-flex; align-items:center; gap:10px;
   padding:15px 34px; border-radius:999px;
   font-size:15px; font-weight:800; text-decoration:none; color:#fff;
-  font-family:'Poppins',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
   background:linear-gradient(120deg,var(--brand-secondary),#6a00ff,var(--brand-primary));
   background-size:180% auto;
   box-shadow:0 8px 26px color-mix(in srgb, var(--brand-primary) 34%, transparent);
@@ -1646,7 +1646,7 @@ $_heroLogo = !empty($s['site_logo'])
   color: #8033ff; margin-bottom: 18px;
 }
 .why-title {
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: clamp(28px,4vw,46px); font-weight: 900;
   color: #0b1026; letter-spacing: -1.2px; margin-bottom: 14px;
   line-height: 1.1;
@@ -1682,7 +1682,7 @@ $_heroLogo = !empty($s['site_logo'])
 .why-hl:hover::before { animation: whyShimmer .6s ease forwards; }
 .why-hl:hover { transform: translateY(-5px); }
 .why-hl-num {
-  font-family: 'Poppins',sans-serif; font-size: 44px; font-weight: 900;
+  font-family: var(--font-main),sans-serif; font-size: 44px; font-weight: 900;
   line-height: 1; margin-bottom: 6px; color: #fff;
 }
 .why-hl-label {
@@ -1765,14 +1765,14 @@ $_heroLogo = !empty($s['site_logo'])
 /* Number badge */
 .why-adv-num {
   position: absolute; top: 20px; right: 22px;
-  font-family: 'Poppins',sans-serif; font-size: 38px; font-weight: 900;
+  font-family: var(--font-main),sans-serif; font-size: 38px; font-weight: 900;
   color: rgba(17,22,45,.05); line-height: 1; pointer-events: none;
   transition: color .35s;
 }
 .why-adv:hover .why-adv-num { color: var(--wa-num-color, rgba(128,51,255,.08)); }
 
 .why-adv-title {
-  font-family: 'Poppins',sans-serif; font-size: 17px; font-weight: 800;
+  font-family: var(--font-main),sans-serif; font-size: 17px; font-weight: 800;
   color: #0b1026; margin-bottom: 10px; line-height: 1.2;
   position: relative; z-index: 1; transition: color .25s;
 }
@@ -1996,7 +1996,7 @@ function getWhyAccent(string $color, array $map): array {
         <div style="width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,rgba(128,51,255,.12),rgba(128,51,255,.08));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:34px;color:#8033ff">
           <i class="fas fa-folder-open"></i>
         </div>
-        <h3 style="font-family:'Poppins',sans-serif;font-size:20px;font-weight:800;color:#0b1026;margin-bottom:10px">
+        <h3 style="font-family:var(--font-main),sans-serif;font-size:20px;font-weight:800;color:#0b1026;margin-bottom:10px">
           Portfolio Coming Soon
         </h3>
         <p style="color:#5e6475;font-size:14.5px;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.65">
@@ -2075,7 +2075,7 @@ function getWhyAccent(string $color, array $map): array {
 }
 .testi-label i { font-size: 13px; }
 .testi-h2 {
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: clamp(28px,4vw,44px); font-weight: 900;
   color: #fff; letter-spacing: -1px; margin-bottom: 14px;
   line-height: 1.1;
@@ -2226,7 +2226,7 @@ function getWhyAccent(string $color, array $map): array {
 }
 .tc-avatar img { width:100%;height:100%;object-fit:cover; }
 .tc-name {
-  font-family: 'Poppins','Inter',sans-serif;
+  font-family: var(--font-main),sans-serif;
   font-size: 15px; font-weight: 800; color: #fff;
   margin-bottom: 3px; line-height: 1.2;
 }

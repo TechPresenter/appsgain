@@ -14,7 +14,7 @@
   position:relative; overflow:hidden;
   background:linear-gradient(180deg,#FFFFFF 0%,#FAFAFF 58%,#FFFFFF 100%);
   border-bottom:1px solid var(--ph-line);
-  font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  font-family:var(--font-main),system-ui,sans-serif;
 }
 .ph-glow{
   position:absolute; inset:0; pointer-events:none;
@@ -32,7 +32,7 @@
 .ph-crumb ol{
   list-style:none; margin:0 0 clamp(20px,2.6vw,30px); padding:0;
   display:flex; align-items:center; flex-wrap:wrap; gap:9px;
-  font-family:'Inter',system-ui,sans-serif; font-size:12.5px;
+  font-family:var(--font-body),system-ui,sans-serif; font-size:12.5px;
 }
 .ph-crumb a{
   display:inline-flex; align-items:center; gap:7px;
@@ -48,7 +48,7 @@
 .ph-eyebrow{
   display:inline-flex; align-items:center;
   padding:6px 14px; margin-bottom:16px; border-radius:999px;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
   font-size:11.5px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
   color:#6A00FF; background:rgba(106,0,255,.055);
   border:1px solid rgba(106,0,255,.14);
@@ -73,7 +73,7 @@
   transform:translateY(-4px);
 }
 .ph-sub{
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
   font-size:clamp(15px,1.2vw,17px); line-height:1.72;
   color:var(--ph-body); margin:0; max-width:60ch;
 }
@@ -83,7 +83,7 @@
 .ph-btn{
   display:inline-flex; align-items:center; justify-content:center;
   height:48px; padding:0 24px; border-radius:11px;
-  font-family:'Inter',system-ui,sans-serif; font-size:14.5px; font-weight:600;
+  font-family:var(--font-body),system-ui,sans-serif; font-size:14.5px; font-weight:600;
   text-decoration:none; white-space:nowrap;
   transition:transform .2s ease, box-shadow .2s ease, background-position .35s ease, border-color .2s ease, color .2s ease;
 }
@@ -108,7 +108,7 @@
   letter-spacing:-.02em; color:var(--ph-ink);
 }
 .ph-stats span{
-  font-family:'Inter',system-ui,sans-serif; font-size:12.5px;
+  font-family:var(--font-body),system-ui,sans-serif; font-size:12.5px;
   color:var(--ph-mute); margin-top:2px;
 }
 

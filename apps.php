@@ -70,7 +70,7 @@ try {
     letter-spacing: .7px; text-transform: uppercase; margin-bottom: 18px;
   }
   .apps-hero-title {
-    font-family: 'Poppins','Inter',sans-serif;
+    font-family: var(--font-main),sans-serif;
     font-size: clamp(32px,4.5vw,56px); font-weight: 900;
     color: #fff; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 18px;
   }
@@ -99,7 +99,7 @@ try {
     padding: 8px 16px; border-radius: 30px;
     background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
     color: rgba(255,255,255,.7); font-size: 13px; font-weight: 600;
-    font-family: 'Poppins',sans-serif; text-decoration: none;
+    font-family: var(--font-main),sans-serif; text-decoration: none;
     transition: all .2s; backdrop-filter: blur(8px);
   }
   .apps-type-pill:hover, .apps-type-pill.active {
@@ -124,7 +124,7 @@ try {
   .apps-stat:last-child { border-right: none; }
   .apps-stat:hover { background: rgba(255,255,255,.03); }
   .apps-stat-num {
-    font-family: 'Poppins',sans-serif; font-size: 28px; font-weight: 900;
+    font-family: var(--font-main),sans-serif; font-size: 28px; font-weight: 900;
     background: linear-gradient(135deg, #fff, #c4a5ff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     line-height: 1; margin-bottom: 4px;
@@ -178,7 +178,7 @@ try {
     background: rgba(106,0,255,.08); color: #46009f; border: 1px solid rgba(106,0,255,.15);
   }
   .apps-fc-name {
-    font-family: 'Poppins',sans-serif; font-size: 22px; font-weight: 900;
+    font-family: var(--font-main),sans-serif; font-size: 22px; font-weight: 900;
     color: #0b1026; margin-bottom: 4px;
   }
   .apps-fc-dev { font-size: 13px; color: #8b90a0; margin-bottom: 12px; }
@@ -198,7 +198,7 @@ try {
   .apps-dl-btn {
     display: inline-flex; align-items: center; gap: 7px;
     padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 700;
-    text-decoration: none; transition: all .25s; font-family: 'Poppins',sans-serif;
+    text-decoration: none; transition: all .25s; font-family: var(--font-main),sans-serif;
     white-space: nowrap;
   }
   .apps-dl-btn.gplay { background: #22c55e; color: #fff; box-shadow: 0 3px 10px rgba(34,197,94,.3); }
@@ -269,7 +269,7 @@ try {
     letter-spacing: .7px; color: #46009f; margin-bottom: 6px;
   }
   .app-card-name {
-    font-family: 'Poppins','Inter',sans-serif; font-size: 16px; font-weight: 800;
+    font-family: var(--font-main),sans-serif; font-size: 16px; font-weight: 800;
     color: #0b1026; margin-bottom: 6px; line-height: 1.25;
     transition: color .2s;
   }
@@ -313,7 +313,7 @@ try {
     display: flex; align-items: center; justify-content: center;
     font-size: 32px; color: #6a00ff;
   }
-  .apps-empty h3 { font-family: 'Poppins',sans-serif; font-size: 20px; font-weight: 800; color: #0b1026; margin-bottom: 10px; }
+  .apps-empty h3 { font-family: var(--font-main),sans-serif; font-size: 20px; font-weight: 800; color: #0b1026; margin-bottom: 10px; }
   .apps-empty p { font-size: 14px; color: #5e6475; margin-bottom: 24px; }
 
   /* Responsive */

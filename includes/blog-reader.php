@@ -78,7 +78,7 @@ if (!defined('SITE_URL')) { die('Direct access not allowed'); }
   padding:10px 12px; margin:0 0 24px;
   background:#fff; border:1px solid var(--r-line); border-radius:14px;
   box-shadow:0 1px 2px rgba(16,22,47,.04), 0 6px 20px rgba(16,22,47,.04);
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
 }
 .rdx-group{ display:flex; align-items:center; gap:6px; }
 .rdx-group + .rdx-group{ padding-left:10px; border-left:1px solid var(--r-line); }
@@ -162,7 +162,7 @@ body.rdx-reading .blog-content-box{ background:#FBFAF7; border-color:transparent
   display:none; align-items:center; gap:8px;
   height:42px; padding:0 18px; border:0; border-radius:999px; cursor:pointer;
   background:#11162D; color:#fff;
-  font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600;
+  font-family:var(--font-body),sans-serif; font-size:13.5px; font-weight:600;
   box-shadow:0 8px 24px rgba(16,22,47,.28);
 }
 .rdx-exit:hover{ background:#000; }

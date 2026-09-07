@@ -34,14 +34,14 @@ $tabIcons  = ['home'=>'fa-home','about'=>'fa-building','services'=>'fa-cogs','co
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <?php require __DIR__ . '/includes/meta.php'; ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Typeface loads once via css/style.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css"/>
   <style>
   /* ══ BASE ══ */
   *{box-sizing:border-box;}
-  :root{--v:#6a00ff;--b:#5500cc;--c:#6a00ff;--font:'Poppins','Inter',system-ui,sans-serif;}
-  body{font-family:'Inter',system-ui,sans-serif;background:#fbfcfe;}
+  :root{--v:#6a00ff;--b:#5500cc;--c:#6a00ff;--font:var(--font-main);}
+  body{font-family:var(--font-body);background:#fbfcfe;}
 
   /* ══ KEYFRAMES ══ */
   @keyframes heroFloat{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-12px) rotate(3deg)}66%{transform:translateY(-6px) rotate(-2deg)}}

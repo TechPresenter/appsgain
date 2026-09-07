@@ -17,7 +17,9 @@
    (includes/brand-vars.php); everything below derives from them.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+/* No @import here. The typeface is loaded once in style.css and reaches this
+   file through --font-body / --font-head; a second import pulled two more
+   families the site no longer uses. */
 
 :root {
   /* ── Brand seeds ── */
@@ -62,8 +64,10 @@
   --danger:  #DC2626;
 
   /* ── Typography ── */
-  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Same family as style.css. Both files define these on :root, so whichever
+     loads last still resolves to Figtree rather than a leftover Inter. */
+  --font-display: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:    'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* ── 8px spacing scale ── */
   --sp-1: 8px;   --sp-2: 16px;  --sp-3: 24px;  --sp-4: 32px;

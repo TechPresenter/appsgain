@@ -329,7 +329,7 @@ require_once dirname(__DIR__) . '/includes/admin-head.php';
         <tbody>
           <?php foreach ($invoices as $inv): $isOverdue = ($inv['status']==='sent' && $inv['due_date'] && strtotime($inv['due_date']) < time()); ?>
           <tr>
-            <td><strong style="color:var(--primary);font-family:'Inter',sans-serif"><?= e($inv['invoice_no']) ?></strong></td>
+            <td><strong style="color:var(--primary);font-family:'Figtree',sans-serif"><?= e($inv['invoice_no']) ?></strong></td>
             <td>
               <div style="font-weight:700;color:var(--primary)"><?= e($inv['client_name']) ?></div>
               <?php if ($inv['client_email']): ?><div style="font-size:12px;color:var(--gray)"><?= e($inv['client_email']) ?></div><?php endif; ?>

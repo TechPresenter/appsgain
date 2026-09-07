@@ -465,7 +465,7 @@ $greeting = $hour < 12 ? 'Good Morning' : ($hour < 17 ? 'Good Afternoon' : 'Good
  const c1 = tok('--chart-1'), c2 = tok('--chart-2');
  const surface = tok('--surface'), ink = tok('--ink');
 
-  Chart.defaults.font.family = tok('--font-body') || "'Inter', sans-serif";
+  Chart.defaults.font.family = tok('--font-body') || "'Figtree', sans-serif";
   Chart.defaults.font.size   = 12;
 
   /* ── Visitor Traffic ── */

@@ -352,7 +352,7 @@ $tabs = [
 .social-icon-badge:hover{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .social-icon-badge svg{width:22px;height:22px;fill:currentColor;display:block;}
 .social-icon-badge .si-letter{
-  font-family:'Poppins','Inter',sans-serif;font-size:15px;font-weight:900;
+  font-family:'Figtree',sans-serif;font-size:15px;font-weight:900;
   line-height:1;letter-spacing:-0.5px;user-select:none;
 }
 

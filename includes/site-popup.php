@@ -88,7 +88,7 @@ $_popKey = 'ag_pop_' . (int)$_pop['id'] . '_' . substr(md5((string)$_pop['title'
   --s-ease:cubic-bezier(.22,1,.36,1);
   position:fixed; inset:0; z-index:1300;
   display:flex; align-items:center; justify-content:center; padding:20px;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:var(--font-body),system-ui,sans-serif;
 }
 .spx[hidden]{ display:none; }
 .spx-scrim{
@@ -124,7 +124,7 @@ $_popKey = 'ag_pop_' . (int)$_pop['id'] . '_' . substr(md5((string)$_pop['title'
 
 .spx-body{ padding:24px 26px 26px; text-align:center; }
 .spx-title{
-  font-family:'Plus Jakarta Sans','Inter',sans-serif;
+  font-family:var(--font-main),sans-serif;
   font-size:21px; font-weight:800; letter-spacing:-.02em;
   color:var(--s-ink); margin:0 0 10px; line-height:1.28;
 }
