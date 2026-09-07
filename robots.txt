@@ -26,6 +26,7 @@ Disallow: /admin/
 Disallow: /includes/
 Disallow: /database/
 Disallow: /logs/
+Disallow: /api/
 Crawl-delay: 0
 
 User-agent: Googlebot-Image
@@ -37,6 +38,10 @@ Allow: /*.webp$
 User-agent: Bingbot
 Allow: /
 Disallow: /admin/
+Disallow: /includes/
+Disallow: /database/
+Disallow: /logs/
+Disallow: /api/
 Crawl-delay: 1
 
 User-agent: facebookexternalhit
