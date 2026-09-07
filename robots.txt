@@ -1,0 +1,61 @@
+# ============================================================
+# Appsgain Technologies Private Limited - robots.txt
+# https://appsgain.in
+# Editable from Admin -> SEO Manager -> robots.txt
+# ============================================================
+
+User-agent: *
+Allow: /css/
+Allow: /js/
+Allow: /uploads/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /database/
+Disallow: /logs/
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /database/
+Disallow: /logs/
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /uploads/
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.webp$
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+Sitemap: https://appsgain.in/sitemap.xml
+Sitemap: https://appsgain.in/sitemap-html.php

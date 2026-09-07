@@ -1,0 +1,406 @@
+/* ================================================================
+   APPSGAIN — FOUNDER BIO
+   Long-form editorial page on the shared brand tokens.
+   White text only ever sits on the deep half of the brand ramp
+   (#D000A8 -> #6A00FF, 4.94:1 to 6.87:1).
+   ================================================================ */
+
+.fdr{
+  --f-ink:#11162D; --f-body:#5E6475; --f-mute:#7E8496; --f-faint:#9AA0B4;
+  --f-line:#E7E9F0; --f-soft:#F7F8FC; --f-card:#FFFFFF;
+  --f-brand:#6A00FF; --f-solid:#8B00E0;
+  --f-grad:linear-gradient(120deg,#FF8A00 0%,#FF3030 26%,#F50072 50%,#D000A8 70%,#6A00FF 100%);
+  --f-grad-btn:linear-gradient(120deg,#D000A8 0%,#9D00D3 45%,#6A00FF 100%);
+  --f-ease:cubic-bezier(.22,1,.36,1);
+  font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  color:var(--f-body); background:var(--f-soft);
+}
+.fdr-wrap{ max-width:1140px; margin-inline:auto; padding-inline:clamp(20px,4vw,32px); }
+.fdr .sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+.fdr-grad{
+  background:var(--f-grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+
+/* ══ Hero ══════════════════════════════════════════════ */
+.fdr-hero{
+  position:relative; overflow:hidden;
+  padding:clamp(30px,4vw,56px) 0 clamp(28px,3.4vw,44px);
+  background:
+    radial-gradient(80% 130% at 10% 0%, rgba(106,0,255,.06) 0%, transparent 58%),
+    radial-gradient(70% 130% at 92% 20%, rgba(245,0,114,.05) 0%, transparent 58%),
+    #FFFFFF;
+  border-bottom:1px solid var(--f-line);
+}
+.fdr-crumb{
+  display:flex; align-items:center; gap:8px; margin-bottom:20px;
+  font-family:'Inter',sans-serif; font-size:12.5px; color:var(--f-mute);
+}
+.fdr-crumb a{ color:var(--f-mute); text-decoration:none; }
+.fdr-crumb a:hover{ color:var(--f-brand); }
+.fdr-crumb i{ font-size:9px; color:var(--f-faint); }
+.fdr-crumb [aria-current]{ color:var(--f-ink); font-weight:600; }
+
+.fdr-hero-in{
+  display:grid; grid-template-columns:minmax(0,1fr) 320px;
+  gap:clamp(26px,4vw,54px); align-items:center;
+}
+.fdr-eyebrow{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:5px 13px; margin-bottom:14px; border-radius:999px;
+  font-family:'Inter',sans-serif;
+  font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--f-brand); background:rgba(106,0,255,.07);
+  border:1px solid rgba(106,0,255,.16);
+}
+.fdr-h1{
+  font-size:clamp(27px,4vw,44px); font-weight:800; letter-spacing:-.03em;
+  line-height:1.1; color:var(--f-ink); margin:0 0 10px;
+}
+.fdr-role{
+  font-family:'Inter',sans-serif; font-size:clamp(14px,1.3vw,16px);
+  font-weight:600; color:var(--f-brand); margin:0 0 14px;
+}
+.fdr-lede{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(14.5px,1.2vw,16px); line-height:1.75;
+  color:var(--f-body); margin:0 0 20px; max-width:60ch;
+}
+.fdr-actions{ display:flex; flex-wrap:wrap; gap:10px; }
+
+/* ── Portrait ── */
+.fdr-photo{
+  position:relative; border-radius:22px; overflow:hidden;
+  aspect-ratio:4/5; background:var(--f-soft);
+  border:1px solid var(--f-line);
+  box-shadow:0 2px 4px rgba(16,22,47,.04), 0 18px 44px rgba(16,22,47,.10);
+}
+.fdr-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+/* Stand-in until a portrait is uploaded — deliberate, not broken */
+.fdr-photo-blank{
+  width:100%; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  background:
+    radial-gradient(90% 90% at 50% 0%, rgba(106,0,255,.09) 0%, transparent 62%),
+    linear-gradient(160deg,#F4F2FF,#FBF7FF);
+  color:var(--f-mute); text-align:center; padding:24px;
+}
+.fdr-photo-mono{
+  display:grid; place-items:center;
+  width:88px; height:88px; border-radius:50%;
+  background-color:var(--f-solid); background-image:var(--f-grad-btn);
+  color:#fff; font-size:32px; font-weight:800; letter-spacing:-.02em;
+}
+.fdr-photo-blank small{ font-family:'Inter',sans-serif; font-size:12px; line-height:1.5; max-width:22ch; }
+.fdr-cap{
+  font-family:'Inter',sans-serif; font-size:11.5px; line-height:1.5;
+  color:var(--f-mute); margin:9px 2px 0; text-align:center;
+}
+
+/* ══ Buttons ═══════════════════════════════════════════ */
+.fdr-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  height:44px; padding:0 22px; border-radius:11px; border:1px solid transparent;
+  font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+  text-decoration:none; white-space:nowrap;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+}
+.fdr-btn-primary{
+  background-color:var(--f-solid); background-image:var(--f-grad-btn);
+  background-size:150% 150%; background-position:0% 50%;
+  color:#fff; box-shadow:0 6px 18px rgba(106,0,255,.22);
+}
+.fdr-btn-primary:hover{ color:#fff; background-position:100% 50%; transform:translateY(-2px); }
+.fdr-btn-ghost{ background:var(--f-card); border-color:var(--f-line); color:var(--f-ink); }
+.fdr-btn-ghost:hover{ border-color:rgba(106,0,255,.4); color:var(--f-brand); transform:translateY(-2px); }
+.fdr-btn:focus-visible{ outline:2px solid var(--f-brand); outline-offset:3px; }
+@media (forced-colors: active){
+  .fdr-btn-primary{ border:2px solid ButtonText; background:ButtonFace; color:ButtonText; }
+}
+
+/* ══ Body ══════════════════════════════════════════════ */
+.fdr-body{
+  display:grid; grid-template-columns:minmax(0,1fr) 280px;
+  gap:clamp(26px,3.6vw,50px); align-items:start;
+  padding:clamp(30px,4vw,56px) 0;
+}
+.fdr-main{ min-width:0; }
+
+.fdr-sec{ margin-bottom:clamp(26px,3.2vw,42px); }
+.fdr-sec:last-child{ margin-bottom:0; }
+.fdr-h2{
+  font-size:clamp(20px,2.3vw,28px); font-weight:800; letter-spacing:-.024em;
+  color:var(--f-ink); margin:0 0 14px; line-height:1.22; scroll-margin-top:96px;
+}
+.fdr-h3{
+  font-size:clamp(16px,1.7vw,19px); font-weight:700; letter-spacing:-.015em;
+  color:var(--f-ink); margin:24px 0 9px;
+}
+.fdr-p{
+  font-family:'Inter',sans-serif;
+  font-size:15.5px; line-height:1.82; color:var(--f-body); margin:0 0 15px;
+}
+.fdr-p strong{ color:var(--f-ink); font-weight:600; }
+.fdr-p:last-child{ margin-bottom:0; }
+
+/* Pull-quote for the founder's own words */
+.fdr-quote{
+  position:relative;
+  padding:clamp(22px,2.8vw,34px) clamp(22px,3vw,40px);
+  margin:clamp(24px,3vw,36px) 0;
+  border-radius:20px;
+  background:
+    radial-gradient(110% 150% at 0% 0%, rgba(106,0,255,.055) 0%, transparent 60%),
+    var(--f-card);
+  border:1px solid var(--f-line);
+  box-shadow:0 1px 2px rgba(16,22,47,.03), 0 12px 30px rgba(16,22,47,.05);
+}
+.fdr-quote::before{
+  content:'\201C';
+  position:absolute; top:2px; left:16px;
+  font-size:74px; line-height:1; color:rgba(106,0,255,.13);
+  font-family:Georgia,serif;
+}
+.fdr-quote p{
+  position:relative;
+  font-size:clamp(16px,1.9vw,21px); font-weight:600; line-height:1.6;
+  letter-spacing:-.015em; color:var(--f-ink); margin:0 0 14px;
+}
+.fdr-quote cite{
+  display:block; font-style:normal;
+  font-family:'Inter',sans-serif; font-size:13px; line-height:1.6; color:var(--f-mute);
+}
+.fdr-quote cite strong{ display:block; color:var(--f-ink); font-weight:700; font-size:14px; }
+
+/* Chip list for expertise areas */
+.fdr-chips{ display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0; padding:0; }
+.fdr-chip{
+  padding:7px 14px; border-radius:999px;
+  background:var(--f-card); border:1px solid var(--f-line);
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--f-body);
+  transition:border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.fdr-chip:hover{ border-color:rgba(106,0,255,.3); color:var(--f-brand); transform:translateY(-1px); }
+
+/* Milestone cards */
+.fdr-cards{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:14px; margin-top:6px;
+}
+.fdr-card{
+  padding:18px 18px 20px; border-radius:16px;
+  background:var(--f-card); border:1px solid var(--f-line);
+  box-shadow:0 1px 2px rgba(16,22,47,.03);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.fdr-card:hover{
+  border-color:rgba(106,0,255,.2); transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(16,22,47,.08);
+}
+.fdr-card-ico{
+  display:grid; place-items:center; width:38px; height:38px; margin-bottom:12px;
+  border-radius:11px; font-size:15px; color:#fff;
+  background-color:var(--f-solid); background-image:var(--f-grad-btn);
+}
+.fdr-card h4{ font-size:15px; font-weight:700; color:var(--f-ink); margin:0 0 6px; letter-spacing:-.01em; }
+.fdr-card p{ font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.65; color:var(--f-body); margin:0; }
+
+/* Journey path */
+.fdr-path{
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+  padding:18px; border-radius:14px;
+  background:var(--f-card); border:1px solid var(--f-line);
+  font-family:'Inter',sans-serif;
+}
+.fdr-path span{
+  padding:6px 12px; border-radius:8px;
+  background:var(--f-soft); font-size:13px; font-weight:600; color:var(--f-ink);
+}
+.fdr-path i{ font-size:10px; color:var(--f-faint); }
+
+/* Bullet list with brand ticks */
+.fdr-list{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
+.fdr-list li{
+  display:flex; gap:10px; align-items:flex-start;
+  font-family:'Inter',sans-serif; font-size:15px; line-height:1.7; color:var(--f-body);
+}
+.fdr-list li::before{
+  content:'\f00c'; font-family:'Font Awesome 6 Free'; font-weight:900;
+  flex:0 0 auto; margin-top:3px;
+  font-size:10px; color:var(--f-brand);
+}
+
+/* ══ Rail ══════════════════════════════════════════════ */
+.fdr-rail{ position:sticky; top:88px; display:flex; flex-direction:column; gap:16px; }
+.fdr-widget{
+  padding:18px; border-radius:16px;
+  background:var(--f-card); border:1px solid var(--f-line);
+}
+.fdr-widget h4{
+  display:flex; align-items:center; gap:8px;
+  font-family:'Inter',sans-serif;
+  font-size:11px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--f-mute); margin:0 0 13px;
+}
+.fdr-widget h4 i{ color:var(--f-brand); font-size:11px; }
+
+.fdr-toc{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+.fdr-toc a{
+  display:block; padding:7px 10px; border-radius:8px;
+  border-left:2px solid transparent;
+  font-family:'Inter',sans-serif; font-size:13px; line-height:1.45;
+  color:var(--f-body); text-decoration:none;
+  transition:background .18s ease, color .18s ease, border-color .18s ease;
+}
+.fdr-toc a:hover{ background:var(--f-soft); color:var(--f-ink); }
+.fdr-toc a.is-on{
+  background:rgba(106,0,255,.07); border-left-color:var(--f-brand);
+  color:var(--f-brand); font-weight:600;
+}
+
+.fdr-contact{ display:flex; flex-direction:column; gap:9px; }
+.fdr-contact a{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px;
+  background:var(--f-soft); border:1px solid var(--f-line);
+  font-family:'Inter',sans-serif; font-size:13.5px; color:var(--f-ink);
+  text-decoration:none; word-break:break-word;
+  transition:border-color .2s ease, color .2s ease;
+}
+.fdr-contact a:hover{ border-color:rgba(106,0,255,.32); color:var(--f-brand); }
+.fdr-contact i{ flex:0 0 auto; width:18px; text-align:center; color:var(--f-brand); font-size:14px; }
+
+/* ══ FAQ ═══════════════════════════════════════════════ */
+.fdr-faq{ display:flex; flex-direction:column; gap:10px; }
+.fdr-faq details{
+  border-radius:14px; background:var(--f-card); border:1px solid var(--f-line);
+  overflow:hidden;
+}
+.fdr-faq summary{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:15px 18px; cursor:pointer; list-style:none;
+  font-size:15px; font-weight:600; color:var(--f-ink);
+}
+.fdr-faq summary::-webkit-details-marker{ display:none; }
+.fdr-faq summary::after{
+  content:'\f078'; font-family:'Font Awesome 6 Free'; font-weight:900;
+  flex:0 0 auto; font-size:11px; color:var(--f-mute);
+  transition:transform .22s ease;
+}
+.fdr-faq details[open] summary::after{ transform:rotate(180deg); }
+.fdr-faq details[open] summary{ color:var(--f-brand); }
+.fdr-faq p{
+  margin:0; padding:0 18px 16px;
+  font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.75; color:var(--f-body);
+}
+
+/* ══ Closing CTA ═══════════════════════════════════════ */
+.fdr-cta{
+  position:relative; overflow:hidden;
+  margin-bottom:clamp(38px,5vw,64px);
+  padding:clamp(28px,3.6vw,46px);
+  border-radius:22px;
+  background-color:#1A0B3D;
+  background-image:linear-gradient(120deg,#1A0B3D 0%,#3D0091 46%,#6A00FF 100%);
+  display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+}
+.fdr-cta h2{
+  font-size:clamp(20px,2.4vw,28px); font-weight:800; letter-spacing:-.022em;
+  color:#fff; margin:0 0 8px; line-height:1.2;
+}
+.fdr-cta p{
+  font-family:'Inter',sans-serif; font-size:14.5px; line-height:1.7;
+  color:rgba(255,255,255,.88); margin:0; max-width:56ch;
+}
+.fdr-cta .fdr-btn-primary{ background:#fff; background-image:none; color:#3D0091; box-shadow:none; }
+.fdr-cta .fdr-btn-primary:hover{ background:#F3EEFF; color:#3D0091; }
+.fdr-cta .fdr-btn-ghost{ background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.28); color:#fff; }
+.fdr-cta .fdr-btn-ghost:hover{ background:rgba(255,255,255,.18); border-color:#fff; color:#fff; }
+.fdr-cta-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+/* ══ Responsive ════════════════════════════════════════ */
+@media (max-width:980px){
+  .fdr-hero-in{ grid-template-columns:1fr; }
+  .fdr-photo{ max-width:300px; margin-inline:auto; }
+  .fdr-body{ grid-template-columns:1fr; }
+  .fdr-rail{ position:static; }
+}
+@media (max-width:640px){
+  .fdr-cta{ grid-template-columns:1fr; padding:24px 20px; border-radius:18px; }
+  .fdr-cta-actions .fdr-btn{ width:100%; }
+  .fdr-path{ padding:14px; }
+  .fdr-path span{ font-size:12px; padding:5px 10px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .fdr-card, .fdr-chip, .fdr-btn{ transition:none; transform:none; }
+}
+@media print{
+  .fdr-rail, .fdr-cta, .fdr-actions{ display:none; }
+  .fdr-body{ grid-template-columns:1fr; }
+}
+
+/* ── Admin-authored rich text ──
+   Blocks now come from the database, so the prose styles attach to the
+   wrapper rather than to hand-written classes in the template. */
+.fdr-rich p{
+  font-family:'Inter',sans-serif;
+  font-size:15.5px; line-height:1.82; color:var(--f-body); margin:0 0 15px;
+}
+.fdr-rich p:last-child{ margin-bottom:0; }
+.fdr-rich strong{ color:var(--f-ink); font-weight:600; }
+.fdr-rich h3{
+  font-size:clamp(16px,1.7vw,19px); font-weight:700; letter-spacing:-.015em;
+  color:var(--f-ink); margin:24px 0 9px;
+}
+.fdr-rich h4{ font-size:16px; font-weight:700; color:var(--f-ink); margin:20px 0 8px; }
+.fdr-rich ul, .fdr-rich ol{
+  font-family:'Inter',sans-serif; font-size:15.5px; line-height:1.8;
+  color:var(--f-body); margin:0 0 15px; padding-left:1.3em;
+}
+.fdr-rich li{ margin-bottom:.45em; }
+.fdr-rich a{ color:var(--f-brand); font-weight:500; text-underline-offset:3px; }
+.fdr-rich img{ max-width:100%; height:auto; border-radius:14px; margin:14px 0; }
+.fdr-rich blockquote{
+  margin:18px 0; padding:14px 18px;
+  background:var(--f-soft); border-left:3px solid var(--f-brand);
+  border-radius:0 12px 12px 0; color:var(--f-ink);
+}
+
+.fdr-sec-img{
+  width:100%; height:auto; border-radius:18px; margin-top:16px;
+  border:1px solid var(--f-line);
+}
+
+/* ── Gallery ── */
+.fdr-gallery{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:14px; margin-top:6px;
+}
+.fdr-shot{
+  margin:0; overflow:hidden; border-radius:16px;
+  background:var(--f-card); border:1px solid var(--f-line);
+  box-shadow:0 1px 2px rgba(16,22,47,.03);
+  transition:transform .24s var(--f-ease), box-shadow .24s ease, border-color .24s ease;
+}
+.fdr-shot:hover{
+  transform:translateY(-3px); border-color:rgba(106,0,255,.2);
+  box-shadow:0 14px 32px rgba(16,22,47,.10);
+}
+.fdr-shot img{
+  width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+}
+.fdr-shot figcaption{
+  padding:11px 14px 13px;
+  font-family:'Inter',sans-serif; font-size:12.5px; line-height:1.55; color:var(--f-body);
+}
+@media (max-width:560px){
+  .fdr-gallery{ grid-template-columns:1fr 1fr; gap:10px; }
+  .fdr-shot figcaption{ padding:9px 11px 11px; font-size:11.5px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .fdr-shot{ transition:none; transform:none; }
+}

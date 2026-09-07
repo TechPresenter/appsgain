@@ -1,0 +1,216 @@
+/* ================================================================
+   APPSGAIN ADMIN — DESIGN TOKENS
+   ----------------------------------------------------------------
+   Single source of truth for the admin panel's colour, type, space,
+   radius, shadow and status scales. Every value is derived from the
+   company logo (uploads/logo/appsgain-logo.png), whose gradient runs
+   orange -> red -> pink -> magenta -> violet.
+
+   Two rules govern how that gradient is used:
+
+   1. The full ramp is DECORATION only — accent bars, icon tiles,
+      background washes, text-clip headings.
+   2. Anything carrying white text uses the DEEP HALF (#D000A8 ->
+      #6A00FF). White on #FF8A00 is 2.36:1, far below the 4.5:1 AA
+      floor; on #D000A8 it is 4.94:1 and on #6A00FF, 6.87:1.
+
+   Legacy aliases at the bottom keep the existing ~3200 lines of admin
+   CSS working while it migrates to the new names.
+   ================================================================ */
+
+:root {
+  /* ── Brand ramp (from the logo) ─────────────────────── */
+  --ag-orange:#FF8A00;
+  --ag-red:#FF3030;
+  --ag-pink:#F50072;
+  --ag-magenta:#D000A8;
+  --ag-violet:#6A00FF;
+
+  --ag-grad:linear-gradient(120deg,#FF8A00 0%,#FF3030 26%,#F50072 50%,#D000A8 70%,#6A00FF 100%);
+  --ag-grad-90:linear-gradient(90deg,#FF8A00 0%,#FF3030 26%,#F50072 50%,#D000A8 70%,#6A00FF 100%);
+  /* the only ramp allowed under white text */
+  --ag-grad-btn:linear-gradient(120deg,#D000A8 0%,#9D00D3 45%,#6A00FF 100%);
+
+  /* ── Primary / secondary / accent ───────────────────── */
+  --brand:#6A00FF;              /* 6.87:1 on white — links, active nav */
+  --brand-solid:#8B00E0;        /* 6.62:1 — solid base under gradients */
+  --brand-dark:#5200C4;         /* hover / pressed */
+  --brand-ink:#3D0091;          /* text on tinted brand surfaces */
+  --brand-soft:rgba(106,0,255,.08);
+  --brand-soft-2:rgba(106,0,255,.14);
+  --brand-line:rgba(106,0,255,.22);
+
+  --secondary:#D000A8;          /* 4.94:1 — secondary emphasis */
+  --secondary-soft:rgba(208,0,168,.09);
+  --accent:#F50072;             /* highlights, notification dots */
+  --accent-soft:rgba(245,0,114,.09);
+
+  /* ── Neutrals ───────────────────────────────────────── */
+  --ink:#11162D;                /* headings */
+  --ink-2:#242A42;              /* strong body */
+  --body:#5E6475;               /* body copy — 6.4:1 on --surface */
+  --muted:#7E859E;              /* labels, captions — 4.6:1 */
+  --faint:#9AA0B4;              /* placeholders, disabled */
+
+  --canvas:#F6F7FB;             /* app background */
+  --surface:#FFFFFF;            /* cards, tables, header */
+  --surface-2:#FAFAFE;          /* zebra, insets, hovers */
+  --surface-3:#F1F2F8;          /* recessed, skeletons */
+  --line:#E7E9F0;               /* hairlines */
+  --line-2:#DDE0EA;             /* stronger dividers */
+
+  /* Sidebar: a calm near-white rail, not a heavy navy gradient */
+  --rail:#FFFFFF;
+  --rail-2:#F7F8FC;
+  --rail-line:#E9EBF2;
+  --rail-ink:#11162D;
+  --rail-body:#5E6475;
+  --rail-active-bg:rgba(106,0,255,.08);
+
+  /* ── Status ─────────────────────────────────────────── */
+  /* Each pairs a readable foreground with a low-saturation surface,
+     so badges never rely on colour alone (they carry a dot + label). */
+  --ok:#0E7C5A;        --ok-bg:rgba(14,124,90,.10);        --ok-line:rgba(14,124,90,.22);
+  --warn:#9A6207;      --warn-bg:rgba(154,98,7,.10);       --warn-line:rgba(154,98,7,.22);
+  --danger:#C02626;    --danger-bg:rgba(192,38,38,.09);    --danger-line:rgba(192,38,38,.22);
+  --info:#1D4FD8;      --info-bg:rgba(29,79,216,.09);      --info-line:rgba(29,79,216,.20);
+  --neutral:#5E6475;   --neutral-bg:rgba(94,100,117,.09);  --neutral-line:rgba(94,100,117,.20);
+
+  /* ── Charts ─────────────────────────────────────────── */
+  /* Ordered for categorical use: adjacent pairs stay distinguishable,
+     and none is so pale it disappears on white. */
+  --chart-1:#6A00FF;
+  --chart-2:#D000A8;
+  --chart-3:#1D4FD8;
+  --chart-4:#0E7C5A;
+  --chart-5:#E06A00;
+  --chart-6:#9A2FCF;
+  --chart-7:#0F7C8C;
+  --chart-8:#B0175A;
+  --chart-grid:#EDEFF6;
+  --chart-axis:#7E859E;
+
+  /* ── Type ───────────────────────────────────────────── */
+  --font-display:'Plus Jakarta Sans','Inter',system-ui,-apple-system,sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fs-xs:11.5px; --fs-sm:12.5px; --fs-base:14px;
+  --fs-md:15px;   --fs-lg:17px;   --fs-xl:20px;
+  --fs-2xl:24px;  --fs-3xl:30px;
+  --lh-tight:1.25; --lh-normal:1.55; --lh-loose:1.7;
+
+  /* ── Space (4px base) ───────────────────────────────── */
+  --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+
+  /* ── Radius ─────────────────────────────────────────── */
+  --r-sm:8px; --r:10px; --r-md:12px; --r-lg:16px; --r-xl:20px; --r-full:999px;
+
+  /* ── Elevation — light, never heavy ─────────────────── */
+  --sh-xs:0 1px 2px rgba(16,22,47,.04);
+  --sh-sm:0 1px 2px rgba(16,22,47,.04), 0 2px 8px rgba(16,22,47,.04);
+  --sh:0 1px 3px rgba(16,22,47,.05), 0 6px 20px rgba(16,22,47,.05);
+  --sh-md:0 2px 6px rgba(16,22,47,.06), 0 12px 32px rgba(16,22,47,.07);
+  --sh-lg:0 8px 20px rgba(16,22,47,.08), 0 24px 56px rgba(16,22,47,.09);
+  --sh-brand:0 6px 18px rgba(106,0,255,.22);
+
+  /* ── Motion ─────────────────────────────────────────── */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --dur-fast:.14s; --dur:.2s; --dur-slow:.32s;
+  --transition:var(--dur) var(--ease);
+
+  /* ── Layout ─────────────────────────────────────────── */
+  --sidebar-w:264px; --sidebar-mini:76px; --topbar-h:64px;
+
+  /* ══ Legacy aliases ═══════════════════════════════════
+     The existing admin CSS reads these names. Pointing them at the
+     brand tokens re-skins every old rule without touching markup.
+     New code should use the names above. */
+  --violet:var(--brand);
+  --violet-d:var(--brand-dark);
+  --violet-lt:var(--brand-soft);
+  --blue:var(--brand);
+  --blue-d:var(--brand-dark);
+  --cyan:var(--secondary);
+  --emerald:var(--ok);
+  --amber:var(--warn);
+  --rose:var(--danger);
+  --orange:var(--ag-orange);
+  --primary:var(--ink);
+  --dark:#0B1026;
+  --white:var(--surface);
+  --light:var(--canvas);
+  --light2:var(--surface-3);
+  --border:var(--line);
+  --border2:rgba(16,22,47,.05);
+  --text:var(--ink-2);
+  --gray:var(--body);
+  --gray2:var(--faint);
+  --shadow:var(--sh);
+  --shadow-md:var(--sh-md);
+  --shadow-lg:var(--sh-lg);
+  --radius:var(--r);
+  --radius-lg:var(--r-lg);
+  --radius-xl:var(--r-xl);
+  --font-main:var(--font-display);
+}
+
+/* Dark mode keeps the same token names so components need no branches.
+   The brand accent lifts to #B98CFF: #6A00FF is 6.9:1 on white but only
+   1.5:1 on the dark surface, which would be unreadable. */
+[data-theme="dark"] {
+  --brand:#B98CFF;
+  --brand-solid:#8B00E0;
+  --brand-dark:#C9A6FF;
+  --brand-ink:#DCC8FF;
+  --brand-soft:rgba(185,140,255,.12);
+  --brand-soft-2:rgba(185,140,255,.18);
+  --brand-line:rgba(185,140,255,.26);
+
+  --secondary:#F26BC8;
+  --secondary-soft:rgba(242,107,200,.12);
+  --accent:#FF6BA6;
+  --accent-soft:rgba(255,107,166,.12);
+
+  --ink:#EEF0F7;
+  --ink-2:#DDE1EC;
+  --body:#A8AEC4;
+  --muted:#8B92A9;
+  --faint:#6E7590;
+
+  --canvas:#0B1026;
+  --surface:#11162D;
+  --surface-2:#171D38;
+  --surface-3:#1C2340;
+  --line:#262C4A;
+  --line-2:#323858;
+
+  --rail:#0E1329;
+  --rail-2:#141A33;
+  --rail-line:#242A46;
+  --rail-ink:#EEF0F7;
+  --rail-body:#A8AEC4;
+  --rail-active-bg:rgba(185,140,255,.14);
+
+  --ok:#3FBF8F;     --ok-bg:rgba(63,191,143,.14);     --ok-line:rgba(63,191,143,.28);
+  --warn:#E0A63A;   --warn-bg:rgba(224,166,58,.14);   --warn-line:rgba(224,166,58,.28);
+  --danger:#F2696A; --danger-bg:rgba(242,105,106,.14);--danger-line:rgba(242,105,106,.28);
+  --info:#6C9BFF;   --info-bg:rgba(108,155,255,.14);  --info-line:rgba(108,155,255,.28);
+  --neutral:#A8AEC4;--neutral-bg:rgba(168,174,196,.12);--neutral-line:rgba(168,174,196,.24);
+
+  --chart-1:#B98CFF; --chart-2:#F26BC8; --chart-3:#6C9BFF; --chart-4:#3FBF8F;
+  --chart-5:#E8A24A; --chart-6:#C48CF0; --chart-7:#4FB6C6; --chart-8:#F27A9E;
+  --chart-grid:#242A46; --chart-axis:#8B92A9;
+
+  --sh-xs:0 1px 2px rgba(0,0,0,.30);
+  --sh-sm:0 1px 2px rgba(0,0,0,.30), 0 2px 8px rgba(0,0,0,.26);
+  --sh:0 1px 3px rgba(0,0,0,.34), 0 6px 20px rgba(0,0,0,.30);
+  --sh-md:0 2px 6px rgba(0,0,0,.38), 0 12px 32px rgba(0,0,0,.34);
+  --sh-lg:0 8px 20px rgba(0,0,0,.44), 0 24px 56px rgba(0,0,0,.40);
+
+  --dark:#EEF0F7;
+  --border2:rgba(255,255,255,.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast:.01ms; --dur:.01ms; --dur-slow:.01ms; }
+}

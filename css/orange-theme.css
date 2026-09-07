@@ -1,0 +1,865 @@
+/* ================================================================
+   APPSGAIN — Premium Orange Theme Enhancement
+   Orange (#FF6B00) + Orange-Red (#FF4500) Accent System
+   Lightweight • Responsive • SEO-friendly
+   ================================================================ */
+
+/* ── Orange Design Tokens ── */
+:root {
+  --or1:       #FF6B00;          /* Primary Orange        */
+  --or2:       #FF4500;          /* Orange-Red            */
+  --or3:       #FF8C42;          /* Light Orange          */
+  --or4:       #E55A00;          /* Dark Orange           */
+  --or5:       #FFA04D;          /* Soft Orange           */
+  --or-grad:   linear-gradient(135deg, #FF6B00 0%, #FF4500 100%);
+  --or-grad2:  linear-gradient(135deg, #FF8C42 0%, #FF6B00 50%, #FF4500 100%);
+  --or-glow:   0 0 24px rgba(255,107,0,0.45);
+  --or-glow-lg:0 0 48px rgba(255,107,0,0.35), 0 0 80px rgba(255,69,0,0.2);
+  --or-shadow: 0 8px 32px rgba(255,107,0,0.3);
+  --or-border: rgba(255,107,0,0.35);
+  --or-bg-lt:  rgba(255,107,0,0.06);
+  --or-bg-md:  rgba(255,107,0,0.12);
+  --transition: .28s cubic-bezier(.4,0,.2,1);
+}
+
+/* ══════════════════════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════════════════════ */
+@keyframes orPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,107,0,0); }
+  50%     { box-shadow: 0 0 0 10px rgba(255,107,0,0); }
+}
+@keyframes orRipple {
+  to { transform: scale(4); opacity: 0; }
+}
+@keyframes orGlow {
+  0%,100% { box-shadow: var(--or-glow); }
+  50%     { box-shadow: var(--or-glow-lg); }
+}
+@keyframes orFloat {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-8px); }
+}
+@keyframes orSlideUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes orSlideLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes orSlideRight {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes orFadeIn {
+  from { opacity: 0; transform: scale(.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes orShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes orGradShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes orBounce {
+  0%,100% { transform: translateY(0) scale(1); }
+  30%     { transform: translateY(-6px) scale(1.05); }
+  60%     { transform: translateY(2px) scale(.98); }
+}
+@keyframes orRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orProgress {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes orDotPing {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+@keyframes orBarFlow {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+@keyframes orCountUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes orCardEntrance {
+  from { opacity: 0; transform: translateY(28px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes orIconWiggle {
+  0%,100% { transform: rotate(0deg); }
+  20%     { transform: rotate(-12deg); }
+  40%     { transform: rotate(10deg); }
+  60%     { transform: rotate(-8deg); }
+  80%     { transform: rotate(6deg); }
+}
+@keyframes orTextGlow {
+  0%,100% { text-shadow: 0 0 8px rgba(255,107,0,.4); }
+  50%     { text-shadow: 0 0 24px rgba(255,107,0,.75), 0 0 48px rgba(255,69,0,.3); }
+}
+@keyframes orBorderSpin {
+  from { --border-angle: 0deg; }
+  to   { --border-angle: 360deg; }
+}
+
+/* ══════════════════════════════════════════════════════
+   SCROLL PROGRESS BAR (top of viewport)
+══════════════════════════════════════════════════════ */
+#or-scroll-bar {
+  position: fixed;
+  top: 0; left: 0; z-index: 99999;
+  height: 3px; width: 0%;
+  background: var(--or-grad);
+  background-size: 200% 100%;
+  animation: orBarFlow 3s linear infinite;
+  transition: width .12s linear;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(255,107,0,.6);
+}
+
+/* ══════════════════════════════════════════════════════
+   REVEAL ANIMATIONS — scroll-triggered
+══════════════════════════════════════════════════════ */
+.or-reveal,
+.or-reveal-left,
+.or-reveal-right,
+.or-reveal-scale {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity .7s cubic-bezier(.4,0,.2,1),
+              transform .7s cubic-bezier(.4,0,.2,1);
+}
+.or-reveal       { transform: translateY(38px); }
+.or-reveal-left  { transform: translateX(44px); }
+.or-reveal-right { transform: translateX(-44px); }
+.or-reveal-scale { transform: scale(.94); }
+
+.or-reveal.or-visible,
+.or-reveal-left.or-visible,
+.or-reveal-right.or-visible,
+.or-reveal-scale.or-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.or-delay-1 { transition-delay: .1s !important; }
+.or-delay-2 { transition-delay: .2s !important; }
+.or-delay-3 { transition-delay: .3s !important; }
+.or-delay-4 { transition-delay: .4s !important; }
+.or-delay-5 { transition-delay: .5s !important; }
+.or-delay-6 { transition-delay: .6s !important; }
+
+/* ══════════════════════════════════════════════════════
+   ORANGE GRADIENT TEXT UTILITY
+══════════════════════════════════════════════════════ */
+.or-text {
+  background: var(--or-grad2);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: orGradShift 4s ease infinite;
+}
+.or-text-glow {
+  color: var(--or1);
+  animation: orTextGlow 3s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════════
+   PREMIUM ORANGE BUTTONS
+══════════════════════════════════════════════════════ */
+.btn-orange,
+.btn-saas-primary,
+.saas-cta .btn-saas-primary,
+a.btn-saas-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--or-grad) !important;
+  background-size: 200% 100% !important;
+  border: none !important;
+  color: #fff !important;
+  box-shadow: 0 6px 24px rgba(255,107,0,.35) !important;
+  transition: transform var(--transition),
+              box-shadow var(--transition),
+              background-position var(--transition) !important;
+}
+.btn-orange::before,
+.btn-saas-primary::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: -100% !important;
+  width: 50% !important; height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) !important;
+  transform: skewX(-20deg) !important;
+  transition: none !important;
+  pointer-events: none !important;
+}
+.btn-orange:hover::before,
+.btn-saas-primary:hover::before {
+  left: 150% !important;
+  transition: left .55s ease !important;
+}
+.btn-orange:hover,
+.btn-saas-primary:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: var(--or-shadow), 0 16px 48px rgba(255,69,0,.25) !important;
+  background-position: 100% 0 !important;
+}
+.btn-orange:active,
+.btn-saas-primary:active {
+  transform: translateY(0) scale(.98) !important;
+  box-shadow: 0 3px 12px rgba(255,107,0,.3) !important;
+}
+
+/* Ripple container */
+.btn-orange .or-ripple,
+.btn-saas-primary .or-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.38);
+  width: 8px; height: 8px;
+  pointer-events: none;
+  animation: orRipple .65s ease-out forwards;
+  transform: scale(0);
+  margin: -4px;
+  z-index: 10;
+}
+
+/* Secondary outline orange button */
+.btn-orange-outline,
+.btn-saas-secondary {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid rgba(255,107,0,.45) !important;
+  color: #FF6B00 !important;
+  background: rgba(255,107,0,.04) !important;
+  transition: all var(--transition) !important;
+}
+.btn-orange-outline:hover,
+.btn-saas-secondary:hover {
+  background: rgba(255,107,0,.1) !important;
+  border-color: var(--or1) !important;
+  color: var(--or1) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255,107,0,.18) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   HEADER — Orange accent enhancements
+══════════════════════════════════════════════════════ */
+/* Animated header bar: orange gradient */
+.ag-header-bar {
+  background: linear-gradient(90deg,
+    #FF6B00, #FF4500, #FF8C42, #FF6B00, #FF4500) !important;
+  background-size: 300% 100% !important;
+  animation: orBarFlow 5s linear infinite !important;
+  height: 3px !important;
+  box-shadow: 0 0 10px rgba(255,107,0,.5) !important;
+}
+
+/* Header CTA button — orange */
+.ag-nav-cta .ag-nav-cta-inner,
+.ag-nav-cta-inner {
+  background: var(--or-grad) !important;
+  box-shadow: 0 3px 14px rgba(255,107,0,.35) !important;
+}
+.ag-nav-cta:hover {
+  box-shadow: var(--or-shadow) !important;
+}
+.ag-nav-cta .ag-nav-cta-shine {
+  animation: orShimmer 3s ease-in-out infinite !important;
+}
+
+/* Nav link underline — orange on hover */
+.ag-link::after {
+  background: var(--or1) !important;
+}
+.ag-item:hover > .ag-link,
+.ag-link.active {
+  color: var(--or1) !important;
+  background: rgba(255,107,0,.05) !important;
+}
+.ag-link.active::after,
+.ag-item:hover > .ag-link::after {
+  background: var(--or1) !important;
+}
+
+/* Topbar availability dot — orange pulse */
+.ag-tb-dot {
+  background: var(--or1) !important;
+  box-shadow: 0 0 0 3px rgba(255,107,0,.15) !important;
+}
+.ag-tb-dot::after {
+  animation-name: orDotPing !important;
+}
+
+/* Topbar CTA — orange */
+.ag-tb-cta {
+  background: var(--or-grad) !important;
+  box-shadow: 0 2px 8px rgba(255,107,0,.35) !important;
+}
+
+/* Hamburger — orange */
+.ag-hamburger {
+  background: var(--or-grad) !important;
+  box-shadow: 0 2px 8px rgba(255,107,0,.3) !important;
+}
+.ag-hamburger:hover {
+  box-shadow: 0 4px 16px rgba(255,107,0,.45) !important;
+}
+
+/* Mega menu / drop panel — orange active state */
+.ag-mega-foot-cta {
+  background: var(--or-grad) !important;
+  box-shadow: 0 3px 12px rgba(255,107,0,.3) !important;
+}
+.ag-mega-foot-cta:hover {
+  box-shadow: var(--or-shadow) !important;
+}
+.ag-drop-badge {
+  background: var(--or1) !important;
+}
+
+/* Header scroll: subtle orange tint on glow */
+.ag-header.ag-scrolled {
+  box-shadow: 0 4px 20px rgba(255,107,0,.08), 0 1px 0 #eef0f8 !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   HERO SECTION — Orange accents
+══════════════════════════════════════════════════════ */
+.saas-hero-eyebrow {
+  background: rgba(255,107,0,.1) !important;
+  border-color: rgba(255,107,0,.3) !important;
+  color: #FF8C42 !important;
+}
+.eyebrow-dot {
+  background: var(--or1) !important;
+}
+.eyebrow-dot::after {
+  background: rgba(255,107,0,.4) !important;
+  animation: orDotPing 1.6s ease-in-out infinite !important;
+}
+.saas-hero-title .ht-grad {
+  background: linear-gradient(90deg, #FF8C42, #FF6B00, #FF4500, #FF6B00) !important;
+  background-size: 200% auto !important;
+  animation: orGradShift 4s ease infinite !important;
+}
+
+/* Floating hero UI cards — orange accents */
+.hv-dashboard .hvd-metric:nth-child(2) .hvd-metric-val { color: var(--or1) !important; }
+.hf-ai-icon { background: var(--or-grad) !important; }
+.hf-ai-bar  { background: var(--or-grad) !important; }
+.hf-stat-main {
+  background: linear-gradient(135deg, var(--or1), var(--or2)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+.hf-stat-trend {
+  background: rgba(255,107,0,.15) !important;
+  color: var(--or3) !important;
+}
+.hv-orbit-dot {
+  background: var(--or1) !important;
+  box-shadow: 0 0 10px rgba(255,107,0,.8) !important;
+}
+
+/* Scroll hint dot */
+.saas-scroll-dot { background: var(--or1) !important; }
+
+/* ══════════════════════════════════════════════════════
+   SECTION DIVIDERS — Orange gradient
+══════════════════════════════════════════════════════ */
+.divider {
+  background: linear-gradient(90deg, var(--or2), var(--or1), var(--or3), var(--or1)) !important;
+  background-size: 300% 100% !important;
+  animation: orBarFlow 4s linear infinite !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   SERVICE CARDS — Orange hover enhancement
+══════════════════════════════════════════════════════ */
+.saas-svc-card {
+  transition: all .35s cubic-bezier(.4,0,.2,1) !important;
+}
+.saas-svc-card:hover {
+  border-color: rgba(255,107,0,.25) !important;
+  box-shadow: 0 20px 60px rgba(255,107,0,.12) !important;
+}
+.saas-svc-card:hover .saas-svc-card-accent {
+  transform: scaleX(1) !important;
+}
+/* Override accent color to orange for cards */
+.saas-svc-card .saas-svc-card-accent {
+  background: var(--or-grad) !important;
+}
+.saas-svc-card .saas-svc-link {
+  color: var(--or1) !important;
+}
+.saas-svc-card .saas-svc-link:hover { color: var(--or2) !important; }
+
+/* Image zoom effect on cards */
+.saas-proj-card .saas-proj-thumb img,
+.saas-blog-card .saas-blog-img img {
+  transition: transform .55s cubic-bezier(.4,0,.2,1) !important;
+}
+.saas-proj-card:hover .saas-proj-thumb img,
+.saas-blog-card:hover .saas-blog-img img {
+  transform: scale(1.08) !important;
+}
+
+/* Project card hover — orange tint */
+.saas-proj-card:hover {
+  box-shadow: 0 24px 60px rgba(255,107,0,.12) !important;
+  border-color: transparent !important;
+}
+.saas-proj-card:hover .saas-proj-body h3 { color: var(--or1) !important; }
+.saas-proj-tag {
+  background: rgba(255,107,0,.08) !important;
+  color: var(--or1) !important;
+  border-color: rgba(255,107,0,.2) !important;
+  transition: all .22s !important;
+}
+.saas-proj-tag:hover {
+  background: var(--or1) !important;
+  color: #fff !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   STATS SECTION — Orange counters
+══════════════════════════════════════════════════════ */
+.saas-stat-card {
+  --stat-color: var(--or1) !important;
+}
+.saas-stat-card:nth-child(1) { --stat-color: #FF6B00 !important; }
+.saas-stat-card:nth-child(2) { --stat-color: #FF4500 !important; }
+.saas-stat-card:nth-child(3) { --stat-color: #FF8C42 !important; }
+.saas-stat-card:nth-child(4) { --stat-color: #FFA04D !important; }
+.saas-stat-card:nth-child(5) { --stat-color: #E55A00 !important; }
+.saas-stat-card.is-visible::after { background: var(--stat-color, var(--or1)) !important; }
+.saas-stat-icon { color: var(--or1) !important; }
+
+/* ══════════════════════════════════════════════════════
+   PROCESS STEPS — Orange gradient numbers
+══════════════════════════════════════════════════════ */
+.saas-process-step:nth-child(1) .saas-step-num {
+  background: linear-gradient(135deg,#FF6B00,#FF4500) !important;
+}
+.saas-process-step:nth-child(2) .saas-step-num {
+  background: linear-gradient(135deg,#FF4500,#E55A00) !important;
+}
+.saas-process-step:nth-child(3) .saas-step-num {
+  background: linear-gradient(135deg,#FF8C42,#FF6B00) !important;
+}
+.saas-process-step:nth-child(4) .saas-step-num {
+  background: linear-gradient(135deg,#FF6B00,#FFA04D) !important;
+}
+.saas-process-step:hover {
+  border-color: rgba(255,107,0,.3) !important;
+  box-shadow: 0 20px 50px rgba(255,107,0,.15) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   WHY CHOOSE US — Orange icon hover
+══════════════════════════════════════════════════════ */
+.saas-why-card:hover {
+  box-shadow: 0 24px 60px rgba(255,107,0,.1) !important;
+}
+.saas-why-card::after {
+  background: var(--or-grad) !important;
+}
+.saas-why-icon {
+  transition: all .35s cubic-bezier(.34,1.56,.64,1) !important;
+}
+.saas-why-card:hover .saas-why-icon {
+  background: var(--or-grad) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px rgba(255,107,0,.4) !important;
+  transform: scale(1.12) rotate(-5deg) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION LABELS — Orange versions
+══════════════════════════════════════════════════════ */
+.saas-label {
+  transition: all .25s ease !important;
+}
+.saas-label:hover {
+  background: rgba(255,107,0,.12) !important;
+  border-color: rgba(255,107,0,.3) !important;
+}
+/* Headings .grad override → orange */
+.saas-heading .grad,
+.saas-heading .grad-warm {
+  background: linear-gradient(135deg, #FF6B00, #FF4500, #FF8C42) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: orGradShift 4s ease infinite !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   TESTIMONIALS — Orange star accents
+══════════════════════════════════════════════════════ */
+.saas-testi-stars i { color: var(--or1) !important; }
+.saas-testi-card {
+  transition: all .35s ease !important;
+}
+.saas-testi-card:hover {
+  border-color: rgba(255,107,0,.2) !important;
+  box-shadow: 0 12px 40px rgba(255,107,0,.1) !important;
+  transform: translateY(-4px) !important;
+}
+.saas-testi-card::before {
+  color: rgba(255,107,0,.12) !important;
+}
+
+/* Slider dots — orange */
+.saas-testi-dot.active {
+  background: var(--or1) !important;
+  box-shadow: 0 0 8px rgba(255,107,0,.5) !important;
+}
+.saas-testi-prev:hover,
+.saas-testi-next:hover {
+  background: rgba(255,107,0,.08) !important;
+  border-color: rgba(255,107,0,.3) !important;
+  color: var(--or1) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   FAQ — Orange active state
+══════════════════════════════════════════════════════ */
+.saas-faq-item:hover { border-color: rgba(255,107,0,.3) !important; }
+.saas-faq-q.open {
+  background: rgba(255,107,0,.06) !important;
+  color: var(--or1) !important;
+}
+.saas-faq-q-icon.open,
+.saas-faq-q.open .saas-faq-q-icon {
+  background: var(--or1) !important;
+  color: #fff !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   BLOG CARDS — Orange category + hover
+══════════════════════════════════════════════════════ */
+.saas-blog-cat {
+  background: var(--or-grad) !important;
+}
+.saas-blog-card:hover {
+  box-shadow: 0 20px 50px rgba(255,107,0,.1) !important;
+}
+.saas-blog-card:hover .saas-blog-body h3 { color: var(--or1) !important; }
+.saas-blog-link {
+  color: var(--or1) !important;
+}
+.saas-blog-link:hover { color: var(--or2) !important; }
+
+/* ══════════════════════════════════════════════════════
+   CTA SECTION — Orange gradient animated background
+══════════════════════════════════════════════════════ */
+.saas-cta {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,107,0,.1) 0%, transparent 60%),
+    linear-gradient(135deg, #0a0616 0%, #1a0800 40%, #0a0616 100%) !important;
+  background-size: 200% 200% !important;
+  animation: orGradShift 12s ease infinite !important;
+}
+.saas-cta-bubble {
+  background: radial-gradient(circle, rgba(255,107,0,.12), transparent 70%) !important;
+}
+.saas-cta-title .ht-grad {
+  background: linear-gradient(90deg, #FF8C42, #FF6B00, #FF4500) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: orGradShift 3s ease infinite !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   FOOTER — Orange accents
+══════════════════════════════════════════════════════ */
+/* Stats strip — orange icons */
+.ft-stat-icon {
+  background: rgba(255,107,0,.15) !important;
+  color: var(--or1) !important;
+  transition: box-shadow .25s ease !important;
+}
+.ft-stat:hover .ft-stat-icon {
+  box-shadow: 0 4px 18px rgba(255,107,0,.4) !important;
+}
+
+/* Footer logo icon — orange */
+.ft-logo-icon {
+  background: var(--or-grad) !important;
+  box-shadow: 0 4px 16px rgba(255,107,0,.4) !important;
+}
+.ft-logo-name em {
+  background: var(--or-grad) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Footer column title underline — orange */
+.ft-col-title::after {
+  background: var(--or1) !important;
+}
+
+/* Footer links hover — orange */
+.ft-links li a:hover {
+  color: #fff !important;
+}
+.ft-links li a::before {
+  background: var(--or1) !important;
+}
+.ft-links li a i { color: var(--or1) !important; }
+
+/* Footer social hover */
+.ft-social {
+  transition: all .22s ease !important;
+}
+.ft-social:hover {
+  transform: translateY(-4px) scale(1.08) !important;
+  box-shadow: 0 6px 20px rgba(255,107,0,.3) !important;
+}
+
+/* Newsletter button — orange */
+.ft-nl-btn {
+  background: var(--or-grad) !important;
+  box-shadow: 0 4px 16px rgba(255,107,0,.35) !important;
+  transition: all .25s ease !important;
+}
+.ft-nl-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(255,107,0,.5) !important;
+}
+.ft-nl-input-wrap input:focus {
+  border-color: rgba(255,107,0,.5) !important;
+  box-shadow: 0 0 0 3px rgba(255,107,0,.1) !important;
+}
+
+/* View all services link — orange */
+.ft-view-all {
+  border-color: rgba(255,107,0,.3) !important;
+  color: var(--or3) !important;
+}
+.ft-view-all:hover {
+  background: rgba(255,107,0,.12) !important;
+  border-color: rgba(255,107,0,.5) !important;
+  color: var(--or1) !important;
+}
+
+/* WhatsApp float — keep green, but back-to-top → orange */
+.back-to-top {
+  background: var(--or-grad) !important;
+  box-shadow: 0 4px 16px rgba(255,107,0,.4) !important;
+}
+.back-to-top:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(255,107,0,.5) !important;
+}
+
+/* Footer bottom divider line — orange */
+.ft-bottom-line {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,107,0,.6) 25%,
+    rgba(255,69,0,.5) 50%,
+    rgba(255,107,0,.6) 75%,
+    transparent 100%) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   TECH STACK TAGS — Orange hover
+══════════════════════════════════════════════════════ */
+.saas-tech-tag:hover {
+  background: rgba(255,107,0,.12) !important;
+  border-color: rgba(255,107,0,.3) !important;
+  color: var(--or1) !important;
+}
+.saas-tech-filter-btn.active {
+  background: var(--or-grad) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(255,107,0,.3) !important;
+}
+.saas-tech-cat:hover {
+  border-color: rgba(255,107,0,.25) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   MOBILE DRAWER — Orange accents
+══════════════════════════════════════════════════════ */
+.ag-drawer-cta {
+  background: var(--or-grad) !important;
+  box-shadow: 0 4px 14px rgba(255,107,0,.3) !important;
+}
+.ag-drawer-cta:hover {
+  box-shadow: 0 6px 20px rgba(255,107,0,.45) !important;
+}
+.ag-mob-active,
+.ag-mob-link.ag-mob-active {
+  background: rgba(255,107,0,.1) !important;
+  color: var(--or1) !important;
+}
+.ag-mob-active .ag-mob-icon { background: rgba(255,107,0,.15) !important; color: var(--or1) !important; }
+.ag-mob-sub-all:hover {
+  background: var(--or1) !important;
+  border-color: var(--or1) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   SERVICES PAGE — Orange filter tabs + cards
+══════════════════════════════════════════════════════ */
+.saas-filter-tab.active {
+  background: var(--or-grad) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(255,107,0,.3) !important;
+}
+.saas-filter-tab:hover {
+  border-color: rgba(255,107,0,.4) !important;
+  color: var(--or1) !important;
+}
+.svc-card-item:hover {
+  border-color: rgba(255,107,0,.2) !important;
+  box-shadow: 0 20px 60px rgba(255,107,0,.1) !important;
+}
+.svc-card-accentbar {
+  background: var(--or-grad) !important;
+}
+.svc-card-item:hover .svc-card-name { color: var(--or1) !important; }
+.svc-card-footer .btn-saas-primary {
+  background: var(--or-grad) !important;
+}
+.svc-sticky-link:hover,
+.svc-sticky-link.active {
+  color: #fff !important;
+  border-bottom-color: var(--or1) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   TRUST STRIP MARQUEE — Orange icons on hover
+══════════════════════════════════════════════════════ */
+.saas-trust-item {
+  transition: all .25s ease !important;
+}
+.saas-trust-item:hover {
+  color: var(--or1) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   FLOATING ELEMENTS — Orange glow
+══════════════════════════════════════════════════════ */
+.float-anim,
+.float-anim-slow,
+.float-anim-rev {
+  animation: orFloat 6s ease-in-out infinite !important;
+}
+.float-anim-slow { animation-duration: 9s !important; }
+.float-anim-rev  { animation-direction: reverse !important; }
+
+/* ══════════════════════════════════════════════════════
+   FORMS — Orange focus states
+══════════════════════════════════════════════════════ */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgba(255,107,0,.5) !important;
+  box-shadow: 0 0 0 3px rgba(255,107,0,.1) !important;
+  outline: none !important;
+}
+
+/* Contact page form */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(255,107,0,.5) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   MISC ORANGE UTILITIES
+══════════════════════════════════════════════════════ */
+/* Orange badge */
+.badge-orange {
+  background: var(--or-grad);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Orange border pulse card */
+.or-border-card {
+  position: relative;
+  border: 1px solid rgba(255,107,0,.25);
+  border-radius: 16px;
+  transition: border-color .3s ease;
+}
+.or-border-card:hover {
+  border-color: rgba(255,107,0,.5);
+  box-shadow: 0 0 0 2px rgba(255,107,0,.08);
+}
+
+/* Featured badge on cards */
+.saas-proj-cat {
+  background: var(--or-grad) !important;
+}
+.saas-svc-card .saas-svc-cat {
+  color: var(--or1) !important;
+}
+
+/* Selection highlight */
+::selection {
+  background: rgba(255,107,0,.25) !important;
+  color: var(--or2) !important;
+}
+
+/* Scrollbar orange */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--or1), var(--or2)) !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--or2), var(--or4)) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .btn-orange:hover,
+  .btn-saas-primary:hover {
+    transform: translateY(-2px) scale(1.01) !important;
+  }
+  .saas-svc-card:hover,
+  .saas-proj-card:hover,
+  .saas-blog-card:hover {
+    transform: translateY(-3px) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .or-reveal,
+  .or-reveal-left,
+  .or-reveal-right,
+  .or-reveal-scale {
+    animation: none !important;
+    transition: none !important;
+  }
+  .or-reveal, .or-reveal-left, .or-reveal-right, .or-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

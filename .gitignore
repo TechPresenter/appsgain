@@ -1,0 +1,35 @@
+# ── Secrets ──────────────────────────────────────────
+includes/config.secret.php
+.env
+.env.*
+!.env.example
+
+# ── Database dumps (contain live customer data) ──────
+*.sql
+!database/migrations/*.sql
+
+# ── User uploads (personal data: CVs, avatars, media) ─
+uploads/*
+!uploads/.gitkeep
+
+# ── Logs ─────────────────────────────────────────────
+logs/*
+!logs/.gitkeep
+*.log
+
+# ── Editor / OS cruft ────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# ── Dependencies / build ─────────────────────────────
+node_modules/
+vendor/
+composer.lock
+
+# ── Local tooling ────────────────────────────────────
+.claude/

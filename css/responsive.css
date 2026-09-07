@@ -1,0 +1,621 @@
+/* ================================================================
+   APPSGAIN TECHNOLOGIES — Comprehensive Frontend Responsive CSS
+   Covers: Mobile (320-767px), Tablet (768-1023px), Desktop (1024px+)
+   ================================================================ */
+
+/* ── PREVENT HORIZONTAL SCROLL GLOBALLY ── */
+html, body {
+  /* clip, not hidden: hidden turns these into scroll containers, which
+     stops position:sticky from ever sticking to the viewport. */
+  overflow-x: clip;
+  max-width: 100vw;
+}
+*, *::before, *::after { box-sizing: border-box; }
+img, video, iframe, embed { max-width: 100% !important; height: auto; }
+
+/* ── CONTAINER ── */
+.container { width: 100%; padding-left: 16px; padding-right: 16px; }
+
+/* ================================================================
+   TABLET (max-width: 1024px)
+================================================================ */
+@media (max-width: 1024px) {
+  .container { padding: 0 18px; }
+
+  /* Header / Nav */
+  .ag-nav { padding: 0 16px; }
+  .ag-logo-text { font-size: 15px; }
+
+  /* Hero */
+  .saas-hero-inner { grid-template-columns: 1fr !important; }
+  .saas-hero-visual, .saas-hero-3d { display: none !important; }
+  .saas-hero-title { font-size: clamp(26px, 5vw, 42px) !important; }
+  .saas-hero-sub { font-size: 15px !important; }
+
+  /* Stats */
+  .saas-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Grids */
+  .saas-why-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-svc-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .why-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .team-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .process-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .process-step::after { display: none !important; }
+
+  /* Footer */
+  .ft-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  .ft-brand { grid-column: 1 / -1 !important; }
+
+  /* Page sections */
+  .section-pad { padding: 70px 0 !important; }
+  section { padding: 60px 0 !important; }
+}
+
+/* ================================================================
+   TABLET NARROW (max-width: 900px)
+================================================================ */
+@media (max-width: 900px) {
+  /* Topbar hide */
+  .ag-topbar { display: none !important; }
+
+  /* Hero */
+  .hero-inner { flex-direction: column !important; gap: 32px !important; }
+  .hero-right, .saas-hero-visual { display: none !important; }
+  .hero-left { width: 100% !important; max-width: 100% !important; }
+  .hero h1, .saas-hero-title { font-size: clamp(24px, 6vw, 38px) !important; line-height: 1.2 !important; }
+  .hero-metrics { gap: 14px !important; flex-wrap: wrap !important; }
+  .metric-div { display: none !important; }
+  .saas-hero-eyebrow { font-size: 12px !important; }
+  .saas-hero-btns { flex-wrap: wrap !important; gap: 10px !important; }
+
+  /* About story */
+  .about-story-inner, .story-grid { flex-direction: column !important; grid-template-columns: 1fr !important; }
+  .about-img-wrap, .story-visual { width: 100% !important; max-width: 100% !important; }
+  .story-card-main { min-height: 220px !important; }
+  .story-float-badge { display: none !important; }
+
+  /* Section headings */
+  .section-heading h2, .s-h, .ab-hero h1 { font-size: clamp(20px, 5vw, 30px) !important; }
+  .section-heading { margin-bottom: 32px !important; }
+
+  /* All standard grids → 1 col */
+  .services-grid, .why-grid, .faq-grid, .blog-grid,
+  .values-grid, .team-grid, .projects-grid,
+  .portfolio-grid, .saas-why-grid, .saas-projects-grid,
+  .saas-blog-grid, .saas-svc-grid,
+  .benefits-grid, .port-grid, .testi-grid,
+  .related-grid, .mvv-grid, .diff-grid,
+  .ind-grid, .svc-cats, .tech-grid,
+  .process-grid { grid-template-columns: 1fr !important; }
+
+  /* 2-col grids */
+  .saas-stats-grid, .stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+  .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .blog-grid, .saas-blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Process */
+  .saas-process-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-process-grid::before, .process-line { display: none !important; }
+
+  /* Services page */
+  .svc-body-grid, .svc-main-grid { grid-template-columns: 1fr !important; }
+  .svc-sidebar { position: static !important; top: auto !important; }
+
+  /* Footer */
+  .ft-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+  .ft-stats-row { flex-wrap: wrap !important; gap: 14px !important; }
+  .ft-stats-sep { display: none !important; }
+  .ft-stat { flex: 1 1 40% !important; }
+
+  /* Buttons */
+  .saas-cta-btns, .svc-hero-actions, .hero-btns,
+  .ab-cta-btns, .ab-hero-inner { flex-wrap: wrap !important; }
+
+  /* Sections spacing */
+  .sec-white, .sec-light, .svc-tech, .svc-process,
+  .svc-portfolio, .svc-benefits, .svc-testi, .svc-faq,
+  .svc-related { padding: 44px 0 !important; }
+
+  /* Page banner */
+  .page-banner { padding: 60px 0 44px !important; }
+  .page-banner h1 { font-size: clamp(22px, 5vw, 32px) !important; }
+
+  /* Contact page */
+  .contact-grid, .contact-layout { grid-template-columns: 1fr !important; }
+
+  /* Blog */
+  .blog-post-inner { grid-template-columns: 1fr !important; }
+  .blog-sidebar { position: static !important; }
+
+  /* Testimonials */
+  .testi-featured-grid, .testi-all-grid { grid-template-columns: 1fr !important; }
+
+  /* Partners marquee */
+  .pm-track { animation-play-state: paused !important; }
+
+  /* CTA band buttons */
+  .svc-cta-btns, .cta-band-btns, .ab-cta-btns { flex-direction: column !important; align-items: center !important; }
+}
+
+/* ================================================================
+   MOBILE (max-width: 768px)
+================================================================ */
+@media (max-width: 768px) {
+  /* ── Navigation ── */
+  .ag-topbar, .top-bar { display: none !important; }
+  .ag-nav-desktop { display: none !important; }
+  .ag-hamburger, .hamburger { display: flex !important; }
+  .ag-header { padding: 0 14px !important; }
+  .ag-logo-name { font-size: 14px !important; }
+
+  /* ── Hero ── */
+  .saas-hero { min-height: auto !important; }
+  .saas-hero-inner { padding: 64px 0 44px !important; gap: 28px !important; }
+  .saas-hero-title { font-size: clamp(22px, 7vw, 34px) !important; letter-spacing: -0.5px !important; line-height: 1.2 !important; }
+  .saas-hero-sub { font-size: 14px !important; line-height: 1.7 !important; }
+  .saas-hero-btns { flex-direction: column !important; gap: 10px !important; }
+  .saas-hero-btns .btn-saas-primary,
+  .saas-hero-btns .btn-saas-secondary { width: 100% !important; justify-content: center !important; }
+  .hero-slide h1 { font-size: clamp(22px, 7vw, 32px) !important; }
+  .hero-tech-bg { display: none !important; } /* hide floating icons on mobile for perf */
+  .hero-lightbeam { display: none !important; }
+
+  /* ── Eyebrow / badges ── */
+  .saas-hero-eyebrow { font-size: 11.5px !important; padding: 6px 12px !important; max-width: 100% !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── Stats bar ── */
+  .saas-stats-grid, .ab-stats-row, .stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-stat-card { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.07) !important; padding: 16px !important; }
+  .saas-stat-num { font-size: 26px !important; }
+
+  /* ── All grids → single column ── */
+  .saas-why-grid, .saas-projects-grid, .saas-svc-grid,
+  .services-grid, .why-grid, .faq-grid, .values-grid,
+  .portfolio-grid, .process-grid, .benefits-grid,
+  .port-grid, .rel-grid, .related-grid, .mvv-grid,
+  .diff-grid, .ind-grid, .svc-cats,
+  .ab-stats-row > * { grid-template-columns: 1fr !important; }
+
+  /* Keep 2-col for these */
+  .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-blog-grid, .blog-grid { grid-template-columns: 1fr !important; }
+  .saas-process-grid { grid-template-columns: 1fr !important; }
+  .testi-grid, .testimonials-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Section headings ── */
+  .section-heading h2, .s-h { font-size: clamp(20px, 6vw, 28px) !important; }
+  .section-heading { text-align: center !important; margin-bottom: 28px !important; }
+  .section-heading .label { font-size: 11px !important; }
+  .s-label { font-size: 10.5px !important; }
+  .section-heading .divider { margin: 12px auto !important; }
+
+  /* ── About page ── */
+  .ab-hero { padding: 56px 0 40px !important; }
+  .ab-hero h1 { font-size: clamp(22px, 7vw, 32px) !important; }
+  .ab-stats-row { grid-template-columns: repeat(3, 1fr) !important; }
+  .ab-stat-num { font-size: 20px !important; }
+  .ab-stat-lbl { font-size: 10px !important; }
+  .story-grid { grid-template-columns: 1fr !important; }
+  .story-visual { order: -1; }
+  .stats-mini { grid-template-columns: repeat(2, 1fr) !important; }
+  .svc-cats { grid-template-columns: repeat(2, 1fr) !important; }
+  .ind-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .diff-grid { grid-template-columns: 1fr !important; }
+  .mvv-grid { grid-template-columns: 1fr !important; }
+  .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .timeline::before { left: 20px !important; }
+  .tl-row { flex-direction: column !important; padding-left: 44px !important; }
+  .tl-dot { position: absolute !important; left: 0 !important; }
+  .tl-content, .tl-content.left, .tl-content.right { text-align: left !important; padding: 0 !important; }
+  .tl-empty { display: none !important; }
+  .ab-cta-btns { flex-direction: column !important; gap: 10px !important; }
+  .btn-ab-white, .btn-ab-out { width: 100% !important; justify-content: center !important; }
+
+  /* ── Services page ── */
+  .svc-hero-grid { grid-template-columns: 1fr !important; }
+  .hero-visual { display: none !important; }
+  .svc-hero { padding: 44px 0 36px !important; }
+  .svc-body-grid, .svc-main-grid { grid-template-columns: 1fr !important; }
+  .svc-sidebar { position: static !important; top: auto !important; }
+  .sq-card { grid-template-columns: 1fr !important; }
+  .sq-row { grid-template-columns: 1fr 1fr !important; }
+  .tech-grid, .tech-cards, .tech-tags { flex-wrap: wrap !important; }
+  .proc-card, .ben-card, .port-card, .testi-card, .rel-card { margin-bottom: 0 !important; }
+  .process-grid, .benefits-grid, .port-grid, .testi-grid, .related-grid { gap: 14px !important; }
+  .faq-wrap { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+  /* ── Contact page ── */
+  .contact-grid, .contact-layout, .contact-inner { grid-template-columns: 1fr !important; flex-direction: column !important; }
+  .contact-form-section, .contact-info-section { width: 100% !important; }
+  .contact-info-cards { grid-template-columns: repeat(2, 1fr) !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* ── Blog list ── */
+  .blog-grid, .saas-blog-grid { grid-template-columns: 1fr !important; }
+  .blog-hero, .blog-banner { padding: 50px 0 36px !important; }
+
+  /* ── Blog single ── */
+  .blog-post-inner, .blog-detail-grid { grid-template-columns: 1fr !important; }
+  .blog-sidebar { display: none !important; }
+  .blog-post-content { max-width: 100% !important; }
+
+  /* ── Portfolio ── */
+  .portfolio-grid, .projects-grid { grid-template-columns: 1fr !important; }
+  .portfolio-filters { flex-wrap: wrap !important; gap: 6px !important; }
+  .portfolio-filters button { font-size: 12px !important; padding: 6px 14px !important; }
+
+  /* ── Testimonials page ── */
+  .testi-featured-grid, .testi-all-grid, .testi-grid { grid-template-columns: 1fr !important; }
+  .testi-page-hero { padding: 52px 0 36px !important; }
+
+  /* ── Partners / Clients ── */
+  .partners-hero { padding: 52px 0 36px !important; }
+  .pm-wrap { gap: 16px !important; }
+  .pm-card { padding: 14px !important; min-width: 130px !important; }
+  .pm-stats { flex-wrap: wrap !important; gap: 10px !important; }
+  .pm-stat-item { flex: 1 1 40% !important; text-align: center !important; border-right: none !important; }
+
+  /* ── FAQ page ── */
+  .faq-hero { padding: 52px 0 36px !important; }
+  .faq-grid, .faq-layout { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .faq-sidebar { display: none !important; }
+
+  /* ── Careers page ── */
+  .careers-grid { grid-template-columns: 1fr !important; }
+  .job-filters { flex-direction: column !important; gap: 8px !important; }
+  .jobs-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Support page ── */
+  .support-channels, .support-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Metrics / stats bars ── */
+  .metrics-bar-inner, .metrics-inner { flex-wrap: wrap !important; gap: 14px !important; }
+  .metric-item { flex: 1 1 40% !important; }
+  .metric-div { display: none !important; }
+
+  /* ── WHY section (homepage) ── */
+  .saas-why-grid { grid-template-columns: 1fr !important; }
+  .saas-why-card { padding: 20px !important; }
+  .why-highlight-strip { padding: 18px !important; flex-direction: column !important; gap: 12px !important; text-align: center !important; }
+
+  /* ── Process section ── */
+  .saas-process-grid { grid-template-columns: 1fr !important; }
+  .saas-process-card { padding: 20px !important; }
+
+  /* ── Tech slider / marquee ── */
+  .saas-tech-row, .saas-tech-slider { gap: 10px !important; }
+  .saas-tech-item { padding: 8px 12px !important; font-size: 12px !important; }
+
+  /* ── Testimonials section (homepage) ── */
+  .saas-testi-grid, .testimonials-grid { grid-template-columns: 1fr !important; }
+  .saas-testi-nav { gap: 8px !important; }
+
+  /* ── CTA sections ── */
+  .saas-cta { padding: 52px 0 !important; }
+  .saas-cta-title { font-size: clamp(20px, 6vw, 28px) !important; }
+  .saas-cta-btns { flex-direction: column !important; gap: 10px !important; }
+  .saas-cta-btns a { width: 100% !important; justify-content: center !important; }
+  .cta-floating-band { padding: 44px 0 !important; }
+  .cta-band-title { font-size: clamp(20px, 6vw, 28px) !important; }
+  .cta-band-btns { flex-direction: column !important; gap: 10px !important; }
+  .cta-band-btns a { width: 100% !important; justify-content: center !important; }
+  .cta-band-trust { flex-wrap: wrap !important; gap: 10px !important; }
+  .ab-cta-btns { flex-direction: column !important; gap: 10px !important; }
+
+  /* ── Trust badges strip ── */
+  .trust-bar-section { padding: 24px 0 !important; }
+
+  /* ── Buttons global ── */
+  .btn { font-size: 13.5px !important; padding: 11px 20px !important; }
+  .btn-lg { font-size: 14px !important; padding: 12px 22px !important; }
+  .btn-cta-animated { padding: 11px 20px !important; font-size: 13px !important; }
+  .btn-cta-lg { padding: 12px 22px !important; font-size: 13.5px !important; }
+
+  /* ── Footer ── */
+  .ft-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .ft-main { padding: 40px 0 30px !important; }
+  .ft-brand-desc { max-width: 100% !important; font-size: 13px !important; }
+  .ft-stats-row { flex-wrap: wrap !important; gap: 12px !important; justify-content: center !important; }
+  .ft-stat { flex: 1 1 40% !important; }
+  .ft-stats-sep { display: none !important; }
+  .ft-bottom-inner { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+  .ft-legal-links { flex-wrap: wrap !important; gap: 4px !important; }
+  .ft-legal-links a { font-size: 11px !important; padding: 3px 7px !important; }
+  .ft-col-title { font-size: 11px !important; }
+  .ft-links li a { font-size: 13px !important; padding: 5px 6px !important; }
+
+  /* ── 3D canvas hero — hide on mobile for perf ── */
+  #heroCanvas, #heroTechBg, .hero-tech-bg { display: none !important; }
+
+  /* ── WhatsApp float button positioning ── */
+  .whatsapp-float { bottom: 76px !important; right: 14px !important; }
+  .stt-btn { bottom: 20px !important; right: 14px !important; }
+
+  /* ── Captcha ── */
+  .captcha-body { flex-direction: column !important; align-items: flex-start !important; }
+  .captcha-img { width: 100% !important; max-width: 260px !important; }
+
+  /* ── Section padding ── */
+  .sec-white, .sec-light { padding: 40px 0 !important; }
+  .section-pad { padding: 52px 0 !important; }
+  section { padding: 44px 0 !important; }
+  .svc-hero { padding: 40px 0 32px !important; }
+  .page-banner { padding: 52px 0 36px !important; }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb, .svc-crumbs, .ab-crumbs { flex-wrap: wrap !important; font-size: 11.5px !important; gap: 4px !important; }
+}
+
+/* ================================================================
+   MOBILE SMALL (max-width: 480px)
+================================================================ */
+@media (max-width: 480px) {
+  .container { padding: 0 12px; }
+
+  /* Hero */
+  .saas-hero-title, .hero-slide h1 { font-size: clamp(20px, 8vw, 28px) !important; }
+  .saas-hero-inner { padding: 52px 0 36px !important; }
+
+  /* Stats — single col */
+  .saas-stats-grid, .ab-stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+  .saas-stat-card { padding: 14px 10px !important; }
+  .saas-stat-num { font-size: 22px !important; }
+
+  /* Team — single col */
+  .team-grid, .testi-grid, .ab-stats-row { grid-template-columns: 1fr !important; }
+
+  /* About stats */
+  .ab-stats-row { grid-template-columns: repeat(3, 1fr) !important; }
+  .ab-stat-num { font-size: 17px !important; }
+  .svc-cats { grid-template-columns: 1fr !important; }
+  .ind-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Footer stats */
+  .ft-stat { flex: 1 1 45% !important; }
+  .ft-stat-body strong { font-size: 16px !important; }
+
+  /* Buttons fill width */
+  .hero-btns, .saas-hero-btns,
+  .saas-cta-btns, .cta-band-btns,
+  .ab-cta-btns, .svc-hero-actions { flex-direction: column !important; }
+  .btn-saas-primary, .btn-saas-secondary,
+  .btn-ac, .btn-ghost-ac,
+  .btn-ab-white, .btn-ab-out { width: 100% !important; justify-content: center !important; }
+
+  /* Sections spacing */
+  .sec-white, .sec-light, section { padding: 32px 0 !important; }
+  .page-banner { padding: 44px 0 28px !important; }
+
+  /* Section heading */
+  .section-heading h2, .s-h, .ab-hero h1 { font-size: clamp(18px, 7vw, 24px) !important; }
+
+  /* Page banner */
+  .page-banner h1 { font-size: clamp(20px, 7vw, 26px) !important; }
+  .page-banner p { font-size: 13px !important; }
+
+  /* Contact info grid */
+  .contact-info-cards { grid-template-columns: 1fr !important; }
+
+  /* Partners */
+  .pm-stat-item { flex: 1 1 100% !important; }
+  .pm-card { min-width: 110px !important; }
+
+  /* Metric items */
+  .metric-item { flex: 1 1 45% !important; }
+
+  /* Footer */
+  .ft-bottom-inner { gap: 8px !important; }
+  .ft-legal-links { font-size: 11px !important; }
+  .ft-stat-body strong { font-size: 18px !important; }
+
+  /* Captcha */
+  .captcha-img { width: 180px !important; height: 58px !important; }
+
+  /* CTA band trust */
+  .cta-band-trust { flex-direction: column !important; align-items: center !important; gap: 8px !important; }
+  .svc-cta-trust { flex-direction: column !important; align-items: center !important; }
+}
+
+/* ================================================================
+   MOBILE XS (max-width: 360px)
+================================================================ */
+@media (max-width: 360px) {
+  .container { padding: 0 10px; }
+  .saas-hero-title { font-size: 20px !important; }
+  .btn { font-size: 13px !important; padding: 10px 16px !important; }
+  .ab-stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+  .ab-stat-num { font-size: 15px !important; }
+  .ft-stat { flex: 1 1 100% !important; }
+  .section-heading h2, .s-h { font-size: 18px !important; }
+}
+
+/* ================================================================
+   HEADER / NAV — MOBILE DRAWER
+================================================================ */
+@media (max-width: 840px) {
+  /* Premium header mobile */
+  .ag-nav { padding: 0 14px !important; min-height: 58px !important; }
+  .ag-nav-desktop, .ag-nav-links { display: none !important; }
+  .ag-hamburger { display: flex !important; }
+  .ag-topbar { display: none !important; }
+
+  /* Mobile drawer */
+  .ag-mobile-menu {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important; bottom: 0 !important;
+    width: min(300px, 85vw) !important;
+    z-index: 9999 !important;
+    overflow-y: auto !important;
+  }
+  .ag-mobile-menu.open { transform: translateX(0) !important; }
+
+  /* Drawer overlay */
+  .ag-mobile-overlay, .ag-drawer-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    z-index: 9998; display: none;
+  }
+  .ag-mobile-overlay.active, .ag-drawer-overlay.active { display: block; }
+}
+
+/* ================================================================
+   TABLE RESPONSIVE — horizontal scroll on all pages
+================================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-responsive, .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  /* Make all tables scrollable */
+  table { min-width: 560px; display: table; }
+  .table-responsive, .table-wrap { overflow-x: auto; }
+}
+
+/* ================================================================
+   FORMS — MOBILE
+================================================================ */
+@media (max-width: 640px) {
+  .form-row, .sqc-form-row, .sq-row,
+  .ft-nl-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+
+  input, textarea, select {
+    font-size: 16px !important; /* prevent iOS zoom */
+  }
+  .form-group, .sqc-field, .sq-field { margin-bottom: 14px !important; }
+  .captcha-wrap { padding: 14px !important; }
+  .captcha-body { flex-direction: column !important; }
+
+  /* Contact form */
+  .contact-form { padding: 20px !important; }
+}
+
+/* ================================================================
+   CARDS — TOUCH IMPROVEMENTS
+================================================================ */
+@media (max-width: 768px) {
+  /* Disable hover transforms on touch — they cause sticky states */
+  .service-card:hover, .blog-card:hover,
+  .team-card:hover, .portfolio-card:hover,
+  .saas-why-card:hover, .ben-card:hover,
+  .port-card:hover, .rel-card:hover,
+  .mvv-card:hover, .diff-card:hover,
+  .proc-card:hover, .svc-cat:hover,
+  .ind-card:hover, .tech-card:hover,
+  .tech-pill:hover {
+    transform: none !important;
+  }
+  /* Keep active state for tap feedback */
+  .service-card:active, .blog-card:active,
+  .btn:active, .btn-cta-animated:active {
+    transform: scale(0.97) !important;
+    transition: transform 0.1s !important;
+  }
+}
+
+/* ================================================================
+   SAAS HERO SECTION — MOBILE
+================================================================ */
+@media (max-width: 768px) {
+  #hero, .saas-hero { position: relative !important; }
+
+  /* Carousel dots */
+  .hs-dots { gap: 6px !important; bottom: 16px !important; }
+  .hs-dot { width: 8px !important; height: 8px !important; }
+  .hs-dot.active { width: 20px !important; }
+
+  /* Slide content */
+  .hero-slide { text-align: center !important; }
+  .saas-hero-content { text-align: center !important; }
+  .saas-hero-content .saas-hero-eyebrow { display: inline-flex !important; }
+  .saas-hero-eyebrow { max-width: 90vw !important; }
+}
+
+/* ================================================================
+   SERVICE DETAIL PAGE — MOBILE
+================================================================ */
+@media (max-width: 768px) {
+  .svc-hero-grid { grid-template-columns: 1fr !important; }
+  .hero-device, .hero-visual { display: none !important; }
+  .svc-stats .stats-row, .svc-stats-inner { grid-template-columns: repeat(2, 1fr) !important; }
+  .stat-cell, .svc-stat { border-bottom: 1px solid #e7e9f0 !important; border-right: none !important; }
+  .stat-cell:nth-child(even), .svc-stat:nth-child(even) { border-left: 1px solid #e7e9f0 !important; }
+  .feat-grid { grid-template-columns: 1fr !important; }
+  .tech-cards { justify-content: center !important; }
+  .tech-card { min-width: 76px !important; padding: 12px 10px !important; }
+  .tc-icon { font-size: 22px !important; }
+  .tc-name { font-size: 10.5px !important; }
+  .faq-wrap { grid-template-columns: 1fr !important; }
+  .sq-row { grid-template-columns: 1fr !important; }
+  .svc-cta-band { padding: 44px 0 !important; }
+  .svc-cta-title { font-size: clamp(20px, 6vw, 30px) !important; }
+}
+
+/* ================================================================
+   PREVENT OVERFLOW FROM ANIMATIONS
+================================================================ */
+@media (max-width: 768px) {
+  .hero-blob, .hero-blob-1, .hero-blob-2,
+  .ab-hero-orb, .ab-cta-orb,
+  .svc-cta-orb1, .svc-cta-orb2,
+  .bg-orb { display: none !important; }
+
+  /* Keep background gradients but remove large blobs */
+  .saas-hero::before,
+  .ab-hero::before,
+  .svc-cta-band::before { opacity: 0.4 !important; }
+}
+
+/* ================================================================
+   MARQUEE / TRUST SECTIONS — MOBILE
+================================================================ */
+@media (max-width: 768px) {
+  .pm-track { gap: 12px !important; }
+  .pm-card {
+    min-width: 120px !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+  }
+  .pm-card-logo { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+  .pm-card-name { font-size: 11px !important; }
+  .pm-row { height: 80px !important; }
+  .pm-stats { grid-template-columns: repeat(2, 1fr) !important; padding: 20px 16px !important; }
+
+  /* Tech marquee */
+  .saas-tech-row { gap: 8px !important; }
+  .saas-tech-item { padding: 7px 12px !important; font-size: 12px !important; }
+}
+
+/* ================================================================
+   UTILITY OVERRIDES FOR MOBILE
+================================================================ */
+@media (max-width: 768px) {
+  /* Remove any fixed widths that break mobile */
+  [style*="width:380px"], [style*="width:360px"],
+  [style*="width:420px"], [style*="width:400px"] { width: 100% !important; }
+
+  /* Stack flex rows */
+  [style*="display:flex;align-items:flex-end;justify-content:space-between"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  /* Cards padding normalization */
+  .card-body, .port-body, .team-info { padding: 16px !important; }
+  .testi-card { padding: 18px 16px !important; }
+
+  /* Cookie banner */
+  .cookie-inner { flex-direction: column !important; gap: 12px !important; }
+  .cookie-btns { width: 100% !important; display: flex !important; gap: 8px !important; }
+  .cookie-accept, .cookie-decline { flex: 1 !important; }
+}
