@@ -746,6 +746,16 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
   }
 
+  /* Every WebPage node points at <url>#breadcrumb, but seoBreadcrumbSchema()
+     emits no @id — so that reference resolved to nothing and Google read it
+     as a second, empty BreadcrumbList ("Missing field itemListElement").
+     Stamping the matching @id here merges the two into one valid node. */
+  foreach ($schemas as $_i => $_s) {
+    if (is_array($_s) && ($_s['@type'] ?? '') === 'BreadcrumbList' && empty($_s['@id'])) {
+      $schemas[$_i]['@id'] = $url . '#breadcrumb';
+    }
+  }
+
   /* Output all schemas.
      Values left blank in Admin are pruned so we never emit empty
      schema.org properties (Google flags those as invalid). */
