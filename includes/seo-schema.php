@@ -173,11 +173,12 @@ function seoWebsiteSchema(): array {
     'inLanguage'      => 'en-IN',
     'copyrightYear'   => date('Y'),
     'copyrightHolder' => ['@id' => $_SEO_BIZ['url'].'/#organization'],
-    'potentialAction' => [
-      '@type'       => 'SearchAction',
-      'target'      => ['@type'=>'EntryPoint','urlTemplate'=>$_SEO_BIZ['url'].'/api/search.php?q={search_term_string}'],
-      'query-input' => 'required name=search_term_string',
-    ],
+    /* No SearchAction here. It used to point at /api/search.php, which
+       returns JSON for the header search box — not a results page a person
+       can read, which is what the schema is meant to advertise. Google
+       crawled the literal "?q={search_term_string}" template because of it
+       and logged the URL as crawled-not-indexed. Restore this only once a
+       real HTML search results page exists to point it at. */
   ];
 }
 
