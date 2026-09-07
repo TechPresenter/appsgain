@@ -746,14 +746,34 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
   }
 
-  /* Every WebPage node points at <url>#breadcrumb, but seoBreadcrumbSchema()
-     emits no @id — so that reference resolved to nothing and Google read it
-     as a second, empty BreadcrumbList ("Missing field itemListElement").
-     Stamping the matching @id here merges the two into one valid node. */
+  /* ── Breadcrumb integrity ──────────────────────────────────────────
+     Every WebPage node points at <url>#breadcrumb. Two things used to
+     break that reference, and both made Google report the dangling target
+     as an empty BreadcrumbList ("Missing field itemListElement"):
+
+       1. seoBreadcrumbSchema() never set an @id, so nothing answered to
+          the reference even when a real breadcrumb was emitted.
+       2. The default: case above emits no breadcrumb at all, so every
+          page outside $_typeMap — the legal pages, sitemap, 404 — left
+          the reference pointing at nothing.
+
+     Fixed here rather than in each case so a future page type cannot
+     reintroduce it. */
+  $_hasCrumb = false;
   foreach ($schemas as $_i => $_s) {
-    if (is_array($_s) && ($_s['@type'] ?? '') === 'BreadcrumbList' && empty($_s['@id'])) {
-      $schemas[$_i]['@id'] = $url . '#breadcrumb';
+    if (is_array($_s) && ($_s['@type'] ?? '') === 'BreadcrumbList') {
+      $_hasCrumb = true;
+      if (empty($_s['@id'])) $schemas[$_i]['@id'] = $url . '#breadcrumb';
     }
+  }
+  if (!$_hasCrumb) {
+    /* Build Home → This page. The title carries a " | Brand" suffix from
+       meta.php, which reads badly as a crumb label, so trim it. */
+    $_leaf = trim(preg_split('/\s+[|–—-]\s+/u', $title)[0] ?? $title);
+    if ($_leaf === '') $_leaf = $_SEO_BIZ['name'];
+    $_crumb = seoBreadcrumbSchema([[$_SEO_BIZ['name'], SITE_URL], [$_leaf, '']]);
+    $_crumb['@id'] = $url . '#breadcrumb';
+    $schemas[] = $_crumb;
   }
 
   /* Output all schemas.
