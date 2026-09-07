@@ -37,7 +37,9 @@ $_SEO_BIZ = [
   'email'        => $_seoVal('site_email', 'info@appsgain.in'),
   'salesEmail'   => $_seoVal('sales_email', $_seoVal('site_email', 'info@appsgain.in')),
   'foundingYear' => $_seoVal('company_founded_year', '2018'),
-  'employees'    => $_seoVal('company_employees', '11-50'),
+  /* Blank unless Admin gives a figure — the old '11-50' default was a guess,
+     and it was emitted as QuantitativeValue.value, which takes a number. */
+  'employees'    => $_seoVal('company_employees', ''),
   'description'  => $_seoVal('site_description', $_seoVal('meta_description',
                      'Appsgain Technologies Private Limited is a software development company delivering custom web applications, mobile apps, ERP, CRM, AI solutions, SaaS platforms and enterprise software.')),
   'address' => [
@@ -66,8 +68,18 @@ $_SEO_BIZ = [
   'serviceAreas'  => $_seoList('company_service_areas', ['India','United States','United Kingdom','United Arab Emirates','Australia','Canada']),
   'knowsAbout'    => $_seoList('company_knows_about', ['Software Development','Mobile App Development','Web Development','Cloud Computing','ERP Systems','CRM Development','SaaS Platforms']),
   'awards'        => $_seoList('company_awards', []),
-  'priceRange'    => $_seoVal('company_price_range', '$$$'),
+  /* No '$$$' default. An unset price range is unknown, not cheap-or-dear,
+     and inventing one puts a claim in front of Google we cannot stand by. */
+  'priceRange'    => $_seoVal('company_price_range', ''),
   'slogan'        => $_seoVal('site_tagline', 'Transforming Ideas Into Digital Reality'),
+  /* Founder — a named person tied to the company is one of the stronger
+     entity signals Google has for a Knowledge Panel. */
+  'founder'       => $_seoVal('company_founder', $_seoVal('founder_name', '')),
+  'founderUrl'    => $_seoVal('founder_linkedin', ''),
+  'founderRole'   => $_seoVal('founder_role', ''),
+  'cin'           => $_seoVal('company_cin', ''),
+  'gstin'         => $_seoVal('company_gstin', ''),
+  'vatId'         => $_seoVal('company_vat_id', ''),
   /* Blank unless an admin supplies figures from a real review platform.
      metric_clients used to feed reviewCount — a client count, not a
      review count, so the number was wrong as well as unverifiable. */
@@ -86,28 +98,91 @@ $_SEO_BIZ['hasMap'] = 'https://maps.google.com/?q=' . rawurlencode(implode(', ',
 /* ══════════════════════════════════════════════════════════
    1. ORGANIZATION SCHEMA
 ══════════════════════════════════════════════════════════ */
+/** Real pixel size of the logo, so the declared dimensions match the file.
+ *  Only measures a file we host; a remote logo URL is left undeclared
+ *  rather than guessed. Read once per request. */
+function seoLogoDimensions(string $logoUrl): array {
+  static $cache = [];
+  if (isset($cache[$logoUrl])) return $cache[$logoUrl];
+  $dims = [];
+  if (!defined('UPLOADS_URL') || !defined('UPLOADS_PATH')) return $cache[$logoUrl] = $dims;
+  $base = rtrim(UPLOADS_URL, '/');
+  if (str_starts_with($logoUrl, $base)) {
+    $path = UPLOADS_PATH . '/' . ltrim(substr($logoUrl, strlen($base)), '/');
+    if (is_file($path) && ($s = @getimagesize($path))) {
+      $dims = ['width' => $s[0], 'height' => $s[1]];
+    }
+  }
+  return $cache[$logoUrl] = $dims;
+}
+
 function seoOrganizationSchema(): array {
   global $_SEO_BIZ;
+
+  /* Google reads Organization.founder as an entity link, so give it a real
+     Person node rather than a bare string. */
+  $founder = [];
+  if ($_SEO_BIZ['founder'] !== '') {
+    $founder = ['@type' => 'Person', 'name' => $_SEO_BIZ['founder']];
+    if ($_SEO_BIZ['founderRole'] !== '') $founder['jobTitle'] = $_SEO_BIZ['founderRole'];
+    if ($_SEO_BIZ['founderUrl']  !== '') $founder['sameAs']   = $_SEO_BIZ['founderUrl'];
+  }
+
+  /* Company registration numbers identify the legal entity. Emitted only
+     when Admin holds the real value — never invented. */
+  $identifiers = [];
+  foreach ([['CIN', $_SEO_BIZ['cin']], ['GSTIN', $_SEO_BIZ['gstin']], ['VAT', $_SEO_BIZ['vatId']]] as [$scheme, $val]) {
+    if ($val !== '') {
+      $identifiers[] = ['@type'=>'PropertyValue','propertyID'=>$scheme,'value'=>$val];
+    }
+  }
+
+  /* "11-50" is a range, not a count, so it belongs in min/max — putting it
+     in QuantitativeValue.value made the number unreadable to Google. */
+  $employees = [];
+  $emp = $_SEO_BIZ['employees'];
+  if ($emp !== '') {
+    if (preg_match('/^\s*(\d+)\s*[-–]\s*(\d+)\s*$/', $emp, $m)) {
+      $employees = ['@type'=>'QuantitativeValue','minValue'=>(int)$m[1],'maxValue'=>(int)$m[2]];
+    } elseif (ctype_digit(trim($emp))) {
+      $employees = ['@type'=>'QuantitativeValue','value'=>(int)trim($emp)];
+    }
+  }
+
+  /* foundingDate must be a date; a bare "2018" is a year. */
+  $founded = $_SEO_BIZ['foundingYear'];
+  if (preg_match('/^\d{4}$/', $founded)) $founded .= '-01-01';
+
   return [
     '@context'   => 'https://schema.org',
     '@type'      => ['Organization','LocalBusiness','ProfessionalService'],
     '@id'        => $_SEO_BIZ['url'].'/#organization',
     'name'       => $_SEO_BIZ['name'],
     'legalName'  => $_SEO_BIZ['legalName'],
+    'alternateName' => $_SEO_BIZ['name'] !== $_SEO_BIZ['legalName'] ? $_SEO_BIZ['legalName'] : '',
     'url'        => $_SEO_BIZ['url'],
-    'logo'       => [
+    'logo'       => array_merge([
       '@type'            => 'ImageObject',
       'url'              => $_SEO_BIZ['logo'],
-      'width'            => 200,
-      'height'           => 60,
       'caption'          => $_SEO_BIZ['name'].' Logo',
-    ],
+    ], seoLogoDimensions($_SEO_BIZ['logo'])),
     'image'       => $_SEO_BIZ['logo'],
     'description' => $_SEO_BIZ['description'],
     'telephone'   => $_SEO_BIZ['phone'],
     'email'       => $_SEO_BIZ['email'],
-    'foundingDate'=> $_SEO_BIZ['foundingYear'],
-    'numberOfEmployees' => ['@type'=>'QuantitativeValue','value'=>$_SEO_BIZ['employees']],
+    'foundingDate'=> $founded,
+    'founder'     => $founder,
+    'foundingLocation' => [
+      '@type'   => 'Place',
+      'address' => [
+        '@type'           => 'PostalAddress',
+        'addressLocality' => $_SEO_BIZ['address']['locality'],
+        'addressCountry'  => $_SEO_BIZ['address']['country'],
+      ],
+    ],
+    'identifier'  => $identifiers,
+    'naics'       => $_SEO_BIZ['naics'],
+    'numberOfEmployees' => $employees,
     'address' => [
       '@type'           => 'PostalAddress',
       'streetAddress'   => $_SEO_BIZ['address']['street'],
@@ -146,7 +221,9 @@ function seoOrganizationSchema(): array {
       'closes'   => '19:00',
     ],
     'areaServed'     => array_map(fn($s)=>['@type'=>'Country','name'=>$s], $_SEO_BIZ['serviceAreas']),
-    'serviceArea'    => ['@type'=>'GeoCircle','geoMidpoint'=>['@type'=>'GeoCoordinates','latitude'=>$_SEO_BIZ['geo']['lat'],'longitude'=>$_SEO_BIZ['geo']['lng']],'geoRadius'=>'5000 km'],
+    /* No GeoCircle. A 5,000 km radius drawn from the Noida office was an
+       invented figure that also contradicted areaServed above, which already
+       names the countries served and is the accurate statement. */
     'priceRange'     => $_SEO_BIZ['priceRange'],
     'currenciesAccepted' => 'INR,USD,GBP,AED',
     'paymentAccepted'    => 'Cash,Credit Card,Bank Transfer,UPI',
@@ -557,10 +634,15 @@ function seoKnowledgeGraphDataset(): array {
   global $_SEO_BIZ;
   return [
     '@context' => 'https://schema.org',
+    /* One company, one node. seoLocalBusinessSchema() used to sit here too,
+       publishing a second #localbusiness entity with the same name, address,
+       phone, geo and sameAs as #organization — which already carries the
+       LocalBusiness type. Two competing nodes for one company is what makes
+       Google hedge on which entity is canonical, so the duplicate is gone.
+       The function is kept for pages that want a standalone node. */
     '@graph'   => [
       seoOrganizationSchema(),
       seoWebsiteSchema(),
-      seoLocalBusinessSchema(),
     ],
   ];
 }
