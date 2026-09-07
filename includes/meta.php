@@ -93,8 +93,16 @@ $_robotsIndexable = !str_contains($_robots, 'noindex');
 
 /* Author / Published / Modified */
 $_author   = $_company;
-$_pubDate  = defined('PAGE_PUBLISHED') ? PAGE_PUBLISHED : ($_ms['company_founded_year'] ?? '2018') . '-01-01';
-$_modDate  = defined('PAGE_MODIFIED')  ? PAGE_MODIFIED  : date('Y-m-d');
+/* Real dates only. $_pubDate used to fall back to the company's founding
+   year, so every page on the site announced that it was published on
+   2018-01-01, and $_modDate to date('Y-m-d'), so every page announced it
+   had been modified this morning. Both were untrue on nearly every page,
+   and a site whose dates always read that way teaches crawlers to ignore
+   the dates on the pages that genuinely did change.
+   A page with no known publication date now says nothing about one; the
+   page file's own mtime is a modification date we can defend. */
+$_pubDate  = defined('PAGE_PUBLISHED') ? PAGE_PUBLISHED : '';
+$_modDate  = defined('PAGE_MODIFIED')  ? PAGE_MODIFIED  : pageLastModified();
 
 /* Analytics IDs — every one of these is Admin-editable */
 $_gaId     = trim($_ms['google_analytics']      ?? '');
@@ -262,7 +270,10 @@ $_tile = $fav ?: $logo; if ($_tile): ?>
 <!-- ══ E-E-A-T SIGNALS ══ -->
 <meta name="article:author"   content="<?= e($_company) ?>">
 <meta name="article:modified" content="<?= e($_modDate) ?>">
+<?php /* Only when the page actually knows when it was published. */
+if ($_pubDate !== ''): ?>
 <meta name="article:published_time" content="<?= e($_pubDate) ?>">
+<?php endif; ?>
 <meta name="article:section" content="Technology">
 <?php if ($_articleTags): ?><meta name="article:tag"     content="<?= e($_articleTags) ?>"><?php endif; ?>
 

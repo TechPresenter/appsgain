@@ -699,3 +699,22 @@ function uploadErrorMessage(int $code): string
         default               => 'The upload failed (code ' . $code . ').',
     };
 }
+
+/** The real last-modified date (Y-m-d) of a page, read from its own source file.
+ *
+ *  Everything that dated a page used to fall back to date('Y-m-d') — "modified
+ *  today", every day, on pages that had not changed in months. Google discounts
+ *  a date that always says now, and it discounts it site-wide, which costs the
+ *  pages that genuinely did change the signal they had earned. The file's mtime
+ *  is a date we can stand behind: it moves when the page is actually edited.
+ *
+ *  Database-driven pages should pass their own row's updated_at instead; this
+ *  understates their freshness, which is the safe direction to be wrong in.
+ *  Falls back to today only when the file cannot be read. */
+function pageLastModified(?string $file = null): string {
+    static $cache = [];
+    $file = $file ?? (string)($_SERVER['SCRIPT_FILENAME'] ?? '');
+    if (isset($cache[$file])) return $cache[$file];
+    $ts = ($file !== '' && is_file($file)) ? @filemtime($file) : false;
+    return $cache[$file] = date('Y-m-d', $ts ?: time());
+}

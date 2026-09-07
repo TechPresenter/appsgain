@@ -38,6 +38,10 @@ ServerSignature Off
     RewriteRule ^database/.*$      - [F,L]
     RewriteRule ^logs/.*$          - [F,L]
     RewriteRule ^admin/includes/.* - [F,L]
+    # Applicant CVs carry names, phone numbers and addresses. They are served
+    # to signed-in staff by admin/download-resume.php, never as public files.
+    RewriteRule ^uploads/resumes/.* - [F,L]
+    RewriteRule ^\.git/.*$         - [F,L]
 
     # ── HTML → PHP 301 Redirects (legacy static site) ─────
     RewriteRule ^index\.html$            index.php            [R=301,L]

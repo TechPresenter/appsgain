@@ -58,6 +58,16 @@ if ($_isLocal) {
 }
 define('DB_CHARSET', 'utf8mb4');
 
+// ── OpenAI (AI chatbot) ───────────────────────────────
+/* Same precedence as the database credentials: environment variable
+   (APPSGAIN_OPENAI_API_KEY) → includes/config.secret.php → empty.
+   Never a literal here — this repo is public. The key is read only by
+   api/chatbot.php, server-side; it is never sent to the browser, and
+   the admin screen shows whether one is set, never the value.
+   An admin who has no shell access can also paste one into Settings,
+   which includes/chatbot.php falls back to. */
+define('OPENAI_API_KEY', $_cfg('openai_api_key', ''));
+
 // ── Base Path Detection ───────────────────────────────
 // Works out the sub-directory the site is served from by comparing the
 // filesystem root of this install against Apache's DOCUMENT_ROOT.

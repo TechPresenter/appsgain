@@ -135,7 +135,9 @@ require_once dirname(__DIR__) . '/includes/admin-head.php';
           <td style="font-size:13px"><?= e($app['phone'] ?: '—') ?></td>
           <td>
             <?php if ($app['resume_path']): ?>
-            <?php $resumeUrl = UPLOADS_URL . '/' . $app['resume_path']; ?>
+            <?php /* Served by an authenticated handler — /uploads/resumes/ is
+                     blocked at the web root so CVs are not public files. */ ?>
+            <?php $resumeUrl = ADMIN_URL . '/download-resume.php?id=' . (int)$app['id']; ?>
             <a href="<?= e($resumeUrl) ?>" target="_blank" rel="noopener"
                class="btn btn-outline btn-sm" style="font-size:12px;gap:5px;">
               <i class="fas fa-file-pdf"></i> Download

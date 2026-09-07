@@ -13,7 +13,13 @@ $blog = dbFetchRow(
 );
 if (!$blog) { http_response_code(404); require __DIR__ . '/404.php'; exit; }
 
-dbExecute("UPDATE blogs SET views = views + 1 WHERE id = ?", [$blog['id']]);
+/* blogs.updated_at is ON UPDATE current_timestamp(), so counting a view
+   used to restamp the post as modified. Every read moved the date the
+   sitemap, the article:modified tag and BlogPosting.dateModified all
+   report — a post nobody had edited since June claiming it changed the
+   last time somebody looked at it. Assigning updated_at to itself keeps
+   the trigger from firing, so the column means edited, not read. */
+dbExecute("UPDATE blogs SET views = views + 1, updated_at = updated_at WHERE id = ?", [$blog['id']]);
 
 $activePage      = 'blog';
 $schemaPageType  = 'blog_post';
@@ -27,6 +33,10 @@ $ogImage         = !empty($blog['featured_image']) ? UPLOADS_URL . '/' . $blog['
 /* the renderer reads $pageData['post'] — a mismatched key here meant
    the article emitted only generic WebPage schema, never BlogPosting. */
 $schemaData      = ['post' => $blog];
+/* An article is the one page type that knows its own dates, so meta.php
+   gets the row's rather than the template file's mtime. */
+if (!empty($blog['published_at'])) define('PAGE_PUBLISHED', date('Y-m-d', strtotime($blog['published_at'])));
+if (!empty($blog['updated_at']))   define('PAGE_MODIFIED',  date('Y-m-d', strtotime($blog['updated_at'])));
 
 $related = dbFetchAll(
     "SELECT id, title, slug, featured_image, published_at, created_at

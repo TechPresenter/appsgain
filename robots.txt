@@ -8,6 +8,7 @@ User-agent: *
 Allow: /css/
 Allow: /js/
 Allow: /uploads/
+Disallow: /uploads/resumes/
 Allow: /*.js$
 Allow: /*.css$
 Allow: /*.jpg$
@@ -19,6 +20,7 @@ Disallow: /includes/
 Disallow: /database/
 Disallow: /logs/
 Disallow: /api/
+Disallow: /uploads/resumes/
 
 User-agent: Googlebot
 Allow: /
@@ -27,10 +29,12 @@ Disallow: /includes/
 Disallow: /database/
 Disallow: /logs/
 Disallow: /api/
+Disallow: /uploads/resumes/
 Crawl-delay: 0
 
 User-agent: Googlebot-Image
 Allow: /uploads/
+Disallow: /uploads/resumes/
 Allow: /*.jpg$
 Allow: /*.png$
 Allow: /*.webp$
@@ -42,6 +46,7 @@ Disallow: /includes/
 Disallow: /database/
 Disallow: /logs/
 Disallow: /api/
+Disallow: /uploads/resumes/
 Crawl-delay: 1
 
 User-agent: facebookexternalhit

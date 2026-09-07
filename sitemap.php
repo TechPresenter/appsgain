@@ -39,42 +39,47 @@ function sitemapUrl(string $loc, string $lastmod = '', string $changefreq = 'wee
 
 $today = date('Y-m-d');
 
-/* ══ 1. STATIC CORE PAGES ══ */
+/* ══ 1. STATIC CORE PAGES ══
+   Each entry names the file that answers the URL, so <lastmod> is the date
+   that page was actually edited. Every one of these used to say $today —
+   a privacy policy untouched since spring insisting it changed this morning.
+   A sitemap whose dates always read "now" is one Google stops reading dates
+   from, and it stops site-wide, which costs the blog and service pages their
+   genuine lastmod too. */
 $staticPages = [
-  [SITE_URL.'/',                      $today, 'daily',   1.0, 'Homepage — Appsgain Technologies'],
+  [SITE_URL.'/',                      'index.php',             'daily',   1.0, 'Homepage — Appsgain Technologies'],
   /* /about.php 301s to /about-us — a sitemap should list the destination,
      not the redirect. */
-  [SITE_URL.'/about-us',              $today, 'monthly', 0.9, 'About Appsgain Technologies'],
-  [SITE_URL.'/our-founder.php',       $today, 'monthly', 0.7, 'Our Founder — Prashant Kumar'],
-  [SITE_URL.'/services.php',          $today, 'weekly',  0.9, 'IT Services — Appsgain Technologies'],
-  [SITE_URL.'/portfolio.php',         $today, 'weekly',  0.8, 'Portfolio — Appsgain Technologies'],
-  [SITE_URL.'/blog.php',              $today, 'daily',   0.8, 'Blog — Appsgain Technologies'],
-  [SITE_URL.'/contact.php',           $today, 'monthly', 0.8, 'Contact Appsgain Technologies'],
-  [SITE_URL.'/careers.php',           $today, 'weekly',  0.8, 'Careers — Appsgain Technologies'],
-  [SITE_URL.'/faq.php',               $today, 'monthly', 0.7, 'FAQs — Appsgain Technologies'],
-  [SITE_URL.'/gallery.php',           $today, 'weekly',  0.6, 'Gallery — Appsgain Technologies'],
-  [SITE_URL.'/products.php',          $today, 'weekly',  0.8, 'Products — Appsgain Technologies'],
-  [SITE_URL.'/apps.php',              $today, 'weekly',  0.7, 'Mobile Apps — Appsgain Technologies'],
-  [SITE_URL.'/partners.php',          $today, 'monthly', 0.6, 'Partners — Appsgain Technologies'],
-  [SITE_URL.'/privacy-policy.php',    $today, 'yearly',  0.3, 'Privacy Policy'],
-  [SITE_URL.'/app-privacy-policy.php',$today, 'yearly',  0.3, 'App Privacy Policy'],
-  [SITE_URL.'/terms-of-service.php',  $today, 'yearly',  0.3, 'Terms & Conditions'],
-  [SITE_URL.'/refund-policy.php',     $today, 'yearly',  0.3, 'Refund Policy'],
-  [SITE_URL.'/cookie-policy.php',     $today, 'yearly',  0.3, 'Cookie Policy'],
-  [SITE_URL.'/disclaimer.php',        $today, 'yearly',  0.3, 'Disclaimer'],
-  [SITE_URL.'/shipping-policy.php',   $today, 'yearly',  0.3, 'Shipping & Delivery Policy'],
-  [SITE_URL.'/sitemap-html.php',      $today, 'monthly', 0.4, 'HTML Sitemap — Appsgain Technologies'],
+  [SITE_URL.'/about-us',              'about.php',             'monthly', 0.9, 'About Appsgain Technologies'],
+  [SITE_URL.'/our-founder.php',       'our-founder.php',       'monthly', 0.7, 'Our Founder — Prashant Kumar'],
+  [SITE_URL.'/services.php',          'services.php',          'weekly',  0.9, 'IT Services — Appsgain Technologies'],
+  [SITE_URL.'/portfolio.php',         'portfolio.php',         'weekly',  0.8, 'Portfolio — Appsgain Technologies'],
+  [SITE_URL.'/blog.php',              'blog.php',              'daily',   0.8, 'Blog — Appsgain Technologies'],
+  [SITE_URL.'/contact.php',           'contact.php',           'monthly', 0.8, 'Contact Appsgain Technologies'],
+  [SITE_URL.'/careers.php',           'careers.php',           'weekly',  0.8, 'Careers — Appsgain Technologies'],
+  [SITE_URL.'/faq.php',               'faq.php',               'monthly', 0.7, 'FAQs — Appsgain Technologies'],
+  [SITE_URL.'/gallery.php',           'gallery.php',           'weekly',  0.6, 'Gallery — Appsgain Technologies'],
+  [SITE_URL.'/products.php',          'products.php',          'weekly',  0.8, 'Products — Appsgain Technologies'],
+  [SITE_URL.'/apps.php',              'apps.php',              'weekly',  0.7, 'Mobile Apps — Appsgain Technologies'],
+  [SITE_URL.'/partners.php',          'partners.php',          'monthly', 0.6, 'Partners — Appsgain Technologies'],
+  [SITE_URL.'/privacy-policy.php',    'privacy-policy.php',    'yearly',  0.3, 'Privacy Policy'],
+  [SITE_URL.'/app-privacy-policy.php','app-privacy-policy.php','yearly',  0.3, 'App Privacy Policy'],
+  [SITE_URL.'/terms-of-service.php',  'terms-of-service.php',  'yearly',  0.3, 'Terms & Conditions'],
+  [SITE_URL.'/refund-policy.php',     'refund-policy.php',     'yearly',  0.3, 'Refund Policy'],
+  [SITE_URL.'/cookie-policy.php',     'cookie-policy.php',     'yearly',  0.3, 'Cookie Policy'],
+  [SITE_URL.'/disclaimer.php',        'disclaimer.php',        'yearly',  0.3, 'Disclaimer'],
+  [SITE_URL.'/shipping-policy.php',   'shipping-policy.php',   'yearly',  0.3, 'Shipping & Delivery Policy'],
+  [SITE_URL.'/sitemap-html.php',      'sitemap-html.php',      'monthly', 0.4, 'HTML Sitemap — Appsgain Technologies'],
 ];
 
-foreach ($staticPages as [$url, $mod, $freq, $pri, $title]) {
-  sitemapUrl($url, $mod, $freq, $pri);
+foreach ($staticPages as [$url, $file, $freq, $pri, $title]) {
+  sitemapUrl($url, pageLastModified(ROOT_PATH . '/' . $file), $freq, $pri);
 }
 
-/* ══ 2. LEGAL PAGES ══ */
-$legalPages = ['privacy-policy','terms-of-service','cookie-policy','refund-policy','shipping-policy','disclaimer'];
-foreach ($legalPages as $pg) {
-  sitemapUrl(SITE_URL.'/'.$pg.'.php', $today, 'yearly', 0.3);
-}
+/* The six legal pages used to be listed a second time here, by a loop over
+   their slugs — the same absolute URLs already emitted above, so every
+   sitemap shipped six duplicate <url> entries. They are in $staticPages;
+   one listing each is the whole of it. */
 
 /* ══ 3. SERVICES ══ */
 try {
@@ -143,15 +148,12 @@ try {
   }
 } catch(Exception $e){}
 
-/* ══ 9. PARTNERS ══ */
-try {
-  $partners = dbFetchAll("SELECT slug, name, logo, updated_at FROM partners WHERE is_active=1");
-  foreach ($partners as $p) {
-    $mod  = !empty($p['updated_at']) ? date('Y-m-d', strtotime($p['updated_at'])) : $today;
-    sitemapUrl(SITE_URL.'/partners.php', $mod, 'monthly', 0.5);
-    break; // main page only
-  }
-} catch(Exception $e){}
+/* ══ 9. PARTNERS ══
+   Nothing to emit. Partners have no page of their own — this block queried
+   the table only to publish /partners.php a second time, at a different
+   priority and lastmod than the copy in $staticPages. Two entries for one
+   URL is a contradiction the crawler has to resolve; the listing page is
+   already covered above. */
 
 /* ══ 10. MEDIA GALLERY IMAGES ══ */
 try {

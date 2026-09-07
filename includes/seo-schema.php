@@ -282,7 +282,7 @@ function seoWebsiteSchema(): array {
 /* ══════════════════════════════════════════════════════════
    3. WEBPAGE SCHEMA
 ══════════════════════════════════════════════════════════ */
-function seoWebPageSchema(string $title, string $desc, string $url, string $type = 'WebPage', ?string $lastMod = null): array {
+function seoWebPageSchema(string $title, string $desc, string $url, string $type = 'WebPage', ?string $lastMod = null, ?string $published = null): array {
   global $_SEO_BIZ;
   $schema = [
     '@context'          => 'https://schema.org',
@@ -294,8 +294,16 @@ function seoWebPageSchema(string $title, string $desc, string $url, string $type
     'isPartOf'          => ['@id' => $_SEO_BIZ['url'].'/#website'],
     'about'             => ['@id' => $_SEO_BIZ['url'].'/#organization'],
     'inLanguage'        => 'en-IN',
-    'datePublished'     => '2024-01-01',
-    'dateModified'      => $lastMod ?? date('Y-m-d'),
+    /* Dates we can stand behind, or none at all. datePublished was the
+       literal '2024-01-01' on every page of the site, and dateModified was
+       date('Y-m-d') — every page claiming it changed today, every day.
+       Google discounts a date that always says now, and it discounts it
+       site-wide, so the invented ones were costing the blog posts and
+       services that genuinely had changed. The page file's mtime moves
+       only when the page is actually edited; a caller with a real row
+       date passes it in. */
+    'datePublished'     => $published,
+    'dateModified'      => $lastMod ?? pageLastModified(),
     'author'            => ['@id' => $_SEO_BIZ['url'].'/#organization'],
     'publisher'         => ['@id' => $_SEO_BIZ['url'].'/#organization'],
     'breadcrumb'        => ['@id' => $url.'#breadcrumb'],
@@ -696,12 +704,17 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
   $schemas[] = seoKnowledgeGraphDataset();
 
   $url       = $pageData['url']   ?? (SITE_URL . ($_SERVER['REQUEST_URI'] ?? '/'));
+  /* Real dates when the page has them — a service or product row's
+     updated_at beats the template file's mtime, and only a page that
+     knows when it was first published gets to say so. */
+  $lastMod   = $pageData['lastmod']   ?? null;
+  $published = $pageData['published'] ?? null;
   $title     = $pageData['title'] ?? $_SEO_BIZ['name'];
   $desc      = $pageData['desc']  ?? $_SEO_BIZ['description'];
 
   switch ($pageType) {
     case 'home':
-      $schemas[] = seoWebPageSchema($title, $desc, $url, 'WebPage');
+      $schemas[] = seoWebPageSchema($title, $desc, $url, 'WebPage', $lastMod, $published);
       if (!empty($pageData['faqs']))      $schemas[] = seoFaqSchema($pageData['faqs']);
       if (!empty($pageData['testimonials'])) $schemas[] = seoReviewSchema($pageData['testimonials']);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'], SITE_URL]]);
@@ -716,7 +729,7 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
 
     case 'services':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Services','']]);
       if (!empty($pageData['faqs'])) $schemas[] = seoFaqSchema($pageData['faqs']);
       break;
@@ -724,13 +737,16 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
     case 'service':
       $svc = $pageData['service'] ?? [];
       $schemas[] = seoServiceSchema($svc['name']??$title, $svc['description']??$desc, $url, $svc['service_group']??'Software Development');
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage');
+      /* The service row's own updated_at is the true date of this page's
+         content; the template file's mtime only says when the layout moved. */
+      $svcMod = $lastMod ?? (!empty($svc['updated_at']) ? date('Y-m-d', strtotime($svc['updated_at'])) : null);
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage', $svcMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Services',SITE_URL.'/services.php'],[$svc['name']??$title,'']]);
       if (!empty($pageData['faqs'])) $schemas[] = seoFaqSchema($pageData['faqs']);
       break;
 
     case 'blog':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Blog','']]);
       break;
 
@@ -747,18 +763,18 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
 
     case 'faq':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'FAQPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'FAQPage', $lastMod, $published);
       if (!empty($pageData['faqs'])) $schemas[] = seoFaqSchema($pageData['faqs']);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['FAQs','']]);
       break;
 
     case 'portfolio':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Portfolio','']]);
       break;
 
     case 'careers':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage', $lastMod, $published);
       if (!empty($pageData['jobs'])) {
         foreach (array_slice($pageData['jobs'],0,10) as $j) {
           $schemas[] = seoJobPostingSchema($j, SITE_URL.'/careers.php#job-'.$j['id']);
@@ -768,7 +784,7 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
 
     case 'products':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Products','']]);
       break;
 
@@ -780,7 +796,7 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
 
     case 'courses':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['IT Courses','']]);
       break;
 
@@ -791,29 +807,29 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
 
     case 'partners':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Partners','']]);
       break;
 
     case 'clients':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Clients','']]);
       if (!empty($pageData['testimonials'])) $schemas[] = seoReviewSchema($pageData['testimonials']);
       break;
 
     case 'gallery':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'ImageGallery');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'ImageGallery', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Gallery','']]);
       break;
 
     case 'testimonials':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage', $lastMod, $published);
       if (!empty($pageData['testimonials'])) $schemas[] = seoReviewSchema($pageData['testimonials']);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Testimonials','']]);
       break;
 
     case 'apps':
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'CollectionPage', $lastMod, $published);
       $schemas[] = seoBreadcrumbSchema([[$_SEO_BIZ['name'],SITE_URL],['Mobile Apps','']]);
       break;
 
@@ -849,7 +865,7 @@ function renderPageSchema(string $pageType, array $pageData = []): void {
       break;
 
     default:
-      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage');
+      $schemas[] = seoWebPageSchema($title,$desc,$url,'WebPage', $lastMod, $published);
       break;
   }
 

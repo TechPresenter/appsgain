@@ -15,4 +15,9 @@ return [
     'db_name' => 'u000000000_yourdb',
     'db_user' => 'u000000000_youruser',
     'db_pass' => 'put-the-real-password-here',
+
+    /* AI chatbot. Server-side only — api/chatbot.php reads it to call
+       OpenAI and never returns it to the browser. Leave it out to run
+       the site with the chatbot disabled. */
+    'openai_api_key' => 'sk-...',
 ];
