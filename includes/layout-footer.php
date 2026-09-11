@@ -95,6 +95,22 @@ $_parseLinks = static function (string $raw) use ($_siteUrl): array {
 };
 $_quickLinksTitle = trim((string)($_sf['footer_links_title'] ?? '')) ?: 'Quick Links';
 $_quickLinks = $_parseLinks((string)($_sf['footer_quick_links'] ?? ''));
+
+/* Pay Now — same payment_link setting the header button reads, so one field
+   controls both and clearing it removes both. Appended here rather than added
+   to footer_quick_links so it cannot be edited into a dead link, and so the
+   highlight style is not something an admin has to remember to reapply. */
+$_payUrl = trim((string)($_sf['payment_link'] ?? 'https://payments.cashfree.com/forms/appsgaintechnologies'));
+if ($_payUrl !== '') {
+    $_quickLinks[] = [
+        'label'    => trim((string)($_sf['payment_label'] ?? '')) ?: 'Pay Now',
+        'url'      => $_payUrl,
+        'icon'     => 'fa-bolt',
+        'badge'    => '',
+        'pay'      => true,
+        'external' => true,
+    ];
+}
 $_legalLinks = $_parseLinks((string)($_sf['footer_legal_links'] ?? ''));
 
 $_footerServices = dbFetchAll(
@@ -247,10 +263,14 @@ $_iconUrl = static function (string $p): string {
         <h3 class="ftx-h" id="ftxQuick"><?= e($_quickLinksTitle) ?></h3>
         <ul class="ftx-list ftx-list-divided ftx-list-2col">
           <?php foreach ($_quickLinks as $_ql): ?>
+          <?php $_isPay = !empty($_ql['pay']); ?>
           <li>
-            <a href="<?= e($_ql['url']) ?>">
-              <i class="fas fa-angle-right ftx-list-ico" aria-hidden="true"></i>
+            <a href="<?= e($_ql['url']) ?>"<?= $_isPay ? ' class="ftx-pay"' : '' ?><?php
+               /* Payment leaves the site — new tab, no referrer. */
+               if (!empty($_ql['external'])) echo ' target="_blank" rel="noopener noreferrer"'; ?>>
+              <i class="fas <?= $_isPay ? e($_ql['icon']) : 'fa-angle-right' ?> ftx-list-ico" aria-hidden="true"></i>
               <span><?= e($_ql['label']) ?></span>
+              <?php if ($_isPay): ?><em class="ftx-pay-tag">Secure</em><?php endif; ?>
               <?php if ($_ql['badge']): ?><em class="ftx-pill"><?= e($_ql['badge']) ?></em><?php endif; ?>
             </a>
           </li>
@@ -615,6 +635,33 @@ $_iconUrl = static function (string $p): string {
   font-style:normal; font-size:9.5px; font-weight:700; letter-spacing:.05em;
   padding:2px 8px; border-radius:999px; color:#fff;
   background-color:#8B00E0; background-image:var(--f-grad-btn);
+}
+
+/* ── Pay Now in the quick links ───────────────────────────
+   A gradient-text row rather than a button: the header already carries the
+   button, and a second one here would compete with the newsletter CTA. The
+   weight, the gradient and the bolt lift it out of a plain link list. */
+.ftx-pay{ font-weight:800 !important; }
+.ftx-pay span{
+  background-image:var(--f-grad-90, linear-gradient(90deg,#FF8A00,#F50072 55%,#6A00FF));
+  background-size:200% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:ftxPayShift 6s ease-in-out infinite;
+}
+.ftx-pay .ftx-list-ico{ color:#F50072 !important; }
+.ftx-pay:hover span{ background-position:100% 50%; }
+.ftx-pay:hover .ftx-list-ico{ transform:translateX(2px) scale(1.12); }
+.ftx-pay-tag{
+  font-style:normal; font-size:9px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; padding:2px 7px; border-radius:999px;
+  color:#0F9D58; background:rgba(15,157,88,.10);
+  border:1px solid rgba(15,157,88,.22); flex:0 0 auto;
+}
+@keyframes ftxPayShift{ 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+@media (prefers-reduced-motion:reduce){
+  .ftx-pay span{ animation:none; }
+  .ftx-pay:hover .ftx-list-ico{ transform:none; }
 }
 
 /* Column 4 — contact cards */
