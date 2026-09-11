@@ -23,6 +23,12 @@ $_email    = $_s['site_email']   ?? $_s['email']   ?? 'info@appsgain.in';
 $_address  = $_s['site_address'] ?? $_s['address'] ?? '';
 $_phoneClean = preg_replace('/[^+0-9]/', '', $_phone);
 
+/* Payment link — Admin → Settings → Business Info. The Cashfree form is the
+   default so the button works out of the box; clearing the setting removes
+   the button rather than leaving a dead link in the header. */
+$_payUrl   = trim((string)($_s['payment_link'] ?? 'https://payments.cashfree.com/forms/appsgaintechnologies'));
+$_payLabel = trim((string)($_s['payment_label'] ?? '')) ?: 'Pay Now';
+
 $_fb = $_s['site_facebook']  ?? '';
 $_ig = $_s['site_instagram'] ?? '';
 $_li = $_s['site_linkedin']  ?? '';
@@ -236,6 +242,15 @@ foreach ((array)($pageStyles ?? []) as $_css):
         <a href="tel:<?= e($_phoneClean) ?>" class="hx-icon-btn hx-hide-sm" aria-label="Call us" title="Call us">
           <i class="fas fa-phone" aria-hidden="true"></i>
         </a>
+        <?php if ($_payUrl !== ''): ?>
+        <?php /* Payments leave the site, so this opens in a new tab and drops
+                 the referrer. The sheen is a child element rather than a
+                 pseudo-element so it can be clipped without a second stack. */ ?>
+        <a href="<?= e($_payUrl) ?>" class="hx-pay" target="_blank" rel="noopener noreferrer">
+          <span class="hx-pay-sheen" aria-hidden="true"></span>
+          <i class="fas fa-bolt" aria-hidden="true"></i><span><?= e($_payLabel) ?></span>
+        </a>
+        <?php endif; ?>
         <a href="<?= $_siteUrl ?>/contact.php#enquiry" class="hx-cta">
           <i class="fas fa-paper-plane" aria-hidden="true"></i><span>Get a Quote</span>
         </a>
@@ -324,6 +339,12 @@ foreach ((array)($pageStyles ?? []) as $_css):
   </nav>
 
   <div class="hx-drawer-foot">
+    <?php if ($_payUrl !== ''): ?>
+    <a href="<?= e($_payUrl) ?>" class="hx-drawer-cta hx-drawer-pay" target="_blank" rel="noopener noreferrer">
+      <span class="hx-pay-sheen" aria-hidden="true"></span>
+      <i class="fas fa-bolt" aria-hidden="true"></i> <?= e($_payLabel) ?>
+    </a>
+    <?php endif; ?>
     <a href="<?= $_siteUrl ?>/contact.php#enquiry" class="hx-drawer-cta">
       <i class="fas fa-paper-plane" aria-hidden="true"></i> Get a Free Quote
     </a>
@@ -550,6 +571,54 @@ html{ scroll-behavior:smooth; }
   background-position:100% 50%; color:#fff;
   transform:translateY(-2px); box-shadow:0 8px 22px rgba(106,0,255,.28);
 }
+
+/* ── Pay Now ──────────────────────────────────────────────
+   Carries the full brand gradient rather than the violet button ramp, so it
+   reads as a different action from "Get a Quote" sitting beside it. Three
+   things move: the gradient drifts, a sheen crosses every few seconds, and
+   the glow breathes. All of it stops under prefers-reduced-motion. */
+.hx-pay{
+  position:relative; overflow:hidden; isolation:isolate;
+  display:inline-flex; align-items:center; gap:9px;
+  height:44px; padding:0 22px; border-radius:11px;
+  background-color:#F50072; background-image:var(--h-grad);
+  background-size:260% 100%;
+  color:#fff; font-size:14.5px; font-weight:700; text-decoration:none; white-space:nowrap;
+  box-shadow:0 4px 16px rgba(245,0,114,.30);
+  animation:hxPayDrift 7s ease-in-out infinite, hxPayGlow 3.2s ease-in-out infinite;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.hx-pay i{ font-size:13px; }
+.hx-pay:hover{
+  color:#fff; transform:translateY(-2px) scale(1.02);
+  box-shadow:0 10px 26px rgba(245,0,114,.42);
+}
+.hx-pay:active{ transform:translateY(0) scale(.99); }
+.hx-pay:focus-visible{ outline:3px solid rgba(255,255,255,.85); outline-offset:2px; }
+
+/* The travelling highlight. Skewed so the edge reads as a light sweep
+   rather than a moving bar. */
+.hx-pay-sheen{
+  position:absolute; top:-60%; left:-70%; width:45%; height:220%;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 100%);
+  transform:skewX(-22deg); pointer-events:none; z-index:-1;
+  animation:hxPaySheen 4.5s ease-in-out infinite;
+}
+@keyframes hxPayDrift{ 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+@keyframes hxPayGlow{
+  0%,100%{ box-shadow:0 4px 16px rgba(245,0,114,.30); }
+  50%    { box-shadow:0 6px 22px rgba(208,0,168,.48); }
+}
+/* Idle for most of the cycle, then one quick pass — a sweep that never rests
+   reads as a loading bar. */
+@keyframes hxPaySheen{ 0%,55%{ left:-70%; } 85%,100%{ left:130%; } }
+
+@media (prefers-reduced-motion:reduce){
+  .hx-pay{ animation:none; background-position:50% 50%; }
+  .hx-pay-sheen{ animation:none; opacity:0; }
+  .hx-pay:hover{ transform:none; }
+}
 .hx-burger{
   display:none; width:44px; height:44px; border-radius:11px; cursor:pointer;
   background:#fff; border:1px solid var(--h-line);
@@ -760,6 +829,14 @@ html{ scroll-behavior:smooth; }
   box-shadow:0 4px 14px rgba(106,0,255,.22);
 }
 .hx-drawer-cta:hover{ color:#fff; }
+.hx-drawer-pay{
+  position:relative; overflow:hidden; isolation:isolate; font-weight:700;
+  background-color:#F50072; background-image:var(--h-grad);
+  background-size:260% 100%;
+  box-shadow:0 4px 16px rgba(245,0,114,.30);
+  animation:hxPayDrift 7s ease-in-out infinite, hxPayGlow 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion:reduce){ .hx-drawer-pay{ animation:none; } }
 .hx-drawer-contact{ display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
 .hx-drawer-contact a{
   display:flex; align-items:center; gap:9px;
@@ -791,10 +868,18 @@ html{ scroll-behavior:smooth; }
   .hx-search{ display:none; }              /* search lives in the drawer */
   .hx-main-in{ height:66px; }
 }
+@media (max-width:820px){
+  /* Two gradient buttons plus a burger crowds the bar. Pay keeps its label
+     because it is the action being highlighted; Quote drops to its icon. */
+  .hx-cta span{ display:none; }
+  .hx-cta{ padding:0 14px; }
+}
 @media (max-width:560px){
   .hx-hide-sm{ display:none !important; }
   .hx-cta span{ display:none; }
   .hx-cta{ padding:0 16px; }
+  /* Below this the drawer carries Pay, so the bar keeps only one button. */
+  .hx-pay{ display:none; }
   .hx-util-in{ height:34px; font-size:11.5px; }
   .hx-logo img{ max-height:34px; }
 }

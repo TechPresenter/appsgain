@@ -46,6 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'site_whatsapp','google_maps_embed','contact_email',
             // App Download Links + visibility toggles
             'app_google_play','app_apple_store','footer_apps_title',
+            // Payment link shown as the header "Pay Now" button
+            'payment_link','payment_label',
             // Founder bio page (/our-founder.php)
             'founder_name','founder_role','founder_email','founder_linkedin',
             'founder_photo','founder_since','founder_education',
@@ -849,6 +851,27 @@ elseif ($tab === 'business'): ?>
                    value="<?= e($s['footer_apps_title'] ?? '') ?>"
                    placeholder="Download Our Apps">
             <div class="form-hint">Shown above the store badges in the footer brand column.</div>
+          </div>
+
+          <!-- Header "Pay Now" button -->
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:8px">
+              <span style="width:28px;height:28px;background:linear-gradient(135deg,#FF8A00,#F50072,#6A00FF);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="fas fa-bolt" style="color:#fff;font-size:12px"></i>
+              </span>
+              Payment Link <span style="font-weight:400;color:var(--gray)">(header Pay Now button)</span>
+            </label>
+            <input type="url" name="payment_link" class="form-control"
+                   value="<?= e($s['payment_link'] ?? '') ?>"
+                   placeholder="https://payments.cashfree.com/forms/appsgaintechnologies">
+            <div class="form-hint">Opens in a new tab. Leave blank to remove the button from the header and mobile menu entirely.</div>
+          </div>
+          <div class="form-group" style="margin-bottom:18px">
+            <label>Payment Button Label</label>
+            <input type="text" name="payment_label" class="form-control" maxlength="24"
+                   value="<?= e($s['payment_label'] ?? '') ?>"
+                   placeholder="Pay Now">
+            <div class="form-hint">Keep it short — the header has limited room. Defaults to &ldquo;Pay Now&rdquo;.</div>
           </div>
 
           <div class="form-group">
