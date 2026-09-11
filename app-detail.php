@@ -58,7 +58,6 @@ $ratingHalf = ($rating - $ratingFull) >= 0.5;
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <!-- Typeface loads once via css/style.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css"/>
   <style>
   /* ══ CORE ══ */
   :root{--ac:<?= $platformColor ?>;--ac2:<?= $platformColor ?>dd;--font:var(--font-main);}

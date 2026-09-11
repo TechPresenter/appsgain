@@ -155,7 +155,6 @@ function getSvcStyle(string $icon, array $map): array {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <?php require __DIR__ . '/includes/meta.php'; ?>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css" />
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/animations.css" />
   <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/3d-saas.css" />
   <?php /* Three.js is loaded once, just above 3d-saas.js which consumes it.

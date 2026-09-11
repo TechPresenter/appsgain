@@ -87,6 +87,14 @@ $_companyLinks = [
 
 $_socialLinks = agSocialLinks($_s);
 ?>
+<?php /* style.css carries the reset and the base tokens, so it has to load on
+         every page. It used to be linked by each page individually, which
+         meant about, services, portfolio and clients never got it: without
+         the reset the browser's default margins came back and showed up as
+         white space above the header and below the footer. Loading it first,
+         ahead of brand.css, is the order the pages that already worked used
+         — they linked it in <head>, before this file runs. */ ?>
+<link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css?v=<?= is_file(ROOT_PATH . '/css/style.css') ? filemtime(ROOT_PATH . '/css/style.css') : 1 ?>">
 <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/brand.css">
 <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/hero.css">
 <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/modern.css">

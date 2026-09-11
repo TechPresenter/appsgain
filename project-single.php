@@ -38,7 +38,6 @@ $phoneClean = preg_replace('/[^+0-9]/', '', $phone);
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <!-- Typeface loads once via css/style.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="<?= ASSETS_URL ?>/css/style.css"/>
   <style>
   :root{--ac:<?= $accent ?>;--font:var(--font-main);}
   *{box-sizing:border-box;}
