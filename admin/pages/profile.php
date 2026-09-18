@@ -46,19 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($existing) $errors[] = 'Email already in use by another account.';
         }
 
-        /* Handle avatar upload */
+        /* Handle avatar upload.
+           Routed through uploadFile() like every other upload on the site.
+           This used to move the file itself, taking the extension straight
+           from the client filename and checking nothing else — no MIME test,
+           no getimagesize(), no size limit. That bypassed the whole model in
+           uploadFile(), where the extension is derived from a verified MIME
+           and never from what the browser claims, and it is how a 1.4 MB
+           1024x1024 PNG ended up in uploads/avatars/ as a 48px avatar. */
         $avatarPath = $admin['avatar'] ?? '';
         if (!empty($_FILES['avatar']['size'])) {
-            $ext = strtolower(pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION));
-            if (!in_array($ext, ['jpg','jpeg','png','gif','webp'])) {
-                $errors[] = 'Avatar must be JPG, PNG, GIF or WebP.';
+            $up = uploadFile($_FILES['avatar'], 'avatars');
+            if (!empty($up['success'])) {
+                $avatarPath = $up['path'];
             } else {
-                $uploadDir = dirname(dirname(__DIR__)) . '/uploads/avatars/';
-                if (!is_dir($uploadDir)) @mkdir($uploadDir, 0755, true);
-                $fileName = 'avatar_' . $admin['id'] . '_' . time() . '.' . $ext;
-                if (move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadDir . $fileName)) {
-                    $avatarPath = 'avatars/' . $fileName;
-                }
+                $errors[] = $up['error'] ?? 'Avatar upload failed.';
             }
         }
 

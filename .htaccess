@@ -45,6 +45,10 @@ ServerSignature Off
     # Applicant CVs carry names, phone numbers and addresses. They are served
     # to signed-in staff by admin/download-resume.php, never as public files.
     RewriteRule ^uploads/resumes/.* - [F,L]
+    # Nothing in uploads/ is ever meant to be executed. uploadFile() derives
+    # the extension from a verified MIME so a .php should never land here, but
+    # this is the backstop if any upload path ever lets one through.
+    RewriteRule ^uploads/.*\.(php[0-9]?|phtml|phps|pht|cgi|pl|py|sh|htaccess)$ - [F,L]
     RewriteRule ^\.git/.*$         - [F,L]
 
     # ── HTML → PHP 301 Redirects (legacy static site) ─────
