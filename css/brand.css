@@ -65,9 +65,9 @@
 
   /* ── Typography ── */
   /* Same family as style.css. Both files define these on :root, so whichever
-     loads last still resolves to Figtree rather than a leftover Inter. */
-  --font-display: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-body:    'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+     loads last still resolves to Poppins rather than a leftover Inter. */
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:    'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* ── 8px spacing scale ── */
   --sp-1: 8px;   --sp-2: 16px;  --sp-3: 24px;  --sp-4: 32px;

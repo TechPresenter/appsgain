@@ -57,7 +57,7 @@ $siteName = getSetting('site_name', 'Appsgain Technologies');
 <link rel="icon" href="<?= UPLOADS_URL ?>/logo/appsgain-icon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
 /* ══════════════════════════════════════════════════════
@@ -78,7 +78,7 @@ $siteName = getSetting('site_name', 'Appsgain Technologies');
 *{ box-sizing:border-box; margin:0; padding:0; }
 html,body{ height:100%; }
 body{
-  font-family:'Figtree',system-ui,-apple-system,sans-serif;
+  font-family:'Poppins',system-ui,-apple-system,sans-serif;
   color:var(--body); background:var(--soft);
   -webkit-font-smoothing:antialiased;
 }
@@ -125,7 +125,7 @@ body{
   color:#E9DDFF;
 }
 .lg-pitch h1{
-  font-family:'Figtree',sans-serif;
+  font-family:'Poppins',sans-serif;
   font-size:clamp(26px,2.8vw,38px); font-weight:800; letter-spacing:-.03em;
   line-height:1.15; color:#fff; margin:0 0 14px;
 }
@@ -159,7 +159,7 @@ body{
 .lg-mark img{ height:34px; width:auto; }
 
 .lg-h2{
-  font-family:'Figtree',sans-serif;
+  font-family:'Poppins',sans-serif;
   font-size:26px; font-weight:800; letter-spacing:-.025em;
   color:var(--ink); margin:0 0 7px;
 }
