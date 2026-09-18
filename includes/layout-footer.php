@@ -56,6 +56,23 @@ $_logo    = $_logoRaw !== ''
 $_footerAbout = trim((string)($_sf['footer_about_text'] ?? ''));
 if ($_footerAbout === '') $_footerAbout = trim((string)($_sf['site_description'] ?? $_siteDesc));
 $_copyright   = trim((string)($_sf['copyright_text'] ?? '')) ?: 'All rights reserved.';
+
+/* ── Statutory identifiers ──
+   A private limited company must show its CIN wherever it publishes its
+   name; PAN, TAN and GSTIN are not compulsory on a website but they are what
+   a prospect's accounts team looks for before raising a PO, so they earn
+   their place. Admin-editable, and each one is omitted individually when
+   blank rather than printing an empty label.
+
+   ?: not ?? — company_cin and company_gstin already exist in the settings
+   table holding empty strings, which ?? would have accepted as a value and
+   then filtered away, leaving CIN and GSTIN off the page. */
+$_regRows = array_values(array_filter([
+    ['CIN',   trim((string)($_sf['company_cin']   ?? '')) ?: 'U62099BR2026PTC088106'],
+    ['PAN',   trim((string)($_sf['company_pan']   ?? '')) ?: 'ABGCA7436E'],
+    ['TAN',   trim((string)($_sf['company_tan']   ?? '')) ?: 'PTNA15135B'],
+    ['GSTIN', trim((string)($_sf['company_gstin'] ?? '')) ?: '10ABGCA7436E1Z3'],
+], static fn(array $r): bool => $r[1] !== ''));
 $_builtWith   = trim((string)($_sf['footer_built_with'] ?? ''));
 
 $_showBadges  = ($_sf['footer_show_badges']     ?? '1') === '1';
@@ -373,6 +390,27 @@ $_iconUrl = static function (string $p): string {
       </div>
 
     </div><!-- /ftx-grid -->
+
+    <?php if ($_regRows): ?>
+    <?php /* Sits inside the light area rather than the navy bar below: these
+             are reference numbers people copy, and they need to stay legible.
+             <dl> because each one is a label and its value, not a list. */ ?>
+    <section class="ftx-reg" aria-label="Company registration details">
+      <p class="ftx-reg-name">
+        <span class="ftx-reg-ico" aria-hidden="true"><i class="fas fa-building-columns"></i></span>
+        <?= e($_companyName) ?>
+        <em class="ftx-reg-tag">Registered in India</em>
+      </p>
+      <dl class="ftx-reg-list">
+        <?php foreach ($_regRows as [$_rLabel, $_rValue]): ?>
+        <div class="ftx-reg-item">
+          <dt><?= e($_rLabel) ?></dt>
+          <dd><?= e($_rValue) ?></dd>
+        </div>
+        <?php endforeach; ?>
+      </dl>
+    </section>
+    <?php endif; ?>
   </div><!-- /container -->
 
   <!-- ── 3 · Copyright bar ── -->
@@ -722,6 +760,53 @@ $_iconUrl = static function (string $p): string {
    Mirrors .hx-util at the top of the page. The ramp stops at #E0006E
    because white text drops to 3.67:1 on #FF3030 and 2.36:1 on #FF8A00,
    which is where a label stops being readable. */
+/* ── Statutory identifiers strip ──────────────────────────
+   Quiet by design: this is reference matter, not a selling point, so it
+   reads at the weight of fine print while staying copyable. */
+.ftx-reg{
+  margin-top:clamp(28px,3.4vw,44px);
+  padding-top:clamp(20px,2.4vw,28px);
+  border-top:1px solid rgba(231,232,240,.9);
+}
+.ftx-reg-name{
+  display:flex; align-items:center; flex-wrap:wrap; gap:9px;
+  margin:0 0 14px; font-size:13.5px; font-weight:700; color:var(--f-navy);
+}
+.ftx-reg-ico{
+  width:26px; height:26px; border-radius:8px; flex:0 0 auto;
+  display:grid; place-items:center; font-size:11px; color:#fff;
+  background-color:#6A00FF; background-image:var(--f-grad-btn);
+}
+.ftx-reg-tag{
+  font-style:normal; font-size:9.5px; font-weight:700; letter-spacing:.07em;
+  text-transform:uppercase; padding:3px 9px; border-radius:999px;
+  color:#0F9D58; background:rgba(15,157,88,.10); border:1px solid rgba(15,157,88,.22);
+}
+/* auto-fit rather than a fixed count, so dropping one identifier reflows the
+   rest instead of leaving a hole in the row. */
+.ftx-reg-list{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:10px 22px; margin:0; padding:0;
+}
+.ftx-reg-item{
+  display:flex; align-items:baseline; gap:8px; min-width:0;
+  padding:9px 13px; border-radius:10px;
+  background:var(--f-soft); border:1px solid var(--f-line);
+}
+.ftx-reg-item dt{
+  flex:0 0 auto; font-size:9.5px; font-weight:800; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--f-body);
+}
+.ftx-reg-item dd{
+  margin:0; min-width:0; font-size:12.5px; font-weight:700; color:var(--f-navy);
+  letter-spacing:.02em; font-variant-numeric:tabular-nums;
+  overflow-wrap:anywhere;                     /* a 21-char CIN must not widen the grid */
+  -webkit-user-select:all; user-select:all;   /* one click selects the whole number */
+}
+@media (max-width:560px){
+  .ftx-reg-list{ grid-template-columns:1fr; gap:8px; }
+}
+
 .ftx-bottom{
   position:relative; overflow:hidden;
   color:#fff;
