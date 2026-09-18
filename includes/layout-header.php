@@ -382,6 +382,10 @@ foreach ((array)($pageStyles ?? []) as $_css):
   --h-mute:#6E7386; --h-line:#E7E9F0; --h-soft:#F7F8FC;
   --h-grad:linear-gradient(135deg,#FF8A00 0%,#FF3030 28%,#F50072 52%,#D000A8 72%,#6A00FF 100%);
   --h-grad-btn:linear-gradient(120deg,#D000A8 0%,#9D00D3 45%,#6A00FF 100%);
+  /* Wider than --h-grad-btn so a drifting button still reads as the brand
+     ramp, but stopped at #E0006E for the reason given on the utility bar
+     below: white text clears 4.5:1 on every stop up to there. */
+  --h-grad-pay:linear-gradient(120deg,#E0006E 0%,#D000A8 38%,#9D00D3 68%,#6A00FF 100%);
   --h-grad-90:linear-gradient(90deg,#FF8A00 0%,#FF3030 28%,#F50072 52%,#D000A8 72%,#6A00FF 100%);
   font-family:var(--font-body),var(--font-main),system-ui,sans-serif;
 }
@@ -589,7 +593,10 @@ html{ scroll-behavior:smooth; }
   position:relative; overflow:hidden; isolation:isolate;
   display:inline-flex; align-items:center; gap:9px;
   height:44px; padding:0 22px; border-radius:11px;
-  background-color:#F50072; background-image:var(--h-grad);
+  /* --h-grad-pay, not --h-grad: the full ramp ends at #FF8A00, where white
+     text measures 2.36:1. The drift animation walked the label through it
+     every 7 seconds. */
+  background-color:#D000A8; background-image:var(--h-grad-pay);
   background-size:260% 100%;
   color:#fff; font-size:14.5px; font-weight:700; text-decoration:none; white-space:nowrap;
   box-shadow:0 4px 16px rgba(245,0,114,.30);
@@ -839,7 +846,7 @@ html{ scroll-behavior:smooth; }
 .hx-drawer-cta:hover{ color:#fff; }
 .hx-drawer-pay{
   position:relative; overflow:hidden; isolation:isolate; font-weight:700;
-  background-color:#F50072; background-image:var(--h-grad);
+  background-color:#D000A8; background-image:var(--h-grad-pay);   /* see .hx-pay */
   background-size:260% 100%;
   box-shadow:0 4px 16px rgba(245,0,114,.30);
   animation:hxPayDrift 7s ease-in-out infinite, hxPayGlow 3.2s ease-in-out infinite;
@@ -878,13 +885,20 @@ html{ scroll-behavior:smooth; }
 }
 @media (max-width:820px){
   /* Two gradient buttons plus a burger crowds the bar. Pay keeps its label
-     because it is the action being highlighted; Quote drops to its icon. */
-  .hx-cta span{ display:none; }
+     because it is the action being highlighted; Quote drops to its icon.
+
+     Hidden visually, not removed. display:none took the span out of the
+     accessibility tree as well, and that span carries the link's entire
+     accessible name — the icon beside it is aria-hidden. Every phone and
+     small tablet was getting an unlabelled link. */
+  .hx-cta span{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+  }
   .hx-cta{ padding:0 14px; }
 }
 @media (max-width:560px){
   .hx-hide-sm{ display:none !important; }
-  .hx-cta span{ display:none; }
   .hx-cta{ padding:0 16px; }
   /* Below this the drawer carries Pay, so the bar keeps only one button. */
   .hx-pay{ display:none; }

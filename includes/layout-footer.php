@@ -680,7 +680,11 @@ $_iconUrl = static function (string $p): string {
    weight, the gradient and the bolt lift it out of a plain link list. */
 .ftx-pay{ font-weight:800 !important; }
 .ftx-pay span{
-  background-image:var(--f-grad-90, linear-gradient(90deg,#FF8A00,#F50072 55%,#6A00FF));
+  /* Gradient text, so the ramp IS the text colour: it has to clear 4.5:1 on
+     white for its whole length. --f-grad-90 starts at #FF8A00, which measures
+     2.36:1, so the first third of the label was effectively unreadable. This
+     ramp stops at #E0006E (4.40:1) — the same cap the header uses. */
+  background-image:linear-gradient(90deg,#E0006E 0%,#D000A8 45%,#6A00FF 100%);
   background-size:200% 100%;
   -webkit-background-clip:text; background-clip:text;
   -webkit-text-fill-color:transparent; color:transparent;
